@@ -1,0 +1,61 @@
+import { NextResponse } from 'next/server';
+import { submitAnswer, getParticipants } from '@/lib/icebreaker';
+
+// Get all participants
+export async function GET() {
+  try {
+    const participants = await getParticipants();
+    return NextResponse.json(participants);
+  } catch (error) {
+    console.error('Virhe osallistujien haussa:', error);
+    return NextResponse.json(
+      { error: 'Virhe osallistujien haussa' },
+      { status: 500 }
+    );
+  }
+}
+
+// Submit an answer
+export async function POST(req: Request) {
+  try {
+    const { cardId, questionNumber, giverId, receiverId } = await req.json();
+
+    if (!cardId) {
+      return NextResponse.json(
+        { error: 'Kortin tunniste puuttuu' },
+        { status: 400 }
+      );
+    }
+
+    if (!questionNumber) {
+      return NextResponse.json(
+        { error: 'Kysymyksen numero puuttuu' },
+        { status: 400 }
+      );
+    }
+
+    if (!giverId) {
+      return NextResponse.json(
+        { error: 'Vastaajan tunniste puuttuu' },
+        { status: 400 }
+      );
+    }
+
+    if (!receiverId) {
+      return NextResponse.json(
+        { error: 'Valitun henkilön tunniste puuttuu' },
+        { status: 400 }
+      );
+    }
+
+    await submitAnswer(cardId, questionNumber, giverId, receiverId);
+    
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Virhe vastauksen tallennuksessa:', error);
+    return NextResponse.json(
+      { error: 'Virhe vastauksen tallennuksessa' },
+      { status: 500 }
+    );
+  }
+}

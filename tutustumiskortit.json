@@ -1,0 +1,4842 @@
+[
+  {
+    "id": 1,
+    "set": 1,
+    "title": "KORTTI 1",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen lukinnut itseni ulos asunnostani."
+      },
+      {
+        "number": 2,
+        "text": "Olen asunut ulkomailla."
+      },
+      {
+        "number": 3,
+        "text": "Minulla on yli 1000 seuraajaa sosiaalisessa mediassa."
+      },
+      {
+        "number": 4,
+        "text": "Olen laulanut karaokessa kappaletta jota en osannut."
+      },
+      {
+        "number": 5,
+        "text": "Olen nukkunut autossa."
+      },
+      {
+        "number": 6,
+        "text": "Olen rakentanut linnunpöntön."
+      },
+      {
+        "number": 7,
+        "text": "Olen kantanut arkkua."
+      },
+      {
+        "number": 8,
+        "text": "Olen pitänyt blogia."
+      },
+      {
+        "number": 9,
+        "text": "Olen heittänyt joulupukin keikkaa."
+      },
+      {
+        "number": 10,
+        "text": "Minulta on varastettu polkupyörä."
+      },
+      {
+        "number": 11,
+        "text": "Olen käynyt Säpin majakassa."
+      },
+      {
+        "number": 12,
+        "text": "Olen ollut esimies."
+      },
+      {
+        "number": 13,
+        "text": "Olen uinut avannossa."
+      },
+      {
+        "number": 14,
+        "text": "Olen koonnut IKEA-huonekalun ja se onnistui."
+      },
+      {
+        "number": 15,
+        "text": "Olen voittanut yli 100e lotosta tai arvasta."
+      },
+      {
+        "number": 16,
+        "text": "Olen soittanut exälleni humalassa."
+      },
+      {
+        "number": 17,
+        "text": "Olen kirjoittanut rakkauskirjeen."
+      },
+      {
+        "number": 18,
+        "text": "Olen vaihtanut alaa/työtä seuraten omaa unelmaani"
+      },
+      {
+        "number": 19,
+        "text": "Olen hypännyt 10 metristä veteen."
+      },
+      {
+        "number": 20,
+        "text": "Olen loukkaantunut yrittäessäni jotai typerää."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "set": 1,
+    "title": "KORTTI 2",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen polttanut ruoan pohjaan niin pahasti, että piti ostaa uusi kattila."
+      },
+      {
+        "number": 2,
+        "text": "Olen tehnyt töitä pimeästi."
+      },
+      {
+        "number": 3,
+        "text": "Olen ajanut moottoripyörällä."
+      },
+      {
+        "number": 4,
+        "text": "Olen valehellut ikääni ollakseni vanhempi tai nuorempi."
+      },
+      {
+        "number": 5,
+        "text": "Osaan soittaa pianoa."
+      },
+      {
+        "number": 6,
+        "text": "Minulla on lemmikki."
+      },
+      {
+        "number": 7,
+        "text": "Olen pukeutunut kansallispukuun."
+      },
+      {
+        "number": 8,
+        "text": "Olen työskennellyt ravintolassa tai kahvilassa."
+      },
+      {
+        "number": 9,
+        "text": "Olen kirjoittanut päiväkirjaa."
+      },
+      {
+        "number": 10,
+        "text": "Olen tavannut esikuvani tai idolini."
+      },
+      {
+        "number": 11,
+        "text": "Olen ratsastanut elefantilla tai kamelilla."
+      },
+      {
+        "number": 12,
+        "text": "Olen järjestänyt yllätysjuhlat läheiselle."
+      },
+      {
+        "number": 13,
+        "text": "Olen kokenut maanjäristyksen."
+      },
+      {
+        "number": 14,
+        "text": "Olen ostanut kalliin harrastusvälineen joka on jäänyt käyttämättömäksi."
+      },
+      {
+        "number": 15,
+        "text": "Olen murtanut luun."
+      },
+      {
+        "number": 16,
+        "text": "Olen tapetoinut."
+      },
+      {
+        "number": 17,
+        "text": "Olen lukenut saman kirjan useammin kuin kerran."
+      },
+      {
+        "number": 18,
+        "text": "Olen esiintynyt radiossa."
+      },
+      {
+        "number": 19,
+        "text": "Olen mennyt väärään bussiin tai junaan."
+      },
+      {
+        "number": 20,
+        "text": "Olen antanut rahaa kerjäläiselle."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "set": 1,
+    "title": "KORTTI 3",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Minulla on tatuointi."
+      },
+      {
+        "number": 2,
+        "text": "Olen nukkunut riippumatossa."
+      },
+      {
+        "number": 3,
+        "text": "Olen ollut kuorossa."
+      },
+      {
+        "number": 4,
+        "text": "Olen oksentanut baarissa tuoppii ntai pöydälle."
+      },
+      {
+        "number": 5,
+        "text": "Olen itse kasvattanut perunoita."
+      },
+      {
+        "number": 6,
+        "text": "Olen ajanut autolla jäätyneen meren tai järven päällä."
+      },
+      {
+        "number": 7,
+        "text": "Olen katsonut elokuvan drive-in elokuvateatterissa."
+      },
+      {
+        "number": 8,
+        "text": "Olen pitänyt puheen yli 50 ihmiselle."
+      },
+      {
+        "number": 9,
+        "text": "Olen käynyt pilkillä."
+      },
+      {
+        "number": 10,
+        "text": "Olen syönyt kokonaisen chilin."
+      },
+      {
+        "number": 11,
+        "text": "Olen tehnyt lumiukon viimeisen viiden vuoden aikana."
+      },
+      {
+        "number": 12,
+        "text": "Olen osallistunut E-sports turnaukseen."
+      },
+      {
+        "number": 13,
+        "text": "Olen kokeillut vesihiihtoa."
+      },
+      {
+        "number": 14,
+        "text": "Olen osallistunut ruoanlaittokurssille."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut jonkun yhdistyksen puheenjohtaja."
+      },
+      {
+        "number": 16,
+        "text": "Olen kiivennyt puuhun aikuisena."
+      },
+      {
+        "number": 17,
+        "text": "Olen tehnyt oman musiikkivideon."
+      },
+      {
+        "number": 18,
+        "text": "Olen osallistunut maratonille tai triathloniin."
+      },
+      {
+        "number": 19,
+        "text": "Olen voittanut bingossa."
+      },
+      {
+        "number": 20,
+        "text": "Olen käynyt oopperassa."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "set": 1,
+    "title": "KORTTI 4",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Minulla on ollut kuntosalijäsenyys käyttämättä yli kuukauden."
+      },
+      {
+        "number": 2,
+        "text": "Olen joskus saanut parkkisakot."
+      },
+      {
+        "number": 3,
+        "text": "Olen ollut mukana polttareissa."
+      },
+      {
+        "number": 4,
+        "text": "Olen ollut perustamassa yritystä."
+      },
+      {
+        "number": 5,
+        "text": "Olen harrastanut jääkiekkoa."
+      },
+      {
+        "number": 6,
+        "text": "Osaan solmia kravatin."
+      },
+      {
+        "number": 7,
+        "text": "Olen harrastanut jalkapalloa."
+      },
+      {
+        "number": 8,
+        "text": "Olen jättänyt menemään töihin krapulan takia."
+      },
+      {
+        "number": 9,
+        "text": "Olen ollut ehdolla vaaleissa."
+      },
+      {
+        "number": 10,
+        "text": "Olen osallistunut taidenäyttelyn avajaisiin."
+      },
+      {
+        "number": 11,
+        "text": "Olen suorittanut opintoni tavoiteajassa."
+      },
+      {
+        "number": 12,
+        "text": "Olen vahingossa “tykännyt” vuosien takaisesta postauksesta salaisesti stalkatessa."
+      },
+      {
+        "number": 13,
+        "text": "Olen ostanut vaatteen jota en koskaan käyttänyt."
+      },
+      {
+        "number": 14,
+        "text": "Olen kolhinut autolla ajaessani."
+      },
+      {
+        "number": 15,
+        "text": "Olen pelannut pokeria rahasta."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut siviilipalveluksessa."
+      },
+      {
+        "number": 17,
+        "text": "Olen käynyt Lapissa."
+      },
+      {
+        "number": 18,
+        "text": "Olen saanut ylennyksen."
+      },
+      {
+        "number": 19,
+        "text": "Olen käynyt metsästämässä."
+      },
+      {
+        "number": 20,
+        "text": "Olen maalannut taulun."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "set": 1,
+    "title": "KORTTI 5",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen nukkunut ulkona tähtitaivaan alla."
+      },
+      {
+        "number": 2,
+        "text": "Olen ladannut laittomasti elokuvia."
+      },
+      {
+        "number": 3,
+        "text": "Olen nähnyt valaan tai delfiinin luonnossa."
+      },
+      {
+        "number": 4,
+        "text": "Omistan ikkunanpesurin."
+      },
+      {
+        "number": 5,
+        "text": "Olen suunnistanut kompassilla."
+      },
+      {
+        "number": 6,
+        "text": "Olen kokeillut kasvonaamiota."
+      },
+      {
+        "number": 7,
+        "text": "Olen ottanut selfien julkkiksen kanssa."
+      },
+      {
+        "number": 8,
+        "text": "Olen osallistunut urheilukilpailuun aikuisena."
+      },
+      {
+        "number": 9,
+        "text": "Minulla on ollut vähintään 5 vuoden tauko hammaslääkäristä."
+      },
+      {
+        "number": 10,
+        "text": "Olen saanut sakot ylinopeudesta."
+      },
+      {
+        "number": 11,
+        "text": "Olen ollut laneilla."
+      },
+      {
+        "number": 12,
+        "text": "Olen tavannut presidentin tai jonkun ministerin."
+      },
+      {
+        "number": 13,
+        "text": "Olen tehnyt kesätöitä marjapellolla tai maatilalla."
+      },
+      {
+        "number": 14,
+        "text": "Olen leikannut jonkun toisen hiukset."
+      },
+      {
+        "number": 15,
+        "text": "Olen unohtanut tärkeän merkkipäivän kuten ystävänpäivän."
+      },
+      {
+        "number": 16,
+        "text": "Olen suorittanut ensiapukurssin."
+      },
+      {
+        "number": 17,
+        "text": "Olen ollut kansalaisopiston kurssilla."
+      },
+      {
+        "number": 18,
+        "text": "Olen googlannut sairausoireita ja diagnosoinut itselleni syövän."
+      },
+      {
+        "number": 19,
+        "text": "Olen laulanut karaokea."
+      },
+      {
+        "number": 20,
+        "text": "Olen soittanut radioon."
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "set": 1,
+    "title": "KORTTI 6",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen käynyt katsomassa pesäpallo-ottelun."
+      },
+      {
+        "number": 2,
+        "text": "Osaan vislata."
+      },
+      {
+        "number": 3,
+        "text": "Olen tehnyt uuden vuoden lupauksen ja pitänyt sen."
+      },
+      {
+        "number": 4,
+        "text": "Olen ollut mukana bändissä."
+      },
+      {
+        "number": 5,
+        "text": "Olen myynyt tavaraa kirpputorilla."
+      },
+      {
+        "number": 6,
+        "text": "Olen koristellut kakun, josta tuli enemmän meemi kuin taideteos."
+      },
+      {
+        "number": 7,
+        "text": "Olen ollut mukana teatteriesityksessä."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut Tinder-treffeillä."
+      },
+      {
+        "number": 9,
+        "text": "Olen ollut tv:ssä."
+      },
+      {
+        "number": 10,
+        "text": "Olen saanut yli 1000e veromätkyjä."
+      },
+      {
+        "number": 11,
+        "text": "Olen lahjoittanut verta."
+      },
+      {
+        "number": 12,
+        "text": "Olen myynyt jotain itse tekemääni."
+      },
+      {
+        "number": 13,
+        "text": "Olen ollut mukana teatterityöpajassa tai improkurssilla."
+      },
+      {
+        "number": 14,
+        "text": "Osaan käyttää sukkapuikkoja tai virkata."
+      },
+      {
+        "number": 15,
+        "text": "Olen oksentanut bussiin, junaan tai ratikkaan."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut mukana oikeudenkäynnissä."
+      },
+      {
+        "number": 17,
+        "text": "Olen ollut vaihto-opiskelussa."
+      },
+      {
+        "number": 18,
+        "text": "Olen kasvissyöjä."
+      },
+      {
+        "number": 19,
+        "text": "Olen näytellyt mainoksessa."
+      },
+      {
+        "number": 20,
+        "text": "Olen luistellut rullaluistimilla viimeisen viiden vuoden aikana."
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "set": 1,
+    "title": "KORTTI 7",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen pelannut blackjackkiä."
+      },
+      {
+        "number": 2,
+        "text": "Olen joskus herännyt kukon kiekaisuun."
+      },
+      {
+        "number": 3,
+        "text": "Olen soittanut jotain jousisoitinta."
+      },
+      {
+        "number": 4,
+        "text": "Olen vaihtanut auton öljyt itse."
+      },
+      {
+        "number": 5,
+        "text": "Olen ampunut jousella."
+      },
+      {
+        "number": 6,
+        "text": "Olen kadottanut puhelimeni tai lompakkoni humalassa."
+      },
+      {
+        "number": 7,
+        "text": "Olen tehnyt mehuja marjoista."
+      },
+      {
+        "number": 8,
+        "text": "Osaan puhua vähintään kolmea kieltä sujuvasti."
+      },
+      {
+        "number": 9,
+        "text": "Olen jäänyt kiinni luntista tai vilpistä koulussa."
+      },
+      {
+        "number": 10,
+        "text": "Olen käyttänyt vaatetta, jossa on ollut hintalappu kiinni."
+      },
+      {
+        "number": 11,
+        "text": "Olen lukenut Harry Potter -kirjat."
+      },
+      {
+        "number": 12,
+        "text": "Olen lukenut kirjan, josta tehty elokuva ei ollut mielestäni yhtä hyvä."
+      },
+      {
+        "number": 13,
+        "text": "Olen voittanut arvonnassa jotain arvokasta."
+      },
+      {
+        "number": 14,
+        "text": "Olen myöhästynyt lentokoneesta."
+      },
+      {
+        "number": 15,
+        "text": "Olen valehdellut työnantajalleni olevani kipeä."
+      },
+      {
+        "number": 16,
+        "text": "Olen ostanut pelin enkä pelannut sitä koskaan."
+      },
+      {
+        "number": 17,
+        "text": "Olen kirjoittanut runon tai laulun."
+      },
+      {
+        "number": 18,
+        "text": "Olen kasvattanut kaupasta ostetun hedelmän siemenestä uuden kasvin."
+      },
+      {
+        "number": 19,
+        "text": "Olen ratsastanut hevosella."
+      },
+      {
+        "number": 20,
+        "text": "Olen osallistunut lavatansseihin."
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "set": 1,
+    "title": "KORTTI 8",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen saanut hauen kalastaessa."
+      },
+      {
+        "number": 2,
+        "text": "Olen tehnyt kotiviiniä, -olutta tai muuta alkoholijuomaa itse."
+      },
+      {
+        "number": 3,
+        "text": "Olen ajanut moottorikelkalla."
+      },
+      {
+        "number": 4,
+        "text": "Olen kerännyt pokemonkortteja."
+      },
+      {
+        "number": 5,
+        "text": "Minut on puhallutettu."
+      },
+      {
+        "number": 6,
+        "text": "Olen kokeillut lumilautailua."
+      },
+      {
+        "number": 7,
+        "text": "Olen katsonut esports-turnausta paikanpäällä."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut sokkotreffeillä."
+      },
+      {
+        "number": 9,
+        "text": "Olen matkustanut pummilla ja jäänyt siitä kiinni."
+      },
+      {
+        "number": 10,
+        "text": "Osaan jongleerata."
+      },
+      {
+        "number": 11,
+        "text": "Olen tehnyt retken pyörällä yli 50 kilometriä."
+      },
+      {
+        "number": 12,
+        "text": "Olen pumpannut vettä kaivosta."
+      },
+      {
+        "number": 13,
+        "text": "Olen käyttänyt toisen hammasharjaa (tahallisesti tai vahingossa)."
+      },
+      {
+        "number": 14,
+        "text": "Olen vaihtanut autonrenkaan itse."
+      },
+      {
+        "number": 15,
+        "text": "Olen antanut ensiapua hätätilanteessa."
+      },
+      {
+        "number": 16,
+        "text": "Olen lähtenyt vääränä päivänä töihin tai kouluun."
+      },
+      {
+        "number": 17,
+        "text": "Olen lukenut klassikkokirjan josta en pitänyt."
+      },
+      {
+        "number": 18,
+        "text": "Olen kirjoittanut kirjeen tai viestin tulevaisuuden itselleni."
+      },
+      {
+        "number": 19,
+        "text": "Olen tehnyt oman pöydän tai huonekalun."
+      },
+      {
+        "number": 20,
+        "text": "Olen ollut naimisissa."
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "set": 1,
+    "title": "KORTTI 9",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen käynyt elokuvissa yksin."
+      },
+      {
+        "number": 2,
+        "text": "Olen voittanut mitalin urheilukisasta."
+      },
+      {
+        "number": 3,
+        "text": "Olen löytänyt vanhoja ruokia jääkaappini perältä, joiden viimeinen käyttöpäivä on ollut yli vuosi sitten."
+      },
+      {
+        "number": 4,
+        "text": "Olen tehnyt itse hilloa tai marmeladia."
+      },
+      {
+        "number": 5,
+        "text": "Olen käynyt Afrikassa."
+      },
+      {
+        "number": 6,
+        "text": "Olen käynyt katsomassa saman elokuvan useampaan kertaan."
+      },
+      {
+        "number": 7,
+        "text": "Olen pudottanut puhelimen vessanpönttöön."
+      },
+      {
+        "number": 8,
+        "text": "Olen käynyt bongaamassa lintuja."
+      },
+      {
+        "number": 9,
+        "text": "Olen ollut samassa työpaikassa yli 10 vuotta."
+      },
+      {
+        "number": 10,
+        "text": "Olen osallistunut mielenosoitukseen."
+      },
+      {
+        "number": 11,
+        "text": "Olen käynyt Michelin-tähden ravintolassa."
+      },
+      {
+        "number": 12,
+        "text": "Olen koodannut oman pelin tai nettisivun."
+      },
+      {
+        "number": 13,
+        "text": "Olen nähnyt karhun tai suden luonnossa."
+      },
+      {
+        "number": 14,
+        "text": "Olen lähettänyt pullopostin."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut bestman tai kaaso häissä."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut yli 10 tunnin lennolla."
+      },
+      {
+        "number": 17,
+        "text": "Olen syönyt toisen eväät jääkaapista ilman lupaa."
+      },
+      {
+        "number": 18,
+        "text": "Olen käynyt purjehtimassa."
+      },
+      {
+        "number": 19,
+        "text": "Olen pitänyt musiikkia niin kovalla, että naapuri on tullut valittamaan."
+      },
+      {
+        "number": 20,
+        "text": "Olen ollut alikersantti."
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "set": 1,
+    "title": "KORTTI 10",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen saanut potkut."
+      },
+      {
+        "number": 2,
+        "text": "Olen viettänyt joulun ulkomailla."
+      },
+      {
+        "number": 3,
+        "text": "Olen asunut vähintään kolmella eri paikkakunnalla."
+      },
+      {
+        "number": 4,
+        "text": "Olen langennut huijaukseen."
+      },
+      {
+        "number": 5,
+        "text": "Olen ollut puhelinmyyjä."
+      },
+      {
+        "number": 6,
+        "text": "Olen käynyt cosplay-tapahtumassa."
+      },
+      {
+        "number": 7,
+        "text": "Olen nähnyt tähdenlennon."
+      },
+      {
+        "number": 8,
+        "text": "Olen voittanut pubivisan."
+      },
+      {
+        "number": 9,
+        "text": "Olen säveltänyt musiikkia."
+      },
+      {
+        "number": 10,
+        "text": "Olen nähnyt Eiffel-tornin."
+      },
+      {
+        "number": 11,
+        "text": "Olen vahingossa kutsunut opettajaa tai esihenkilöä “äidiksi”."
+      },
+      {
+        "number": 12,
+        "text": "Olen äänestänyt pienpuoluetta."
+      },
+      {
+        "number": 13,
+        "text": "Olen joutunut putkaan."
+      },
+      {
+        "number": 14,
+        "text": "Olen käynyt stand up -komiikkaesityksessä."
+      },
+      {
+        "number": 15,
+        "text": "Olen lähettänyt faksin."
+      },
+      {
+        "number": 16,
+        "text": "Olen käynyt kosmetologilla."
+      },
+      {
+        "number": 17,
+        "text": "Olen syönyt etanoita."
+      },
+      {
+        "number": 18,
+        "text": "Olen läpäissyt pakohuonepelin."
+      },
+      {
+        "number": 19,
+        "text": "Olen käynyt sienessä."
+      },
+      {
+        "number": 20,
+        "text": "Tilaan jotakin sanomalehteä."
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "set": 1,
+    "title": "KORTTI 11",
+    "subtitle": "Setti 1",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen saanut hole-in-one frisbeegolfissa."
+      },
+      {
+        "number": 2,
+        "text": "Olen ollut ihastunut opettajaan."
+      },
+      {
+        "number": 3,
+        "text": "Olen sup-lautailut."
+      },
+      {
+        "number": 4,
+        "text": "Olen tehnyt itse mehua."
+      },
+      {
+        "number": 5,
+        "text": "Olen pelannut roolipeliä kuten DND."
+      },
+      {
+        "number": 6,
+        "text": "Olen tilannut ruokaa kotiin useammin kuin kerran päivässä."
+      },
+      {
+        "number": 7,
+        "text": "Kodissani on ollut tulipalo."
+      },
+      {
+        "number": 8,
+        "text": "Olen käynyt vesipuistossa aikuisena."
+      },
+      {
+        "number": 9,
+        "text": "Olen leiponut täytekakun alusta loppuun itse."
+      },
+      {
+        "number": 10,
+        "text": "Minulla on edelleen tarravihko tallessa."
+      },
+      {
+        "number": 11,
+        "text": "Olen rakentanut legoilla viimeisen vuoden aikana."
+      },
+      {
+        "number": 12,
+        "text": "Olen kokeillut benjihyppyä tai laskuvarjohyppyä."
+      },
+      {
+        "number": 13,
+        "text": "Olen nähnyt revontulet."
+      },
+      {
+        "number": 14,
+        "text": "Olen käynyt raveissa."
+      },
+      {
+        "number": 15,
+        "text": "Olen käynyt yliopistoa."
+      },
+      {
+        "number": 16,
+        "text": "Olen nukkunut festareilla teltassa."
+      },
+      {
+        "number": 17,
+        "text": "Olen itkenyt elokuvateatterissa."
+      },
+      {
+        "number": 18,
+        "text": "Olen käynyt akupunktiossa."
+      },
+      {
+        "number": 19,
+        "text": "Osaan tehdä taikatemppuja."
+      },
+      {
+        "number": 20,
+        "text": "Olen tehnyt palapelin, jossa oli yli 1000 palaa."
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "set": 2,
+    "title": "KORTTI 12",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen maalannut taulun."
+      },
+      {
+        "number": 2,
+        "text": "Olen käynyt akupunktiossa."
+      },
+      {
+        "number": 3,
+        "text": "Olen ollut laneilla."
+      },
+      {
+        "number": 4,
+        "text": "Olen ollut mukana bändissä."
+      },
+      {
+        "number": 5,
+        "text": "Olen pumpannut vettä kaivosta."
+      },
+      {
+        "number": 6,
+        "text": "Olen ollut puhelinmyyjä."
+      },
+      {
+        "number": 7,
+        "text": "Olen kadottanut puhelimeni tai lompakkoni humalassa."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut vaihto-opiskelussa."
+      },
+      {
+        "number": 9,
+        "text": "Olen lähettänyt faksin."
+      },
+      {
+        "number": 10,
+        "text": "Olen asunut ulkomailla."
+      },
+      {
+        "number": 11,
+        "text": "Minulla on tatuointi."
+      },
+      {
+        "number": 12,
+        "text": "Minulla on lemmikki."
+      },
+      {
+        "number": 13,
+        "text": "Olen tehnyt itse hilloa tai marmeladia."
+      },
+      {
+        "number": 14,
+        "text": "Olen lahjoittanut verta."
+      },
+      {
+        "number": 15,
+        "text": "Olen oksentanut bussiin, junaan tai ratikkaan."
+      },
+      {
+        "number": 16,
+        "text": "Olen käynyt sienessä."
+      },
+      {
+        "number": 17,
+        "text": "Olen käyttänyt vaatetta, jossa on ollut hintalappu kiinni."
+      },
+      {
+        "number": 18,
+        "text": "Olen käynyt elokuvissa yksin."
+      },
+      {
+        "number": 19,
+        "text": "Olen osallistunut maratonille tai triathloniin."
+      },
+      {
+        "number": 20,
+        "text": "Olen tehnyt oman musiikkivideon."
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "set": 2,
+    "title": "KORTTI 13",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen itkenyt elokuvateatterissa."
+      },
+      {
+        "number": 2,
+        "text": "Olen kasvattanut kaupasta ostetun hedelmän siemenestä uuden kasvin."
+      },
+      {
+        "number": 3,
+        "text": "Olen saanut sakot ylinopeudesta."
+      },
+      {
+        "number": 4,
+        "text": "Olen tehnyt kesätöitä marjapellolla tai maatilalla."
+      },
+      {
+        "number": 5,
+        "text": "Olen työskennellyt ravintolassa tai kahvilassa."
+      },
+      {
+        "number": 6,
+        "text": "Olen tehnyt uuden vuoden lupauksen ja pitänyt sen."
+      },
+      {
+        "number": 7,
+        "text": "Olen ollut alikersantti."
+      },
+      {
+        "number": 8,
+        "text": "Olen käynyt katsomassa saman elokuvan useampaan kertaan."
+      },
+      {
+        "number": 9,
+        "text": "Olen tavannut presidentin tai jonkun ministerin."
+      },
+      {
+        "number": 10,
+        "text": "Olen murtanut luun."
+      },
+      {
+        "number": 11,
+        "text": "Olen tehnyt lumiukon viimeisen viiden vuoden aikana."
+      },
+      {
+        "number": 12,
+        "text": "Minulla on ollut vähintään 5 vuoden tauko hammaslääkäristä."
+      },
+      {
+        "number": 13,
+        "text": "Olen googlannut sairausoireita ja diagnosoinut itselleni syövän."
+      },
+      {
+        "number": 14,
+        "text": "Olen ollut mukana oikeudenkäynnissä."
+      },
+      {
+        "number": 15,
+        "text": "Olen kirjoittanut päiväkirjaa."
+      },
+      {
+        "number": 16,
+        "text": "Minulla on yli 1000 seuraajaa sosiaalisessa mediassa."
+      },
+      {
+        "number": 17,
+        "text": "Olen viettänyt joulun ulkomailla."
+      },
+      {
+        "number": 18,
+        "text": "Olen kiivennyt puuhun aikuisena."
+      },
+      {
+        "number": 19,
+        "text": "Olen tehnyt töitä pimeästi."
+      },
+      {
+        "number": 20,
+        "text": "Olen käynyt cosplay-tapahtumassa."
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "set": 2,
+    "title": "KORTTI 14",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen myynyt tavaraa kirpputorilla."
+      },
+      {
+        "number": 2,
+        "text": "Olen soittanut radioon."
+      },
+      {
+        "number": 3,
+        "text": "Olen saanut hole-in-one frisbeegolfissa."
+      },
+      {
+        "number": 4,
+        "text": "Olen nähnyt karhun tai suden luonnossa."
+      },
+      {
+        "number": 5,
+        "text": "Olen käynyt stand up -komiikkaesityksessä."
+      },
+      {
+        "number": 6,
+        "text": "Olen tehnyt itse mehua."
+      },
+      {
+        "number": 7,
+        "text": "Olen käyttänyt toisen hammasharjaa (tahallisesti tai vahingossa)."
+      },
+      {
+        "number": 8,
+        "text": "Olen kokeillut geokätköilyä."
+      },
+      {
+        "number": 9,
+        "text": "Olen kirjoittanut runon tai laulun."
+      },
+      {
+        "number": 10,
+        "text": "Olen käynyt Michelin-tähden ravintolassa."
+      },
+      {
+        "number": 11,
+        "text": "Olen osallistunut lavatansseihin."
+      },
+      {
+        "number": 12,
+        "text": "Olen vahingossa kutsunut opettajaa tai esihenkilöä “äidiksi”."
+      },
+      {
+        "number": 13,
+        "text": "Olen ostanut kalliin harrastusvälineen joka on jäänyt käyttämättömäksi."
+      },
+      {
+        "number": 14,
+        "text": "Olen ratsastanut hevosella."
+      },
+      {
+        "number": 15,
+        "text": "Olen suorittanut ensiapukurssin."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut esimies."
+      },
+      {
+        "number": 17,
+        "text": "Omistan ikkunanpesurin."
+      },
+      {
+        "number": 18,
+        "text": "Olen ollut naimisissa."
+      },
+      {
+        "number": 19,
+        "text": "Olen ollut yli 10 tunnin lennolla."
+      },
+      {
+        "number": 20,
+        "text": "Olen syönyt toisen eväät jääkaapista ilman lupaa."
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "set": 2,
+    "title": "KORTTI 15",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen katsonut elokuvan drive-in elokuvateatterissa."
+      },
+      {
+        "number": 2,
+        "text": "Olen harrastanut jääkiekkoa."
+      },
+      {
+        "number": 3,
+        "text": "Olen ollut sokkotreffeillä."
+      },
+      {
+        "number": 4,
+        "text": "Olen polttanut ruoan pohjaan niin pahasti, että piti ostaa uusi kattila."
+      },
+      {
+        "number": 5,
+        "text": "Olen nähnyt revontulet."
+      },
+      {
+        "number": 6,
+        "text": "Olen ajanut autolla jäätyneen meren tai järven päällä."
+      },
+      {
+        "number": 7,
+        "text": "Olen ostanut vaatteen jota en koskaan käyttänyt."
+      },
+      {
+        "number": 8,
+        "text": "Olen käynyt bongaamassa lintuja."
+      },
+      {
+        "number": 9,
+        "text": "Olen uinut avannossa."
+      },
+      {
+        "number": 10,
+        "text": "Olen pelannut roolipeliä kuten DND."
+      },
+      {
+        "number": 11,
+        "text": "Osaan tehdä taikatemppuja."
+      },
+      {
+        "number": 12,
+        "text": "Olen kokeillut kasvonaamiota."
+      },
+      {
+        "number": 13,
+        "text": "Olen kokenut maanjäristyksen."
+      },
+      {
+        "number": 14,
+        "text": "Olen käynyt oopperassa."
+      },
+      {
+        "number": 15,
+        "text": "Olen nukkunut ulkona tähtitaivaan alla."
+      },
+      {
+        "number": 16,
+        "text": "Olen unohtanut tärkeän merkkipäivän kuten ystävänpäivän."
+      },
+      {
+        "number": 17,
+        "text": "Olen tapetoinut."
+      },
+      {
+        "number": 18,
+        "text": "Olen pukeutunut kansallispukuun."
+      },
+      {
+        "number": 19,
+        "text": "Olen vaihtanut autonrenkaan itse."
+      },
+      {
+        "number": 20,
+        "text": "Olen itse kasvattanut perunoita."
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "set": 2,
+    "title": "KORTTI 16",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen nukkunut festareilla teltassa."
+      },
+      {
+        "number": 2,
+        "text": "Olen äänestänyt pienpuoluetta."
+      },
+      {
+        "number": 3,
+        "text": "Olen läpäissyt pakohuonepelin."
+      },
+      {
+        "number": 4,
+        "text": "Olen käynyt Lapissa."
+      },
+      {
+        "number": 5,
+        "text": "Olen käynyt Afrikassa."
+      },
+      {
+        "number": 6,
+        "text": "Kodissani on ollut tulipalo."
+      },
+      {
+        "number": 7,
+        "text": "Olen ollut ihastunut opettajaan."
+      },
+      {
+        "number": 8,
+        "text": "Osaan solmia kravatin."
+      },
+      {
+        "number": 9,
+        "text": "Olen ostanut pelin enkä pelannut sitä koskaan."
+      },
+      {
+        "number": 10,
+        "text": "Olen pitänyt blogia."
+      },
+      {
+        "number": 11,
+        "text": "Olen ajanut moottoripyörällä."
+      },
+      {
+        "number": 12,
+        "text": "Olen käynyt vesipuistossa aikuisena."
+      },
+      {
+        "number": 13,
+        "text": "Olen voittanut bingossa."
+      },
+      {
+        "number": 14,
+        "text": "Olen pelannut pokeria rahasta."
+      },
+      {
+        "number": 15,
+        "text": "Olen valehellut ikääni ollakseni vanhempi tai nuorempi."
+      },
+      {
+        "number": 16,
+        "text": "Olen asunut vähintään kolmella eri paikkakunnalla."
+      },
+      {
+        "number": 17,
+        "text": "Olen ollut jonkun yhdistyksen puheenjohtaja."
+      },
+      {
+        "number": 18,
+        "text": "Olen tehnyt palapelin, jossa oli yli 1000 palaa."
+      },
+      {
+        "number": 19,
+        "text": "Olen kirjoittanut kirjeen tai viestin tulevaisuuden itselleni."
+      },
+      {
+        "number": 20,
+        "text": "Olen ottanut selfien julkkiksen kanssa."
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "set": 2,
+    "title": "KORTTI 17",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Osaan soittaa pianoa."
+      },
+      {
+        "number": 2,
+        "text": "Olen järjestänyt yllätysjuhlat läheiselle."
+      },
+      {
+        "number": 3,
+        "text": "Olen ollut laskettelemassa alpeilla."
+      },
+      {
+        "number": 4,
+        "text": "Olen nähnyt Eiffel-tornin."
+      },
+      {
+        "number": 5,
+        "text": "Olen ampunut jousella."
+      },
+      {
+        "number": 6,
+        "text": "Olen soittanut exälleni humalassa."
+      },
+      {
+        "number": 7,
+        "text": "Olen käynyt katsomassa pesäpallo-ottelun."
+      },
+      {
+        "number": 8,
+        "text": "Minulta on varastettu polkupyörä."
+      },
+      {
+        "number": 9,
+        "text": "Olen matkustanut pummilla ja jäänyt siitä kiinni."
+      },
+      {
+        "number": 10,
+        "text": "Olen antanut rahaa kerjäläiselle."
+      },
+      {
+        "number": 11,
+        "text": "Olen voittanut yli 100e lotosta tai arvasta."
+      },
+      {
+        "number": 12,
+        "text": "Olen hypännyt 10 metristä veteen."
+      },
+      {
+        "number": 13,
+        "text": "Olen rakentanut legoilla viimeisen vuoden aikana."
+      },
+      {
+        "number": 14,
+        "text": "Olen joskus saanut parkkisakot."
+      },
+      {
+        "number": 15,
+        "text": "Olen pitänyt musiikkia niin kovalla, että naapuri on tullut valittamaan."
+      },
+      {
+        "number": 16,
+        "text": "Olen soittanut jotain jousisoitinta."
+      },
+      {
+        "number": 17,
+        "text": "Olen vaihtanut auton öljyt itse."
+      },
+      {
+        "number": 18,
+        "text": "Olen jättänyt menemään töihin krapulan takia."
+      },
+      {
+        "number": 19,
+        "text": "Olen ollut bestman tai kaaso häissä."
+      },
+      {
+        "number": 20,
+        "text": "Olen leikannut jonkun toisen hiukset."
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "set": 2,
+    "title": "KORTTI 18",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen nähnyt valaan tai delfiinin luonnossa."
+      },
+      {
+        "number": 2,
+        "text": "Olen saanut potkut."
+      },
+      {
+        "number": 3,
+        "text": "Osaan vislata."
+      },
+      {
+        "number": 4,
+        "text": "Olen saanut hauen kalastaessa."
+      },
+      {
+        "number": 5,
+        "text": "Olen syönyt kokonaisen chilin."
+      },
+      {
+        "number": 6,
+        "text": "Olen harrastanut jalkapalloa."
+      },
+      {
+        "number": 7,
+        "text": "Olen ollut siviilipalveluksessa."
+      },
+      {
+        "number": 8,
+        "text": "Olen voittanut arvonnassa jotain arvokasta."
+      },
+      {
+        "number": 9,
+        "text": "Olen ollut kansalaisopiston kurssilla."
+      },
+      {
+        "number": 10,
+        "text": "Olen kokeillut benjihyppyä tai laskuvarjohyppyä."
+      },
+      {
+        "number": 11,
+        "text": "Olen käynyt yliopistoa."
+      },
+      {
+        "number": 12,
+        "text": "Olen katsonut esports-turnausta paikanpäällä."
+      },
+      {
+        "number": 13,
+        "text": "Olen nähnyt tähdenlennon."
+      },
+      {
+        "number": 14,
+        "text": "Olen laulanut karaokea."
+      },
+      {
+        "number": 15,
+        "text": "Olen suorittanut opintoni tavoiteajassa."
+      },
+      {
+        "number": 16,
+        "text": "Olen myynyt jotain itse tekemääni."
+      },
+      {
+        "number": 17,
+        "text": "Olen ollut tv:ssä."
+      },
+      {
+        "number": 18,
+        "text": "Olen jäänyt kiinni luntista tai vilpistä koulussa."
+      },
+      {
+        "number": 19,
+        "text": "Osaan käyttää sukkapuikkoja tai virkata."
+      },
+      {
+        "number": 20,
+        "text": "Olen vaihtanut alaa/työtä seuraten omaa unelmaani"
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "set": 2,
+    "title": "KORTTI 19",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Minulla on edelleen tarravihko tallessa."
+      },
+      {
+        "number": 2,
+        "text": "Olen lähtenyt vääränä päivänä töihin tai kouluun."
+      },
+      {
+        "number": 3,
+        "text": "Olen tehnyt kotiviiniä, -olutta tai muuta alkoholijuomaa itse."
+      },
+      {
+        "number": 4,
+        "text": "Olen pelannut blackjackkiä."
+      },
+      {
+        "number": 5,
+        "text": "Olen lukenut klassikkokirjan josta en pitänyt."
+      },
+      {
+        "number": 6,
+        "text": "Olen käynyt metsästämässä."
+      },
+      {
+        "number": 7,
+        "text": "Olen käynyt raveissa."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut mukana polttareissa."
+      },
+      {
+        "number": 9,
+        "text": "Olen tavannut esikuvani tai idolini."
+      },
+      {
+        "number": 10,
+        "text": "Olen tehnyt oman pöydän tai huonekalun."
+      },
+      {
+        "number": 11,
+        "text": "Olen tehnyt retken pyörällä yli 50 kilometriä."
+      },
+      {
+        "number": 12,
+        "text": "Olen voittanut mitalin urheilukisasta."
+      },
+      {
+        "number": 13,
+        "text": "Olen heittänyt joulupukin keikkaa."
+      },
+      {
+        "number": 14,
+        "text": "Olen rakentanut linnunpöntön."
+      },
+      {
+        "number": 15,
+        "text": "Olen näytellyt mainoksessa."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut mukana teatterityöpajassa tai improkurssilla."
+      },
+      {
+        "number": 17,
+        "text": "Olen loukkaantunut yrittäessäni jotai typerää."
+      },
+      {
+        "number": 18,
+        "text": "Olen antanut ensiapua hätätilanteessa."
+      },
+      {
+        "number": 19,
+        "text": "Olen ajanut moottorikelkalla."
+      },
+      {
+        "number": 20,
+        "text": "Minut on puhallutettu."
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "set": 2,
+    "title": "KORTTI 20",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen sup-lautailut."
+      },
+      {
+        "number": 2,
+        "text": "Olen ollut Tinder-treffeillä."
+      },
+      {
+        "number": 3,
+        "text": "Olen osallistunut E-sports turnaukseen."
+      },
+      {
+        "number": 4,
+        "text": "Olen koodannut oman pelin tai nettisivun."
+      },
+      {
+        "number": 5,
+        "text": "Olen koonnut IKEA-huonekalun ja se onnistui."
+      },
+      {
+        "number": 6,
+        "text": "Osaan puhua vähintään kolmea kieltä sujuvasti."
+      },
+      {
+        "number": 7,
+        "text": "Olen osallistunut urheilukilpailuun aikuisena."
+      },
+      {
+        "number": 8,
+        "text": "Olen löytänyt vanhoja ruokia jääkaappini perältä, joiden viimeinen käyttöpäivä on ollut yli vuosi sitten."
+      },
+      {
+        "number": 9,
+        "text": "Olen lukenut kirjan, josta tehty elokuva ei ollut mielestäni yhtä hyvä."
+      },
+      {
+        "number": 10,
+        "text": "Olen ollut perustamassa yritystä."
+      },
+      {
+        "number": 11,
+        "text": "Olen osallistunut taidenäyttelyn avajaisiin."
+      },
+      {
+        "number": 12,
+        "text": "Olen ollut mukana teatteriesityksessä."
+      },
+      {
+        "number": 13,
+        "text": "Olen koristellut kakun, josta tuli enemmän meemi kuin taideteos."
+      },
+      {
+        "number": 14,
+        "text": "Tilaan jotakin sanomalehteä."
+      },
+      {
+        "number": 15,
+        "text": "Olen leiponut täytekakun alusta loppuun itse."
+      },
+      {
+        "number": 16,
+        "text": "Olen kolhinut autolla ajaessani."
+      },
+      {
+        "number": 17,
+        "text": "Olen lukinnut itseni ulos asunnostani."
+      },
+      {
+        "number": 18,
+        "text": "Olen kirjoittanut rakkauskirjeen."
+      },
+      {
+        "number": 19,
+        "text": "Osaan jongleerata."
+      },
+      {
+        "number": 20,
+        "text": "Olen myöhästynyt lentokoneesta."
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "set": 2,
+    "title": "KORTTI 21",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen joutunut putkaan."
+      },
+      {
+        "number": 2,
+        "text": "Olen ollut ehdolla vaaleissa."
+      },
+      {
+        "number": 3,
+        "text": "Olen lukenut Harry Potter -kirjat."
+      },
+      {
+        "number": 4,
+        "text": "Olen käynyt purjehtimassa."
+      },
+      {
+        "number": 5,
+        "text": "Olen pudottanut puhelimen vessanpönttöön."
+      },
+      {
+        "number": 6,
+        "text": "Olen esiintynyt radiossa."
+      },
+      {
+        "number": 7,
+        "text": "Olen kasvissyöjä."
+      },
+      {
+        "number": 8,
+        "text": "Olen vahingossa “tykännyt” vuosien takaisesta postauksesta salaisesti stalkatessa."
+      },
+      {
+        "number": 9,
+        "text": "Olen valehdellut työnantajalleni olevani kipeä."
+      },
+      {
+        "number": 10,
+        "text": "Olen kokeillut lumilautailua."
+      },
+      {
+        "number": 11,
+        "text": "Olen mennyt väärään bussiin tai junaan."
+      },
+      {
+        "number": 12,
+        "text": "Olen kokeillut vesihiihtoa."
+      },
+      {
+        "number": 13,
+        "text": "Olen käynyt Säpin majakassa."
+      },
+      {
+        "number": 14,
+        "text": "Olen joskus herännyt kukon kiekaisuun."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut kuorossa."
+      },
+      {
+        "number": 16,
+        "text": "Olen saanut yli 1000e veromätkyjä."
+      },
+      {
+        "number": 17,
+        "text": "Minulla on ollut kuntosalijäsenyys käyttämättä yli kuukauden."
+      },
+      {
+        "number": 18,
+        "text": "Olen käynyt pilkillä."
+      },
+      {
+        "number": 19,
+        "text": "Olen kantanut arkkua."
+      },
+      {
+        "number": 20,
+        "text": "Olen saanut ylennyksen."
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "set": 2,
+    "title": "KORTTI 22",
+    "subtitle": "Setti 2",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen syönyt etanoita."
+      },
+      {
+        "number": 2,
+        "text": "Olen voittanut pubivisan."
+      },
+      {
+        "number": 3,
+        "text": "Olen ollut samassa työpaikassa yli 10 vuotta."
+      },
+      {
+        "number": 4,
+        "text": "Olen pitänyt puheen yli 50 ihmiselle."
+      },
+      {
+        "number": 5,
+        "text": "Olen lukenut saman kirjan useammin kuin kerran."
+      },
+      {
+        "number": 6,
+        "text": "Olen nukkunut riippumatossa."
+      },
+      {
+        "number": 7,
+        "text": "Olen lähettänyt pullopostin."
+      },
+      {
+        "number": 8,
+        "text": "Olen käynyt kosmetologilla."
+      },
+      {
+        "number": 9,
+        "text": "Olen osallistunut ruoanlaittokurssille."
+      },
+      {
+        "number": 10,
+        "text": "Olen kerännyt pokemonkortteja."
+      },
+      {
+        "number": 11,
+        "text": "Olen oksentanut baarissa tuoppii ntai pöydälle."
+      },
+      {
+        "number": 12,
+        "text": "Olen langennut huijaukseen."
+      },
+      {
+        "number": 13,
+        "text": "Olen ratsastanut elefantilla tai kamelilla."
+      },
+      {
+        "number": 14,
+        "text": "Olen osallistunut mielenosoitukseen."
+      },
+      {
+        "number": 15,
+        "text": "Olen nukkunut autossa."
+      },
+      {
+        "number": 16,
+        "text": "Olen laulanut karaokessa kappaletta jota en osannut."
+      },
+      {
+        "number": 17,
+        "text": "Olen suunnistanut kompassilla."
+      },
+      {
+        "number": 18,
+        "text": "Olen säveltänyt musiikkia."
+      },
+      {
+        "number": 19,
+        "text": "Olen ladannut laittomasti elokuvia."
+      },
+      {
+        "number": 20,
+        "text": "Olen tilannut ruokaa kotiin useammin kuin kerran päivässä."
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "set": 3,
+    "title": "KORTTI 23",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen käynyt Säpin majakassa."
+      },
+      {
+        "number": 2,
+        "text": "Olen syönyt toisen eväät jääkaapista ilman lupaa."
+      },
+      {
+        "number": 3,
+        "text": "Olen ollut mukana teatterityöpajassa tai improkurssilla."
+      },
+      {
+        "number": 4,
+        "text": "Olen lukenut kirjan, josta tehty elokuva ei ollut mielestäni yhtä hyvä."
+      },
+      {
+        "number": 5,
+        "text": "Olen nukkunut ulkona tähtitaivaan alla."
+      },
+      {
+        "number": 6,
+        "text": "Olen kokenut maanjäristyksen."
+      },
+      {
+        "number": 7,
+        "text": "Olen käynyt elokuvissa yksin."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut ihastunut opettajaan."
+      },
+      {
+        "number": 9,
+        "text": "Olen tehnyt itse hilloa tai marmeladia."
+      },
+      {
+        "number": 10,
+        "text": "Olen uinut avannossa."
+      },
+      {
+        "number": 11,
+        "text": "Olen osallistunut mielenosoitukseen."
+      },
+      {
+        "number": 12,
+        "text": "Olen löytänyt vanhoja ruokia jääkaappini perältä, joiden viimeinen käyttöpäivä on ollut yli vuosi sitten."
+      },
+      {
+        "number": 13,
+        "text": "Olen voittanut bingossa."
+      },
+      {
+        "number": 14,
+        "text": "Olen saanut sakot ylinopeudesta."
+      },
+      {
+        "number": 15,
+        "text": "Olen ampunut jousella."
+      },
+      {
+        "number": 16,
+        "text": "Olen joskus herännyt kukon kiekaisuun."
+      },
+      {
+        "number": 17,
+        "text": "Olen pudottanut puhelimen vessanpönttöön."
+      },
+      {
+        "number": 18,
+        "text": "Olen ottanut selfien julkkiksen kanssa."
+      },
+      {
+        "number": 19,
+        "text": "Olen laulanut karaokessa kappaletta jota en osannut."
+      },
+      {
+        "number": 20,
+        "text": "Olen nähnyt Eiffel-tornin."
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "set": 3,
+    "title": "KORTTI 24",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen tehnyt retken pyörällä yli 50 kilometriä."
+      },
+      {
+        "number": 2,
+        "text": "Minulla on edelleen tarravihko tallessa."
+      },
+      {
+        "number": 3,
+        "text": "Olen nukkunut riippumatossa."
+      },
+      {
+        "number": 4,
+        "text": "Olen voittanut yli 100e lotosta tai arvasta."
+      },
+      {
+        "number": 5,
+        "text": "Olen käynyt oopperassa."
+      },
+      {
+        "number": 6,
+        "text": "Olen ostanut pelin enkä pelannut sitä koskaan."
+      },
+      {
+        "number": 7,
+        "text": "Olen lahjoittanut verta."
+      },
+      {
+        "number": 8,
+        "text": "Olen tehnyt oman musiikkivideon."
+      },
+      {
+        "number": 9,
+        "text": "Olen jäänyt kiinni luntista tai vilpistä koulussa."
+      },
+      {
+        "number": 10,
+        "text": "Olen lukenut klassikkokirjan josta en pitänyt."
+      },
+      {
+        "number": 11,
+        "text": "Olen hypännyt 10 metristä veteen."
+      },
+      {
+        "number": 12,
+        "text": "Olen kolhinut autolla ajaessani."
+      },
+      {
+        "number": 13,
+        "text": "Olen nukkunut festareilla teltassa."
+      },
+      {
+        "number": 14,
+        "text": "Minulta on varastettu polkupyörä."
+      },
+      {
+        "number": 15,
+        "text": "Olen vaihtanut autonrenkaan itse."
+      },
+      {
+        "number": 16,
+        "text": "Olen langennut huijaukseen."
+      },
+      {
+        "number": 17,
+        "text": "Olen joskus saanut parkkisakot."
+      },
+      {
+        "number": 18,
+        "text": "Olen ollut bestman tai kaaso häissä."
+      },
+      {
+        "number": 19,
+        "text": "Olen nähnyt revontulet."
+      },
+      {
+        "number": 20,
+        "text": "Olen käyttänyt toisen hammasharjaa (tahallisesti tai vahingossa)."
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "set": 3,
+    "title": "KORTTI 25",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen voittanut mitalin urheilukisasta."
+      },
+      {
+        "number": 2,
+        "text": "Olen ollut kansalaisopiston kurssilla."
+      },
+      {
+        "number": 3,
+        "text": "Olen voittanut pubivisan."
+      },
+      {
+        "number": 4,
+        "text": "Olen äänestänyt pienpuoluetta."
+      },
+      {
+        "number": 5,
+        "text": "Minulla on ollut vähintään 5 vuoden tauko hammaslääkäristä."
+      },
+      {
+        "number": 6,
+        "text": "Olen viettänyt joulun ulkomailla."
+      },
+      {
+        "number": 7,
+        "text": "Olen unohtanut tärkeän merkkipäivän kuten ystävänpäivän."
+      },
+      {
+        "number": 8,
+        "text": "Olen voittanut arvonnassa jotain arvokasta."
+      },
+      {
+        "number": 9,
+        "text": "Olen soittanut radioon."
+      },
+      {
+        "number": 10,
+        "text": "Olen käynyt katsomassa saman elokuvan useampaan kertaan."
+      },
+      {
+        "number": 11,
+        "text": "Olen ratsastanut hevosella."
+      },
+      {
+        "number": 12,
+        "text": "Olen osallistunut maratonille tai triathloniin."
+      },
+      {
+        "number": 13,
+        "text": "Olen asunut ulkomailla."
+      },
+      {
+        "number": 14,
+        "text": "Olen saanut hauen kalastaessa."
+      },
+      {
+        "number": 15,
+        "text": "Olen kirjoittanut runon tai laulun."
+      },
+      {
+        "number": 16,
+        "text": "Olen osallistunut urheilukilpailuun aikuisena."
+      },
+      {
+        "number": 17,
+        "text": "Olen harrastanut jääkiekkoa."
+      },
+      {
+        "number": 18,
+        "text": "Olen vahingossa kutsunut opettajaa tai esihenkilöä “äidiksi”."
+      },
+      {
+        "number": 19,
+        "text": "Olen suorittanut opintoni tavoiteajassa."
+      },
+      {
+        "number": 20,
+        "text": "Olen käynyt purjehtimassa."
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "set": 3,
+    "title": "KORTTI 26",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen kantanut arkkua."
+      },
+      {
+        "number": 2,
+        "text": "Olen nähnyt tähdenlennon."
+      },
+      {
+        "number": 3,
+        "text": "Olen valehellut ikääni ollakseni vanhempi tai nuorempi."
+      },
+      {
+        "number": 4,
+        "text": "Olen heittänyt joulupukin keikkaa."
+      },
+      {
+        "number": 5,
+        "text": "Olen lukenut saman kirjan useammin kuin kerran."
+      },
+      {
+        "number": 6,
+        "text": "Olen esiintynyt radiossa."
+      },
+      {
+        "number": 7,
+        "text": "Olen ladannut laittomasti elokuvia."
+      },
+      {
+        "number": 8,
+        "text": "Olen ostanut vaatteen jota en koskaan käyttänyt."
+      },
+      {
+        "number": 9,
+        "text": "Osaan jongleerata."
+      },
+      {
+        "number": 10,
+        "text": "Olen näytellyt mainoksessa."
+      },
+      {
+        "number": 11,
+        "text": "Olen lukenut Harry Potter -kirjat."
+      },
+      {
+        "number": 12,
+        "text": "Osaan vislata."
+      },
+      {
+        "number": 13,
+        "text": "Olen työskennellyt ravintolassa tai kahvilassa."
+      },
+      {
+        "number": 14,
+        "text": "Olen tehnyt palapelin, jossa oli yli 1000 palaa."
+      },
+      {
+        "number": 15,
+        "text": "Olen tehnyt uuden vuoden lupauksen ja pitänyt sen."
+      },
+      {
+        "number": 16,
+        "text": "Minut on puhallutettu."
+      },
+      {
+        "number": 17,
+        "text": "Olen suunnistanut kompassilla."
+      },
+      {
+        "number": 18,
+        "text": "Olen tehnyt oman pöydän tai huonekalun."
+      },
+      {
+        "number": 19,
+        "text": "Olen osallistunut ruoanlaittokurssille."
+      },
+      {
+        "number": 20,
+        "text": "Olen syönyt etanoita."
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "set": 3,
+    "title": "KORTTI 27",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen kerännyt pokemonkortteja."
+      },
+      {
+        "number": 2,
+        "text": "Olen myöhästynyt lentokoneesta."
+      },
+      {
+        "number": 3,
+        "text": "Olen pukeutunut kansallispukuun."
+      },
+      {
+        "number": 4,
+        "text": "Olen käynyt raveissa."
+      },
+      {
+        "number": 5,
+        "text": "Olen saanut potkut."
+      },
+      {
+        "number": 6,
+        "text": "Olen laulanut karaokea."
+      },
+      {
+        "number": 7,
+        "text": "Olen osallistunut E-sports turnaukseen."
+      },
+      {
+        "number": 8,
+        "text": "Olen antanut rahaa kerjäläiselle."
+      },
+      {
+        "number": 9,
+        "text": "Olen käynyt cosplay-tapahtumassa."
+      },
+      {
+        "number": 10,
+        "text": "Minulla on tatuointi."
+      },
+      {
+        "number": 11,
+        "text": "Olen nähnyt valaan tai delfiinin luonnossa."
+      },
+      {
+        "number": 12,
+        "text": "Olen itse kasvattanut perunoita."
+      },
+      {
+        "number": 13,
+        "text": "Olen sup-lautailut."
+      },
+      {
+        "number": 14,
+        "text": "Olen kokeillut vesihiihtoa."
+      },
+      {
+        "number": 15,
+        "text": "Olen osallistunut taidenäyttelyn avajaisiin."
+      },
+      {
+        "number": 16,
+        "text": "Olen käynyt akupunktiossa."
+      },
+      {
+        "number": 17,
+        "text": "Olen jättänyt menemään töihin krapulan takia."
+      },
+      {
+        "number": 18,
+        "text": "Olen pelannut pokeria rahasta."
+      },
+      {
+        "number": 19,
+        "text": "Olen lähettänyt faksin."
+      },
+      {
+        "number": 20,
+        "text": "Olen tehnyt mehuja marjoista."
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "set": 3,
+    "title": "KORTTI 28",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen saanut yli 1000e veromätkyjä."
+      },
+      {
+        "number": 2,
+        "text": "Olen ollut jonkun yhdistyksen puheenjohtaja."
+      },
+      {
+        "number": 3,
+        "text": "Olen saanut hole-in-one frisbeegolfissa."
+      },
+      {
+        "number": 4,
+        "text": "Olen osallistunut lavatansseihin."
+      },
+      {
+        "number": 5,
+        "text": "Olen ollut mukana polttareissa."
+      },
+      {
+        "number": 6,
+        "text": "Olen oksentanut bussiin, junaan tai ratikkaan."
+      },
+      {
+        "number": 7,
+        "text": "Olen valehdellut työnantajalleni olevani kipeä."
+      },
+      {
+        "number": 8,
+        "text": "Olen tehnyt töitä pimeästi."
+      },
+      {
+        "number": 9,
+        "text": "Olen syönyt kokonaisen chilin."
+      },
+      {
+        "number": 10,
+        "text": "Olen myynyt jotain itse tekemääni."
+      },
+      {
+        "number": 11,
+        "text": "Tilaan jotakin sanomalehteä."
+      },
+      {
+        "number": 12,
+        "text": "Olen itkenyt elokuvateatterissa."
+      },
+      {
+        "number": 13,
+        "text": "Minulla on ollut kuntosalijäsenyys käyttämättä yli kuukauden."
+      },
+      {
+        "number": 14,
+        "text": "Olen koonnut IKEA-huonekalun ja se onnistui."
+      },
+      {
+        "number": 15,
+        "text": "Olen kokeillut benjihyppyä tai laskuvarjohyppyä."
+      },
+      {
+        "number": 16,
+        "text": "Olen murtanut luun."
+      },
+      {
+        "number": 17,
+        "text": "Olen käynyt metsästämässä."
+      },
+      {
+        "number": 18,
+        "text": "Olen pitänyt blogia."
+      },
+      {
+        "number": 19,
+        "text": "Olen kirjoittanut rakkauskirjeen."
+      },
+      {
+        "number": 20,
+        "text": "Olen pelannut roolipeliä kuten DND."
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "set": 3,
+    "title": "KORTTI 29",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen joutunut putkaan."
+      },
+      {
+        "number": 2,
+        "text": "Olen pumpannut vettä kaivosta."
+      },
+      {
+        "number": 3,
+        "text": "Olen kokeillut geokätköilyä."
+      },
+      {
+        "number": 4,
+        "text": "Olen tehnyt lumiukon viimeisen viiden vuoden aikana."
+      },
+      {
+        "number": 5,
+        "text": "Olen lukinnut itseni ulos asunnostani."
+      },
+      {
+        "number": 6,
+        "text": "Olen mennyt väärään bussiin tai junaan."
+      },
+      {
+        "number": 7,
+        "text": "Olen tapetoinut."
+      },
+      {
+        "number": 8,
+        "text": "Olen käynyt pilkillä."
+      },
+      {
+        "number": 9,
+        "text": "Olen soittanut jotain jousisoitinta."
+      },
+      {
+        "number": 10,
+        "text": "Olen ollut vaihto-opiskelussa."
+      },
+      {
+        "number": 11,
+        "text": "Olen ollut kuorossa."
+      },
+      {
+        "number": 12,
+        "text": "Olen ollut esimies."
+      },
+      {
+        "number": 13,
+        "text": "Olen googlannut sairausoireita ja diagnosoinut itselleni syövän."
+      },
+      {
+        "number": 14,
+        "text": "Minulla on yli 1000 seuraajaa sosiaalisessa mediassa."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut sokkotreffeillä."
+      },
+      {
+        "number": 16,
+        "text": "Minulla on lemmikki."
+      },
+      {
+        "number": 17,
+        "text": "Olen nähnyt karhun tai suden luonnossa."
+      },
+      {
+        "number": 18,
+        "text": "Olen järjestänyt yllätysjuhlat läheiselle."
+      },
+      {
+        "number": 19,
+        "text": "Olen rakentanut linnunpöntön."
+      },
+      {
+        "number": 20,
+        "text": "Olen ollut laneilla."
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "set": 3,
+    "title": "KORTTI 30",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen katsonut elokuvan drive-in elokuvateatterissa."
+      },
+      {
+        "number": 2,
+        "text": "Olen käynyt Michelin-tähden ravintolassa."
+      },
+      {
+        "number": 3,
+        "text": "Olen polttanut ruoan pohjaan niin pahasti, että piti ostaa uusi kattila."
+      },
+      {
+        "number": 4,
+        "text": "Osaan käyttää sukkapuikkoja tai virkata."
+      },
+      {
+        "number": 5,
+        "text": "Olen ollut mukana teatteriesityksessä."
+      },
+      {
+        "number": 6,
+        "text": "Olen säveltänyt musiikkia."
+      },
+      {
+        "number": 7,
+        "text": "Olen ajanut autolla jäätyneen meren tai järven päällä."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut Tinder-treffeillä."
+      },
+      {
+        "number": 9,
+        "text": "Olen käynyt katsomassa pesäpallo-ottelun."
+      },
+      {
+        "number": 10,
+        "text": "Olen vahingossa “tykännyt” vuosien takaisesta postauksesta salaisesti stalkatessa."
+      },
+      {
+        "number": 11,
+        "text": "Olen ollut laskettelemassa alpeilla."
+      },
+      {
+        "number": 12,
+        "text": "Olen käynyt kosmetologilla."
+      },
+      {
+        "number": 13,
+        "text": "Olen leikannut jonkun toisen hiukset."
+      },
+      {
+        "number": 14,
+        "text": "Olen tehnyt itse mehua."
+      },
+      {
+        "number": 15,
+        "text": "Olen lähtenyt vääränä päivänä töihin tai kouluun."
+      },
+      {
+        "number": 16,
+        "text": "Olen käynyt vesipuistossa aikuisena."
+      },
+      {
+        "number": 17,
+        "text": "Olen nukkunut autossa."
+      },
+      {
+        "number": 18,
+        "text": "Olen pitänyt musiikkia niin kovalla, että naapuri on tullut valittamaan."
+      },
+      {
+        "number": 19,
+        "text": "Olen käynyt stand up -komiikkaesityksessä."
+      },
+      {
+        "number": 20,
+        "text": "Olen koodannut oman pelin tai nettisivun."
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "set": 3,
+    "title": "KORTTI 31",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen loukkaantunut yrittäessäni jotai typerää."
+      },
+      {
+        "number": 2,
+        "text": "Olen ollut mukana oikeudenkäynnissä."
+      },
+      {
+        "number": 3,
+        "text": "Olen käynyt yliopistoa."
+      },
+      {
+        "number": 4,
+        "text": "Olen tavannut presidentin tai jonkun ministerin."
+      },
+      {
+        "number": 5,
+        "text": "Olen kokeillut kasvonaamiota."
+      },
+      {
+        "number": 6,
+        "text": "Olen kadottanut puhelimeni tai lompakkoni humalassa."
+      },
+      {
+        "number": 7,
+        "text": "Olen kasvissyöjä."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut puhelinmyyjä."
+      },
+      {
+        "number": 9,
+        "text": "Olen kirjoittanut kirjeen tai viestin tulevaisuuden itselleni."
+      },
+      {
+        "number": 10,
+        "text": "Olen harrastanut jalkapalloa."
+      },
+      {
+        "number": 11,
+        "text": "Olen ollut naimisissa."
+      },
+      {
+        "number": 12,
+        "text": "Olen käynyt sienessä."
+      },
+      {
+        "number": 13,
+        "text": "Olen tehnyt kesätöitä marjapellolla tai maatilalla."
+      },
+      {
+        "number": 14,
+        "text": "Olen ollut alikersantti."
+      },
+      {
+        "number": 15,
+        "text": "Olen suorittanut ensiapukurssin."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut samassa työpaikassa yli 10 vuotta."
+      },
+      {
+        "number": 17,
+        "text": "Olen ajanut moottorikelkalla."
+      },
+      {
+        "number": 18,
+        "text": "Olen katsonut esports-turnausta paikanpäällä."
+      },
+      {
+        "number": 19,
+        "text": "Olen pelannut blackjackkiä."
+      },
+      {
+        "number": 20,
+        "text": "Osaan soittaa pianoa."
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "set": 3,
+    "title": "KORTTI 32",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen käyttänyt vaatetta, jossa on ollut hintalappu kiinni."
+      },
+      {
+        "number": 2,
+        "text": "Olen tavannut esikuvani tai idolini."
+      },
+      {
+        "number": 3,
+        "text": "Olen luistellut rullaluistimilla viimeisen viiden vuoden aikana."
+      },
+      {
+        "number": 4,
+        "text": "Olen kiivennyt puuhun aikuisena."
+      },
+      {
+        "number": 5,
+        "text": "Kodissani on ollut tulipalo."
+      },
+      {
+        "number": 6,
+        "text": "Olen oksentanut baarissa tuoppii ntai pöydälle."
+      },
+      {
+        "number": 7,
+        "text": "Olen kasvattanut kaupasta ostetun hedelmän siemenestä uuden kasvin."
+      },
+      {
+        "number": 8,
+        "text": "Olen lähettänyt pullopostin."
+      },
+      {
+        "number": 9,
+        "text": "Olen käynyt Afrikassa."
+      },
+      {
+        "number": 10,
+        "text": "Olen asunut vähintään kolmella eri paikkakunnalla."
+      },
+      {
+        "number": 11,
+        "text": "Olen käynyt Lapissa."
+      },
+      {
+        "number": 12,
+        "text": "Osaan solmia kravatin."
+      },
+      {
+        "number": 13,
+        "text": "Olen kokeillut lumilautailua."
+      },
+      {
+        "number": 14,
+        "text": "Olen antanut ensiapua hätätilanteessa."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut tv:ssä."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut yli 10 tunnin lennolla."
+      },
+      {
+        "number": 17,
+        "text": "Olen saanut ylennyksen."
+      },
+      {
+        "number": 18,
+        "text": "Olen matkustanut pummilla ja jäänyt siitä kiinni."
+      },
+      {
+        "number": 19,
+        "text": "Olen ollut ehdolla vaaleissa."
+      },
+      {
+        "number": 20,
+        "text": "Olen leiponut täytekakun alusta loppuun itse."
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "set": 3,
+    "title": "KORTTI 33",
+    "subtitle": "Setti 3",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen myynyt tavaraa kirpputorilla."
+      },
+      {
+        "number": 2,
+        "text": "Olen tilannut ruokaa kotiin useammin kuin kerran päivässä."
+      },
+      {
+        "number": 3,
+        "text": "Olen tehnyt kotiviiniä, -olutta tai muuta alkoholijuomaa itse."
+      },
+      {
+        "number": 4,
+        "text": "Olen kirjoittanut päiväkirjaa."
+      },
+      {
+        "number": 5,
+        "text": "Olen ollut siviilipalveluksessa."
+      },
+      {
+        "number": 6,
+        "text": "Osaan tehdä taikatemppuja."
+      },
+      {
+        "number": 7,
+        "text": "Olen käynyt bongaamassa lintuja."
+      },
+      {
+        "number": 8,
+        "text": "Olen ajanut moottoripyörällä."
+      },
+      {
+        "number": 9,
+        "text": "Omistan ikkunanpesurin."
+      },
+      {
+        "number": 10,
+        "text": "Olen pitänyt puheen yli 50 ihmiselle."
+      },
+      {
+        "number": 11,
+        "text": "Osaan puhua vähintään kolmea kieltä sujuvasti."
+      },
+      {
+        "number": 12,
+        "text": "Olen ostanut kalliin harrastusvälineen joka on jäänyt käyttämättömäksi."
+      },
+      {
+        "number": 13,
+        "text": "Olen rakentanut legoilla viimeisen vuoden aikana."
+      },
+      {
+        "number": 14,
+        "text": "Olen soittanut exälleni humalassa."
+      },
+      {
+        "number": 15,
+        "text": "Olen vaihtanut auton öljyt itse."
+      },
+      {
+        "number": 16,
+        "text": "Olen läpäissyt pakohuonepelin."
+      },
+      {
+        "number": 17,
+        "text": "Olen maalannut taulun."
+      },
+      {
+        "number": 18,
+        "text": "Olen vaihtanut alaa/työtä seuraten omaa unelmaani"
+      },
+      {
+        "number": 19,
+        "text": "Olen ollut mukana bändissä."
+      },
+      {
+        "number": 20,
+        "text": "Olen ratsastanut elefantilla tai kamelilla."
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "set": 4,
+    "title": "KORTTI 34",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen käynyt pilkillä."
+      },
+      {
+        "number": 2,
+        "text": "Olen katsonut esports-turnausta paikanpäällä."
+      },
+      {
+        "number": 3,
+        "text": "Olen saanut potkut."
+      },
+      {
+        "number": 4,
+        "text": "Olen käyttänyt toisen hammasharjaa (tahallisesti tai vahingossa)."
+      },
+      {
+        "number": 5,
+        "text": "Olen ollut mukana polttareissa."
+      },
+      {
+        "number": 6,
+        "text": "Olen tavannut presidentin tai jonkun ministerin."
+      },
+      {
+        "number": 7,
+        "text": "Olen näytellyt mainoksessa."
+      },
+      {
+        "number": 8,
+        "text": "Olen pelannut roolipeliä kuten DND."
+      },
+      {
+        "number": 9,
+        "text": "Minut on puhallutettu."
+      },
+      {
+        "number": 10,
+        "text": "Olen joutunut putkaan."
+      },
+      {
+        "number": 11,
+        "text": "Olen suunnistanut kompassilla."
+      },
+      {
+        "number": 12,
+        "text": "Olen kantanut arkkua."
+      },
+      {
+        "number": 13,
+        "text": "Olen tehnyt itse hilloa tai marmeladia."
+      },
+      {
+        "number": 14,
+        "text": "Olen käynyt metsästämässä."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut yli 10 tunnin lennolla."
+      },
+      {
+        "number": 16,
+        "text": "Olen käynyt yliopistoa."
+      },
+      {
+        "number": 17,
+        "text": "Osaan tehdä taikatemppuja."
+      },
+      {
+        "number": 18,
+        "text": "Olen jättänyt menemään töihin krapulan takia."
+      },
+      {
+        "number": 19,
+        "text": "Olen ladannut laittomasti elokuvia."
+      },
+      {
+        "number": 20,
+        "text": "Olen voittanut yli 100e lotosta tai arvasta."
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "set": 4,
+    "title": "KORTTI 35",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen leikannut jonkun toisen hiukset."
+      },
+      {
+        "number": 2,
+        "text": "Olen kirjoittanut runon tai laulun."
+      },
+      {
+        "number": 3,
+        "text": "Olen murtanut luun."
+      },
+      {
+        "number": 4,
+        "text": "Olen ratsastanut hevosella."
+      },
+      {
+        "number": 5,
+        "text": "Olen vaihtanut auton öljyt itse."
+      },
+      {
+        "number": 6,
+        "text": "Olen katsonut elokuvan drive-in elokuvateatterissa."
+      },
+      {
+        "number": 7,
+        "text": "Olen loukkaantunut yrittäessäni jotai typerää."
+      },
+      {
+        "number": 8,
+        "text": "Olen suorittanut opintoni tavoiteajassa."
+      },
+      {
+        "number": 9,
+        "text": "Olen osallistunut taidenäyttelyn avajaisiin."
+      },
+      {
+        "number": 10,
+        "text": "Olen ollut laskettelemassa alpeilla."
+      },
+      {
+        "number": 11,
+        "text": "Olen käynyt vesipuistossa aikuisena."
+      },
+      {
+        "number": 12,
+        "text": "Olen tilannut ruokaa kotiin useammin kuin kerran päivässä."
+      },
+      {
+        "number": 13,
+        "text": "Tilaan jotakin sanomalehteä."
+      },
+      {
+        "number": 14,
+        "text": "Olen antanut ensiapua hätätilanteessa."
+      },
+      {
+        "number": 15,
+        "text": "Olen ampunut jousella."
+      },
+      {
+        "number": 16,
+        "text": "Olen viettänyt joulun ulkomailla."
+      },
+      {
+        "number": 17,
+        "text": "Olen kasvattanut kaupasta ostetun hedelmän siemenestä uuden kasvin."
+      },
+      {
+        "number": 18,
+        "text": "Minulta on varastettu polkupyörä."
+      },
+      {
+        "number": 19,
+        "text": "Olen ollut ihastunut opettajaan."
+      },
+      {
+        "number": 20,
+        "text": "Minulla on ollut kuntosalijäsenyys käyttämättä yli kuukauden."
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "set": 4,
+    "title": "KORTTI 36",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen saanut ylennyksen."
+      },
+      {
+        "number": 2,
+        "text": "Olen oksentanut baarissa tuoppii ntai pöydälle."
+      },
+      {
+        "number": 3,
+        "text": "Olen osallistunut maratonille tai triathloniin."
+      },
+      {
+        "number": 4,
+        "text": "Olen laulanut karaokessa kappaletta jota en osannut."
+      },
+      {
+        "number": 5,
+        "text": "Olen nukkunut ulkona tähtitaivaan alla."
+      },
+      {
+        "number": 6,
+        "text": "Olen heittänyt joulupukin keikkaa."
+      },
+      {
+        "number": 7,
+        "text": "Olen vahingossa “tykännyt” vuosien takaisesta postauksesta salaisesti stalkatessa."
+      },
+      {
+        "number": 8,
+        "text": "Olen nähnyt Eiffel-tornin."
+      },
+      {
+        "number": 9,
+        "text": "Olen lukenut klassikkokirjan josta en pitänyt."
+      },
+      {
+        "number": 10,
+        "text": "Minulla on ollut vähintään 5 vuoden tauko hammaslääkäristä."
+      },
+      {
+        "number": 11,
+        "text": "Olen osallistunut ruoanlaittokurssille."
+      },
+      {
+        "number": 12,
+        "text": "Olen leiponut täytekakun alusta loppuun itse."
+      },
+      {
+        "number": 13,
+        "text": "Olen ollut alikersantti."
+      },
+      {
+        "number": 14,
+        "text": "Olen kokeillut lumilautailua."
+      },
+      {
+        "number": 15,
+        "text": "Olen käynyt Säpin majakassa."
+      },
+      {
+        "number": 16,
+        "text": "Olen kokeillut geokätköilyä."
+      },
+      {
+        "number": 17,
+        "text": "Olen käynyt bongaamassa lintuja."
+      },
+      {
+        "number": 18,
+        "text": "Osaan soittaa pianoa."
+      },
+      {
+        "number": 19,
+        "text": "Olen osallistunut E-sports turnaukseen."
+      },
+      {
+        "number": 20,
+        "text": "Olen kokeillut benjihyppyä tai laskuvarjohyppyä."
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "set": 4,
+    "title": "KORTTI 37",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen nukkunut festareilla teltassa."
+      },
+      {
+        "number": 2,
+        "text": "Olen jäänyt kiinni luntista tai vilpistä koulussa."
+      },
+      {
+        "number": 3,
+        "text": "Olen käynyt katsomassa saman elokuvan useampaan kertaan."
+      },
+      {
+        "number": 4,
+        "text": "Olen ollut naimisissa."
+      },
+      {
+        "number": 5,
+        "text": "Osaan solmia kravatin."
+      },
+      {
+        "number": 6,
+        "text": "Olen saanut hauen kalastaessa."
+      },
+      {
+        "number": 7,
+        "text": "Omistan ikkunanpesurin."
+      },
+      {
+        "number": 8,
+        "text": "Osaan jongleerata."
+      },
+      {
+        "number": 9,
+        "text": "Olen ollut perustamassa yritystä."
+      },
+      {
+        "number": 10,
+        "text": "Olen käynyt sienessä."
+      },
+      {
+        "number": 11,
+        "text": "Olen vahingossa kutsunut opettajaa tai esihenkilöä “äidiksi”."
+      },
+      {
+        "number": 12,
+        "text": "Olen lähettänyt faksin."
+      },
+      {
+        "number": 13,
+        "text": "Olen kolhinut autolla ajaessani."
+      },
+      {
+        "number": 14,
+        "text": "Olen ottanut selfien julkkiksen kanssa."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut ehdolla vaaleissa."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut bestman tai kaaso häissä."
+      },
+      {
+        "number": 17,
+        "text": "Olen lahjoittanut verta."
+      },
+      {
+        "number": 18,
+        "text": "Olen pitänyt puheen yli 50 ihmiselle."
+      },
+      {
+        "number": 19,
+        "text": "Olen työskennellyt ravintolassa tai kahvilassa."
+      },
+      {
+        "number": 20,
+        "text": "Olen käynyt Michelin-tähden ravintolassa."
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "set": 4,
+    "title": "KORTTI 38",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen mennyt väärään bussiin tai junaan."
+      },
+      {
+        "number": 2,
+        "text": "Olen lukenut Harry Potter -kirjat."
+      },
+      {
+        "number": 3,
+        "text": "Olen myynyt tavaraa kirpputorilla."
+      },
+      {
+        "number": 4,
+        "text": "Olen läpäissyt pakohuonepelin."
+      },
+      {
+        "number": 5,
+        "text": "Olen käynyt oopperassa."
+      },
+      {
+        "number": 6,
+        "text": "Olen tehnyt palapelin, jossa oli yli 1000 palaa."
+      },
+      {
+        "number": 7,
+        "text": "Olen tehnyt lumiukon viimeisen viiden vuoden aikana."
+      },
+      {
+        "number": 8,
+        "text": "Olen löytänyt vanhoja ruokia jääkaappini perältä, joiden viimeinen käyttöpäivä on ollut yli vuosi sitten."
+      },
+      {
+        "number": 9,
+        "text": "Olen ollut sokkotreffeillä."
+      },
+      {
+        "number": 10,
+        "text": "Olen ostanut kalliin harrastusvälineen joka on jäänyt käyttämättömäksi."
+      },
+      {
+        "number": 11,
+        "text": "Olen itkenyt elokuvateatterissa."
+      },
+      {
+        "number": 12,
+        "text": "Olen voittanut pubivisan."
+      },
+      {
+        "number": 13,
+        "text": "Olen joskus herännyt kukon kiekaisuun."
+      },
+      {
+        "number": 14,
+        "text": "Olen harrastanut jalkapalloa."
+      },
+      {
+        "number": 15,
+        "text": "Olen voittanut bingossa."
+      },
+      {
+        "number": 16,
+        "text": "Olen kirjoittanut rakkauskirjeen."
+      },
+      {
+        "number": 17,
+        "text": "Olen lukenut kirjan, josta tehty elokuva ei ollut mielestäni yhtä hyvä."
+      },
+      {
+        "number": 18,
+        "text": "Olen saanut sakot ylinopeudesta."
+      },
+      {
+        "number": 19,
+        "text": "Olen käynyt stand up -komiikkaesityksessä."
+      },
+      {
+        "number": 20,
+        "text": "Olen myynyt jotain itse tekemääni."
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "set": 4,
+    "title": "KORTTI 39",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen lähtenyt vääränä päivänä töihin tai kouluun."
+      },
+      {
+        "number": 2,
+        "text": "Olen itse kasvattanut perunoita."
+      },
+      {
+        "number": 3,
+        "text": "Olen tehnyt mehuja marjoista."
+      },
+      {
+        "number": 4,
+        "text": "Olen nähnyt valaan tai delfiinin luonnossa."
+      },
+      {
+        "number": 5,
+        "text": "Olen pitänyt musiikkia niin kovalla, että naapuri on tullut valittamaan."
+      },
+      {
+        "number": 6,
+        "text": "Olen syönyt etanoita."
+      },
+      {
+        "number": 7,
+        "text": "Olen ollut tv:ssä."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut samassa työpaikassa yli 10 vuotta."
+      },
+      {
+        "number": 9,
+        "text": "Olen pudottanut puhelimen vessanpönttöön."
+      },
+      {
+        "number": 10,
+        "text": "Olen saanut yli 1000e veromätkyjä."
+      },
+      {
+        "number": 11,
+        "text": "Olen ajanut moottorikelkalla."
+      },
+      {
+        "number": 12,
+        "text": "Olen ostanut vaatteen jota en koskaan käyttänyt."
+      },
+      {
+        "number": 13,
+        "text": "Olen valehdellut työnantajalleni olevani kipeä."
+      },
+      {
+        "number": 14,
+        "text": "Olen kokenut maanjäristyksen."
+      },
+      {
+        "number": 15,
+        "text": "Olen uinut avannossa."
+      },
+      {
+        "number": 16,
+        "text": "Olen suorittanut ensiapukurssin."
+      },
+      {
+        "number": 17,
+        "text": "Olen tehnyt oman pöydän tai huonekalun."
+      },
+      {
+        "number": 18,
+        "text": "Olen pelannut blackjackkiä."
+      },
+      {
+        "number": 19,
+        "text": "Olen koristellut kakun, josta tuli enemmän meemi kuin taideteos."
+      },
+      {
+        "number": 20,
+        "text": "Olen käynyt Lapissa."
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "set": 4,
+    "title": "KORTTI 40",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen kirjoittanut päiväkirjaa."
+      },
+      {
+        "number": 2,
+        "text": "Olen käyttänyt vaatetta, jossa on ollut hintalappu kiinni."
+      },
+      {
+        "number": 3,
+        "text": "Olen maalannut taulun."
+      },
+      {
+        "number": 4,
+        "text": "Olen tavannut esikuvani tai idolini."
+      },
+      {
+        "number": 5,
+        "text": "Olen kiivennyt puuhun aikuisena."
+      },
+      {
+        "number": 6,
+        "text": "Olen lähettänyt pullopostin."
+      },
+      {
+        "number": 7,
+        "text": "Olen käynyt purjehtimassa."
+      },
+      {
+        "number": 8,
+        "text": "Olen nukkunut riippumatossa."
+      },
+      {
+        "number": 9,
+        "text": "Olen lukenut saman kirjan useammin kuin kerran."
+      },
+      {
+        "number": 10,
+        "text": "Olen ollut Tinder-treffeillä."
+      },
+      {
+        "number": 11,
+        "text": "Olen ollut vaihto-opiskelussa."
+      },
+      {
+        "number": 12,
+        "text": "Olen rakentanut legoilla viimeisen vuoden aikana."
+      },
+      {
+        "number": 13,
+        "text": "Olen voittanut arvonnassa jotain arvokasta."
+      },
+      {
+        "number": 14,
+        "text": "Olen tapetoinut."
+      },
+      {
+        "number": 15,
+        "text": "Olen käynyt cosplay-tapahtumassa."
+      },
+      {
+        "number": 16,
+        "text": "Osaan vislata."
+      },
+      {
+        "number": 17,
+        "text": "Olen äänestänyt pienpuoluetta."
+      },
+      {
+        "number": 18,
+        "text": "Olen ollut siviilipalveluksessa."
+      },
+      {
+        "number": 19,
+        "text": "Olen osallistunut mielenosoitukseen."
+      },
+      {
+        "number": 20,
+        "text": "Minulla on yli 1000 seuraajaa sosiaalisessa mediassa."
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "set": 4,
+    "title": "KORTTI 41",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen tehnyt retken pyörällä yli 50 kilometriä."
+      },
+      {
+        "number": 2,
+        "text": "Olen laulanut karaokea."
+      },
+      {
+        "number": 3,
+        "text": "Osaan käyttää sukkapuikkoja tai virkata."
+      },
+      {
+        "number": 4,
+        "text": "Olen pukeutunut kansallispukuun."
+      },
+      {
+        "number": 5,
+        "text": "Olen osallistunut urheilukilpailuun aikuisena."
+      },
+      {
+        "number": 6,
+        "text": "Olen rakentanut linnunpöntön."
+      },
+      {
+        "number": 7,
+        "text": "Olen käynyt akupunktiossa."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut puhelinmyyjä."
+      },
+      {
+        "number": 9,
+        "text": "Olen vaihtanut autonrenkaan itse."
+      },
+      {
+        "number": 10,
+        "text": "Minulla on lemmikki."
+      },
+      {
+        "number": 11,
+        "text": "Olen ollut kansalaisopiston kurssilla."
+      },
+      {
+        "number": 12,
+        "text": "Olen järjestänyt yllätysjuhlat läheiselle."
+      },
+      {
+        "number": 13,
+        "text": "Olen ollut mukana oikeudenkäynnissä."
+      },
+      {
+        "number": 14,
+        "text": "Olen nähnyt karhun tai suden luonnossa."
+      },
+      {
+        "number": 15,
+        "text": "Olen esiintynyt radiossa."
+      },
+      {
+        "number": 16,
+        "text": "Olen vaihtanut alaa/työtä seuraten omaa unelmaani"
+      },
+      {
+        "number": 17,
+        "text": "Olen ollut jonkun yhdistyksen puheenjohtaja."
+      },
+      {
+        "number": 18,
+        "text": "Olen kerännyt pokemonkortteja."
+      },
+      {
+        "number": 19,
+        "text": "Osaan puhua vähintään kolmea kieltä sujuvasti."
+      },
+      {
+        "number": 20,
+        "text": "Olen matkustanut pummilla ja jäänyt siitä kiinni."
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "set": 4,
+    "title": "KORTTI 42",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen tehnyt kesätöitä marjapellolla tai maatilalla."
+      },
+      {
+        "number": 2,
+        "text": "Olen soittanut radioon."
+      },
+      {
+        "number": 3,
+        "text": "Olen hypännyt 10 metristä veteen."
+      },
+      {
+        "number": 4,
+        "text": "Minulla on edelleen tarravihko tallessa."
+      },
+      {
+        "number": 5,
+        "text": "Olen nähnyt tähdenlennon."
+      },
+      {
+        "number": 6,
+        "text": "Olen myöhästynyt lentokoneesta."
+      },
+      {
+        "number": 7,
+        "text": "Olen nukkunut autossa."
+      },
+      {
+        "number": 8,
+        "text": "Olen voittanut mitalin urheilukisasta."
+      },
+      {
+        "number": 9,
+        "text": "Olen pumpannut vettä kaivosta."
+      },
+      {
+        "number": 10,
+        "text": "Minulla on tatuointi."
+      },
+      {
+        "number": 11,
+        "text": "Olen käynyt kosmetologilla."
+      },
+      {
+        "number": 12,
+        "text": "Olen kokeillut kasvonaamiota."
+      },
+      {
+        "number": 13,
+        "text": "Olen lukinnut itseni ulos asunnostani."
+      },
+      {
+        "number": 14,
+        "text": "Olen ratsastanut elefantilla tai kamelilla."
+      },
+      {
+        "number": 15,
+        "text": "Olen asunut vähintään kolmella eri paikkakunnalla."
+      },
+      {
+        "number": 16,
+        "text": "Olen ostanut pelin enkä pelannut sitä koskaan."
+      },
+      {
+        "number": 17,
+        "text": "Olen kadottanut puhelimeni tai lompakkoni humalassa."
+      },
+      {
+        "number": 18,
+        "text": "Olen soittanut jotain jousisoitinta."
+      },
+      {
+        "number": 19,
+        "text": "Olen luistellut rullaluistimilla viimeisen viiden vuoden aikana."
+      },
+      {
+        "number": 20,
+        "text": "Olen tehnyt oman musiikkivideon."
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "set": 4,
+    "title": "KORTTI 43",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen kasvissyöjä."
+      },
+      {
+        "number": 2,
+        "text": "Olen ollut esimies."
+      },
+      {
+        "number": 3,
+        "text": "Olen sup-lautailut."
+      },
+      {
+        "number": 4,
+        "text": "Olen käynyt Afrikassa."
+      },
+      {
+        "number": 5,
+        "text": "Olen kirjoittanut kirjeen tai viestin tulevaisuuden itselleni."
+      },
+      {
+        "number": 6,
+        "text": "Olen säveltänyt musiikkia."
+      },
+      {
+        "number": 7,
+        "text": "Olen syönyt toisen eväät jääkaapista ilman lupaa."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut mukana teatterityöpajassa tai improkurssilla."
+      },
+      {
+        "number": 9,
+        "text": "Olen pitänyt blogia."
+      },
+      {
+        "number": 10,
+        "text": "Olen langennut huijaukseen."
+      },
+      {
+        "number": 11,
+        "text": "Olen ajanut moottoripyörällä."
+      },
+      {
+        "number": 12,
+        "text": "Kodissani on ollut tulipalo."
+      },
+      {
+        "number": 13,
+        "text": "Olen harrastanut jääkiekkoa."
+      },
+      {
+        "number": 14,
+        "text": "Olen nähnyt revontulet."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut laneilla."
+      },
+      {
+        "number": 16,
+        "text": "Olen oksentanut bussiin, junaan tai ratikkaan."
+      },
+      {
+        "number": 17,
+        "text": "Olen osallistunut lavatansseihin."
+      },
+      {
+        "number": 18,
+        "text": "Olen valehellut ikääni ollakseni vanhempi tai nuorempi."
+      },
+      {
+        "number": 19,
+        "text": "Olen käynyt raveissa."
+      },
+      {
+        "number": 20,
+        "text": "Olen soittanut exälleni humalassa."
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "set": 4,
+    "title": "KORTTI 44",
+    "subtitle": "Setti 4",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen koonnut IKEA-huonekalun ja se onnistui."
+      },
+      {
+        "number": 2,
+        "text": "Olen ajanut autolla jäätyneen meren tai järven päällä."
+      },
+      {
+        "number": 3,
+        "text": "Olen asunut ulkomailla."
+      },
+      {
+        "number": 4,
+        "text": "Olen saanut hole-in-one frisbeegolfissa."
+      },
+      {
+        "number": 5,
+        "text": "Olen antanut rahaa kerjäläiselle."
+      },
+      {
+        "number": 6,
+        "text": "Olen ollut kuorossa."
+      },
+      {
+        "number": 7,
+        "text": "Olen pelannut pokeria rahasta."
+      },
+      {
+        "number": 8,
+        "text": "Olen tehnyt töitä pimeästi."
+      },
+      {
+        "number": 9,
+        "text": "Olen polttanut ruoan pohjaan niin pahasti, että piti ostaa uusi kattila."
+      },
+      {
+        "number": 10,
+        "text": "Olen tehnyt itse mehua."
+      },
+      {
+        "number": 11,
+        "text": "Olen tehnyt uuden vuoden lupauksen ja pitänyt sen."
+      },
+      {
+        "number": 12,
+        "text": "Olen koodannut oman pelin tai nettisivun."
+      },
+      {
+        "number": 13,
+        "text": "Olen käynyt katsomassa pesäpallo-ottelun."
+      },
+      {
+        "number": 14,
+        "text": "Olen käynyt elokuvissa yksin."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut mukana teatteriesityksessä."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut mukana bändissä."
+      },
+      {
+        "number": 17,
+        "text": "Olen kokeillut vesihiihtoa."
+      },
+      {
+        "number": 18,
+        "text": "Olen googlannut sairausoireita ja diagnosoinut itselleni syövän."
+      },
+      {
+        "number": 19,
+        "text": "Olen tehnyt kotiviiniä, -olutta tai muuta alkoholijuomaa itse."
+      },
+      {
+        "number": 20,
+        "text": "Olen joskus saanut parkkisakot."
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "set": 5,
+    "title": "KORTTI 45",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen nukkunut autossa."
+      },
+      {
+        "number": 2,
+        "text": "Minulla on ollut vähintään 5 vuoden tauko hammaslääkäristä."
+      },
+      {
+        "number": 3,
+        "text": "Olen tehnyt uuden vuoden lupauksen ja pitänyt sen."
+      },
+      {
+        "number": 4,
+        "text": "Olen käynyt Lapissa."
+      },
+      {
+        "number": 5,
+        "text": "Olen ollut mukana polttareissa."
+      },
+      {
+        "number": 6,
+        "text": "Olen vaihtanut alaa/työtä seuraten omaa unelmaani"
+      },
+      {
+        "number": 7,
+        "text": "Olen lähtenyt vääränä päivänä töihin tai kouluun."
+      },
+      {
+        "number": 8,
+        "text": "Olen tehnyt oman musiikkivideon."
+      },
+      {
+        "number": 9,
+        "text": "Olen kokeillut vesihiihtoa."
+      },
+      {
+        "number": 10,
+        "text": "Olen kirjoittanut kirjeen tai viestin tulevaisuuden itselleni."
+      },
+      {
+        "number": 11,
+        "text": "Olen nähnyt Eiffel-tornin."
+      },
+      {
+        "number": 12,
+        "text": "Olen käynyt akupunktiossa."
+      },
+      {
+        "number": 13,
+        "text": "Minulla on lemmikki."
+      },
+      {
+        "number": 14,
+        "text": "Olen käynyt katsomassa saman elokuvan useampaan kertaan."
+      },
+      {
+        "number": 15,
+        "text": "Olen käyttänyt toisen hammasharjaa (tahallisesti tai vahingossa)."
+      },
+      {
+        "number": 16,
+        "text": "Olen suunnistanut kompassilla."
+      },
+      {
+        "number": 17,
+        "text": "Olen käynyt Säpin majakassa."
+      },
+      {
+        "number": 18,
+        "text": "Olen osallistunut ruoanlaittokurssille."
+      },
+      {
+        "number": 19,
+        "text": "Olen laulanut karaokea."
+      },
+      {
+        "number": 20,
+        "text": "Olen viettänyt joulun ulkomailla."
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "set": 5,
+    "title": "KORTTI 46",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen soittanut exälleni humalassa."
+      },
+      {
+        "number": 2,
+        "text": "Olen ottanut selfien julkkiksen kanssa."
+      },
+      {
+        "number": 3,
+        "text": "Olen ollut samassa työpaikassa yli 10 vuotta."
+      },
+      {
+        "number": 4,
+        "text": "Olen pudottanut puhelimen vessanpönttöön."
+      },
+      {
+        "number": 5,
+        "text": "Olen ladannut laittomasti elokuvia."
+      },
+      {
+        "number": 6,
+        "text": "Olen katsonut elokuvan drive-in elokuvateatterissa."
+      },
+      {
+        "number": 7,
+        "text": "Olen lukenut saman kirjan useammin kuin kerran."
+      },
+      {
+        "number": 8,
+        "text": "Olen tehnyt retken pyörällä yli 50 kilometriä."
+      },
+      {
+        "number": 9,
+        "text": "Olen kantanut arkkua."
+      },
+      {
+        "number": 10,
+        "text": "Olen myöhästynyt lentokoneesta."
+      },
+      {
+        "number": 11,
+        "text": "Olen osallistunut urheilukilpailuun aikuisena."
+      },
+      {
+        "number": 12,
+        "text": "Olen murtanut luun."
+      },
+      {
+        "number": 13,
+        "text": "Olen uinut avannossa."
+      },
+      {
+        "number": 14,
+        "text": "Olen ostanut pelin enkä pelannut sitä koskaan."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut mukana teatterityöpajassa tai improkurssilla."
+      },
+      {
+        "number": 16,
+        "text": "Olen kokeillut lumilautailua."
+      },
+      {
+        "number": 17,
+        "text": "Olen valehdellut työnantajalleni olevani kipeä."
+      },
+      {
+        "number": 18,
+        "text": "Olen lukenut Harry Potter -kirjat."
+      },
+      {
+        "number": 19,
+        "text": "Olen käynyt stand up -komiikkaesityksessä."
+      },
+      {
+        "number": 20,
+        "text": "Olen tehnyt töitä pimeästi."
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "set": 5,
+    "title": "KORTTI 47",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen langennut huijaukseen."
+      },
+      {
+        "number": 2,
+        "text": "Olen koodannut oman pelin tai nettisivun."
+      },
+      {
+        "number": 3,
+        "text": "Olen kokeillut geokätköilyä."
+      },
+      {
+        "number": 4,
+        "text": "Olen suorittanut opintoni tavoiteajassa."
+      },
+      {
+        "number": 5,
+        "text": "Olen käynyt raveissa."
+      },
+      {
+        "number": 6,
+        "text": "Olen kirjoittanut runon tai laulun."
+      },
+      {
+        "number": 7,
+        "text": "Olen pelannut pokeria rahasta."
+      },
+      {
+        "number": 8,
+        "text": "Olen nähnyt revontulet."
+      },
+      {
+        "number": 9,
+        "text": "Minulla on yli 1000 seuraajaa sosiaalisessa mediassa."
+      },
+      {
+        "number": 10,
+        "text": "Olen vaihtanut auton öljyt itse."
+      },
+      {
+        "number": 11,
+        "text": "Olen tehnyt lumiukon viimeisen viiden vuoden aikana."
+      },
+      {
+        "number": 12,
+        "text": "Olen vahingossa “tykännyt” vuosien takaisesta postauksesta salaisesti stalkatessa."
+      },
+      {
+        "number": 13,
+        "text": "Olen googlannut sairausoireita ja diagnosoinut itselleni syövän."
+      },
+      {
+        "number": 14,
+        "text": "Minulla on edelleen tarravihko tallessa."
+      },
+      {
+        "number": 15,
+        "text": "Osaan puhua vähintään kolmea kieltä sujuvasti."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut ihastunut opettajaan."
+      },
+      {
+        "number": 17,
+        "text": "Olen jättänyt menemään töihin krapulan takia."
+      },
+      {
+        "number": 18,
+        "text": "Olen osallistunut mielenosoitukseen."
+      },
+      {
+        "number": 19,
+        "text": "Olen voittanut arvonnassa jotain arvokasta."
+      },
+      {
+        "number": 20,
+        "text": "Olen osallistunut E-sports turnaukseen."
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "set": 5,
+    "title": "KORTTI 48",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen rakentanut linnunpöntön."
+      },
+      {
+        "number": 2,
+        "text": "Olen pitänyt musiikkia niin kovalla, että naapuri on tullut valittamaan."
+      },
+      {
+        "number": 3,
+        "text": "Olen nähnyt valaan tai delfiinin luonnossa."
+      },
+      {
+        "number": 4,
+        "text": "Olen asunut ulkomailla."
+      },
+      {
+        "number": 5,
+        "text": "Olen syönyt etanoita."
+      },
+      {
+        "number": 6,
+        "text": "Olen myynyt jotain itse tekemääni."
+      },
+      {
+        "number": 7,
+        "text": "Olen käynyt pilkillä."
+      },
+      {
+        "number": 8,
+        "text": "Olen saanut sakot ylinopeudesta."
+      },
+      {
+        "number": 9,
+        "text": "Minulta on varastettu polkupyörä."
+      },
+      {
+        "number": 10,
+        "text": "Olen osallistunut lavatansseihin."
+      },
+      {
+        "number": 11,
+        "text": "Olen nähnyt tähdenlennon."
+      },
+      {
+        "number": 12,
+        "text": "Olen pelannut blackjackkiä."
+      },
+      {
+        "number": 13,
+        "text": "Olen lähettänyt faksin."
+      },
+      {
+        "number": 14,
+        "text": "Olen tavannut esikuvani tai idolini."
+      },
+      {
+        "number": 15,
+        "text": "Olen kolhinut autolla ajaessani."
+      },
+      {
+        "number": 16,
+        "text": "Omistan ikkunanpesurin."
+      },
+      {
+        "number": 17,
+        "text": "Olen unohtanut tärkeän merkkipäivän kuten ystävänpäivän."
+      },
+      {
+        "number": 18,
+        "text": "Minulla on ollut kuntosalijäsenyys käyttämättä yli kuukauden."
+      },
+      {
+        "number": 19,
+        "text": "Olen näytellyt mainoksessa."
+      },
+      {
+        "number": 20,
+        "text": "Olen käynyt vesipuistossa aikuisena."
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "set": 5,
+    "title": "KORTTI 49",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen saanut hole-in-one frisbeegolfissa."
+      },
+      {
+        "number": 2,
+        "text": "Olen vaihtanut autonrenkaan itse."
+      },
+      {
+        "number": 3,
+        "text": "Osaan käyttää sukkapuikkoja tai virkata."
+      },
+      {
+        "number": 4,
+        "text": "Olen kokeillut benjihyppyä tai laskuvarjohyppyä."
+      },
+      {
+        "number": 5,
+        "text": "Olen soittanut jotain jousisoitinta."
+      },
+      {
+        "number": 6,
+        "text": "Olen nukkunut festareilla teltassa."
+      },
+      {
+        "number": 7,
+        "text": "Olen pitänyt puheen yli 50 ihmiselle."
+      },
+      {
+        "number": 8,
+        "text": "Olen lukenut klassikkokirjan josta en pitänyt."
+      },
+      {
+        "number": 9,
+        "text": "Olen saanut potkut."
+      },
+      {
+        "number": 10,
+        "text": "Olen äänestänyt pienpuoluetta."
+      },
+      {
+        "number": 11,
+        "text": "Kodissani on ollut tulipalo."
+      },
+      {
+        "number": 12,
+        "text": "Olen tehnyt kotiviiniä, -olutta tai muuta alkoholijuomaa itse."
+      },
+      {
+        "number": 13,
+        "text": "Olen kasvissyöjä."
+      },
+      {
+        "number": 14,
+        "text": "Olen matkustanut pummilla ja jäänyt siitä kiinni."
+      },
+      {
+        "number": 15,
+        "text": "Minut on puhallutettu."
+      },
+      {
+        "number": 16,
+        "text": "Osaan jongleerata."
+      },
+      {
+        "number": 17,
+        "text": "Olen koristellut kakun, josta tuli enemmän meemi kuin taideteos."
+      },
+      {
+        "number": 18,
+        "text": "Olen käynyt oopperassa."
+      },
+      {
+        "number": 19,
+        "text": "Olen käynyt sienessä."
+      },
+      {
+        "number": 20,
+        "text": "Olen mennyt väärään bussiin tai junaan."
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "set": 5,
+    "title": "KORTTI 50",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen osallistunut maratonille tai triathloniin."
+      },
+      {
+        "number": 2,
+        "text": "Olen itkenyt elokuvateatterissa."
+      },
+      {
+        "number": 3,
+        "text": "Olen itse kasvattanut perunoita."
+      },
+      {
+        "number": 4,
+        "text": "Olen nukkunut ulkona tähtitaivaan alla."
+      },
+      {
+        "number": 5,
+        "text": "Olen ollut bestman tai kaaso häissä."
+      },
+      {
+        "number": 6,
+        "text": "Minulla on tatuointi."
+      },
+      {
+        "number": 7,
+        "text": "Olen ollut siviilipalveluksessa."
+      },
+      {
+        "number": 8,
+        "text": "Olen maalannut taulun."
+      },
+      {
+        "number": 9,
+        "text": "Olen käynyt cosplay-tapahtumassa."
+      },
+      {
+        "number": 10,
+        "text": "Olen saanut yli 1000e veromätkyjä."
+      },
+      {
+        "number": 11,
+        "text": "Olen kokeillut kasvonaamiota."
+      },
+      {
+        "number": 12,
+        "text": "Olen tehnyt mehuja marjoista."
+      },
+      {
+        "number": 13,
+        "text": "Olen leiponut täytekakun alusta loppuun itse."
+      },
+      {
+        "number": 14,
+        "text": "Olen tilannut ruokaa kotiin useammin kuin kerran päivässä."
+      },
+      {
+        "number": 15,
+        "text": "Olen heittänyt joulupukin keikkaa."
+      },
+      {
+        "number": 16,
+        "text": "Olen ollut alikersantti."
+      },
+      {
+        "number": 17,
+        "text": "Olen suorittanut ensiapukurssin."
+      },
+      {
+        "number": 18,
+        "text": "Olen vahingossa kutsunut opettajaa tai esihenkilöä “äidiksi”."
+      },
+      {
+        "number": 19,
+        "text": "Olen asunut vähintään kolmella eri paikkakunnalla."
+      },
+      {
+        "number": 20,
+        "text": "Olen syönyt kokonaisen chilin."
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "set": 5,
+    "title": "KORTTI 51",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen ratsastanut hevosella."
+      },
+      {
+        "number": 2,
+        "text": "Olen luistellut rullaluistimilla viimeisen viiden vuoden aikana."
+      },
+      {
+        "number": 3,
+        "text": "Olen ollut ehdolla vaaleissa."
+      },
+      {
+        "number": 4,
+        "text": "Olen käynyt purjehtimassa."
+      },
+      {
+        "number": 5,
+        "text": "Olen saanut ylennyksen."
+      },
+      {
+        "number": 6,
+        "text": "Olen myynyt tavaraa kirpputorilla."
+      },
+      {
+        "number": 7,
+        "text": "Olen voittanut bingossa."
+      },
+      {
+        "number": 8,
+        "text": "Olen oksentanut baarissa tuoppii ntai pöydälle."
+      },
+      {
+        "number": 9,
+        "text": "Olen ollut tv:ssä."
+      },
+      {
+        "number": 10,
+        "text": "Olen ostanut vaatteen jota en koskaan käyttänyt."
+      },
+      {
+        "number": 11,
+        "text": "Olen joskus herännyt kukon kiekaisuun."
+      },
+      {
+        "number": 12,
+        "text": "Olen pelannut roolipeliä kuten DND."
+      },
+      {
+        "number": 13,
+        "text": "Olen ollut laskettelemassa alpeilla."
+      },
+      {
+        "number": 14,
+        "text": "Olen osallistunut taidenäyttelyn avajaisiin."
+      },
+      {
+        "number": 15,
+        "text": "Olen tehnyt itse hilloa tai marmeladia."
+      },
+      {
+        "number": 16,
+        "text": "Olen sup-lautailut."
+      },
+      {
+        "number": 17,
+        "text": "Olen järjestänyt yllätysjuhlat läheiselle."
+      },
+      {
+        "number": 18,
+        "text": "Olen ollut perustamassa yritystä."
+      },
+      {
+        "number": 19,
+        "text": "Olen ampunut jousella."
+      },
+      {
+        "number": 20,
+        "text": "Olen kerännyt pokemonkortteja."
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "set": 5,
+    "title": "KORTTI 52",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen pitänyt blogia."
+      },
+      {
+        "number": 2,
+        "text": "Olen jäänyt kiinni luntista tai vilpistä koulussa."
+      },
+      {
+        "number": 3,
+        "text": "Olen tapetoinut."
+      },
+      {
+        "number": 4,
+        "text": "Olen voittanut yli 100e lotosta tai arvasta."
+      },
+      {
+        "number": 5,
+        "text": "Olen ollut vaihto-opiskelussa."
+      },
+      {
+        "number": 6,
+        "text": "Olen työskennellyt ravintolassa tai kahvilassa."
+      },
+      {
+        "number": 7,
+        "text": "Olen soittanut radioon."
+      },
+      {
+        "number": 8,
+        "text": "Olen läpäissyt pakohuonepelin."
+      },
+      {
+        "number": 9,
+        "text": "Olen polttanut ruoan pohjaan niin pahasti, että piti ostaa uusi kattila."
+      },
+      {
+        "number": 10,
+        "text": "Olen valehellut ikääni ollakseni vanhempi tai nuorempi."
+      },
+      {
+        "number": 11,
+        "text": "Olen käyttänyt vaatetta, jossa on ollut hintalappu kiinni."
+      },
+      {
+        "number": 12,
+        "text": "Olen pumpannut vettä kaivosta."
+      },
+      {
+        "number": 13,
+        "text": "Olen käynyt kosmetologilla."
+      },
+      {
+        "number": 14,
+        "text": "Olen tehnyt palapelin, jossa oli yli 1000 palaa."
+      },
+      {
+        "number": 15,
+        "text": "Olen ollut mukana oikeudenkäynnissä."
+      },
+      {
+        "number": 16,
+        "text": "Olen käynyt metsästämässä."
+      },
+      {
+        "number": 17,
+        "text": "Olen antanut ensiapua hätätilanteessa."
+      },
+      {
+        "number": 18,
+        "text": "Olen loukkaantunut yrittäessäni jotai typerää."
+      },
+      {
+        "number": 19,
+        "text": "Olen harrastanut jalkapalloa."
+      },
+      {
+        "number": 20,
+        "text": "Olen harrastanut jääkiekkoa."
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "set": 5,
+    "title": "KORTTI 53",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen pukeutunut kansallispukuun."
+      },
+      {
+        "number": 2,
+        "text": "Olen kiivennyt puuhun aikuisena."
+      },
+      {
+        "number": 3,
+        "text": "Olen ollut mukana teatteriesityksessä."
+      },
+      {
+        "number": 4,
+        "text": "Olen antanut rahaa kerjäläiselle."
+      },
+      {
+        "number": 5,
+        "text": "Olen saanut hauen kalastaessa."
+      },
+      {
+        "number": 6,
+        "text": "Olen hypännyt 10 metristä veteen."
+      },
+      {
+        "number": 7,
+        "text": "Olen kirjoittanut rakkauskirjeen."
+      },
+      {
+        "number": 8,
+        "text": "Olen ollut laneilla."
+      },
+      {
+        "number": 9,
+        "text": "Olen kasvattanut kaupasta ostetun hedelmän siemenestä uuden kasvin."
+      },
+      {
+        "number": 10,
+        "text": "Olen löytänyt vanhoja ruokia jääkaappini perältä, joiden viimeinen käyttöpäivä on ollut yli vuosi sitten."
+      },
+      {
+        "number": 11,
+        "text": "Olen ollut Tinder-treffeillä."
+      },
+      {
+        "number": 12,
+        "text": "Olen ollut yli 10 tunnin lennolla."
+      },
+      {
+        "number": 13,
+        "text": "Olen kirjoittanut päiväkirjaa."
+      },
+      {
+        "number": 14,
+        "text": "Olen ajanut moottoripyörällä."
+      },
+      {
+        "number": 15,
+        "text": "Olen syönyt toisen eväät jääkaapista ilman lupaa."
+      },
+      {
+        "number": 16,
+        "text": "Olen ratsastanut elefantilla tai kamelilla."
+      },
+      {
+        "number": 17,
+        "text": "Olen käynyt bongaamassa lintuja."
+      },
+      {
+        "number": 18,
+        "text": "Osaan vislata."
+      },
+      {
+        "number": 19,
+        "text": "Olen käynyt elokuvissa yksin."
+      },
+      {
+        "number": 20,
+        "text": "Olen ollut kansalaisopiston kurssilla."
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "set": 5,
+    "title": "KORTTI 54",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen tehnyt itse mehua."
+      },
+      {
+        "number": 2,
+        "text": "Olen ollut mukana bändissä."
+      },
+      {
+        "number": 3,
+        "text": "Olen voittanut mitalin urheilukisasta."
+      },
+      {
+        "number": 4,
+        "text": "Olen ajanut autolla jäätyneen meren tai järven päällä."
+      },
+      {
+        "number": 5,
+        "text": "Olen käynyt Afrikassa."
+      },
+      {
+        "number": 6,
+        "text": "Olen nähnyt karhun tai suden luonnossa."
+      },
+      {
+        "number": 7,
+        "text": "Olen leikannut jonkun toisen hiukset."
+      },
+      {
+        "number": 8,
+        "text": "Olen kokenut maanjäristyksen."
+      },
+      {
+        "number": 9,
+        "text": "Olen säveltänyt musiikkia."
+      },
+      {
+        "number": 10,
+        "text": "Olen rakentanut legoilla viimeisen vuoden aikana."
+      },
+      {
+        "number": 11,
+        "text": "Olen joskus saanut parkkisakot."
+      },
+      {
+        "number": 12,
+        "text": "Tilaan jotakin sanomalehteä."
+      },
+      {
+        "number": 13,
+        "text": "Olen ollut kuorossa."
+      },
+      {
+        "number": 14,
+        "text": "Olen voittanut pubivisan."
+      },
+      {
+        "number": 15,
+        "text": "Olen joutunut putkaan."
+      },
+      {
+        "number": 16,
+        "text": "Olen kadottanut puhelimeni tai lompakkoni humalassa."
+      },
+      {
+        "number": 17,
+        "text": "Olen laulanut karaokessa kappaletta jota en osannut."
+      },
+      {
+        "number": 18,
+        "text": "Osaan tehdä taikatemppuja."
+      },
+      {
+        "number": 19,
+        "text": "Olen oksentanut bussiin, junaan tai ratikkaan."
+      },
+      {
+        "number": 20,
+        "text": "Olen lähettänyt pullopostin."
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "set": 5,
+    "title": "KORTTI 55",
+    "subtitle": "Setti 5",
+    "questions": [
+      {
+        "number": 1,
+        "text": "Olen käynyt katsomassa pesäpallo-ottelun."
+      },
+      {
+        "number": 2,
+        "text": "Olen ollut sokkotreffeillä."
+      },
+      {
+        "number": 3,
+        "text": "Olen esiintynyt radiossa."
+      },
+      {
+        "number": 4,
+        "text": "Olen käynyt yliopistoa."
+      },
+      {
+        "number": 5,
+        "text": "Osaan solmia kravatin."
+      },
+      {
+        "number": 6,
+        "text": "Olen ajanut moottorikelkalla."
+      },
+      {
+        "number": 7,
+        "text": "Olen lukenut kirjan, josta tehty elokuva ei ollut mielestäni yhtä hyvä."
+      },
+      {
+        "number": 8,
+        "text": "Olen käynyt Michelin-tähden ravintolassa."
+      },
+      {
+        "number": 9,
+        "text": "Olen nukkunut riippumatossa."
+      },
+      {
+        "number": 10,
+        "text": "Olen lahjoittanut verta."
+      },
+      {
+        "number": 11,
+        "text": "Olen tehnyt oman pöydän tai huonekalun."
+      },
+      {
+        "number": 12,
+        "text": "Olen koonnut IKEA-huonekalun ja se onnistui."
+      },
+      {
+        "number": 13,
+        "text": "Olen lukinnut itseni ulos asunnostani."
+      },
+      {
+        "number": 14,
+        "text": "Olen ollut puhelinmyyjä."
+      },
+      {
+        "number": 15,
+        "text": "Olen ostanut kalliin harrastusvälineen joka on jäänyt käyttämättömäksi."
+      },
+      {
+        "number": 16,
+        "text": "Olen tavannut presidentin tai jonkun ministerin."
+      },
+      {
+        "number": 17,
+        "text": "Olen ollut jonkun yhdistyksen puheenjohtaja."
+      },
+      {
+        "number": 18,
+        "text": "Olen katsonut esports-turnausta paikanpäällä."
+      },
+      {
+        "number": 19,
+        "text": "Olen tehnyt kesätöitä marjapellolla tai maatilalla."
+      },
+      {
+        "number": 20,
+        "text": "Osaan soittaa pianoa."
+      }
+    ]
+  }
+]

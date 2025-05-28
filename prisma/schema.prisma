@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  name      String
+  photoUrl  String
+  createdAt DateTime @default(now())
+  
+  // Game scores
+  dartScores     DartScore[]
+  puttingScores  PuttingScore[]
+  beerScores     BeerScore[]
+  
+  // Beer pong relationships
+  playerInTeam1  BeerPongMatch[] @relation("Team1")
+  playerInTeam2  BeerPongMatch[] @relation("Team2")
+  wonMatches     BeerPongMatch[] @relation("Winners")
+
+  // Icebreaker game
+  assignedCard   IcebreakerCard?
+  answersGiven   IcebreakerAnswer[] @relation("AnswerGiver")
+  answersReceived IcebreakerAnswer[] @relation("AnswerReceiver")
+}
+
+model DartScore {
+  id        String   @id @default(cuid())
+  score     Int      // Out of 50
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model PuttingScore {
+  id        String   @id @default(cuid())
+  score     Int      // Out of 10
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model BeerScore {
+  id        String   @id @default(cuid())
+  time      Float    // Time in seconds
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model BeerPongMatch {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  status    String   @default("ongoing") // ongoing, completed
+  
+  // Teams (1-2 players per team)
+  team1Players User[] @relation("Team1")
+  team2Players User[] @relation("Team2")
+  
+  // Winners
+  winners     User[] @relation("Winners")
+  
+  // Optional team names
+  team1Name   String?
+  team2Name   String?
+}
+
+model IcebreakerCard {
+  id        String   @id @default(cuid())
+  cardId    Int      // ID from JSON file
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  answers   IcebreakerAnswer[]
+}
+
+model IcebreakerAnswer {
+  id        String   @id @default(cuid())
+  cardId    String
+  card      IcebreakerCard @relation(fields: [cardId], references: [id])
+  questionNumber Int
+  giverId   String
+  giver     User     @relation("AnswerGiver", fields: [giverId], references: [id])
+  receiverId String
+  receiver  User     @relation("AnswerReceiver", fields: [receiverId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([cardId, questionNumber, giverId])
+}
