@@ -33,16 +33,33 @@ export default function Icebreaker() {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [isGameEnabled, setIsGameEnabled] = useState(false);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const storedUser = sessionStorage.getItem("user");
-    if (!storedUser) {
-      router.push("/signin");
-      return;
-    }
-    
-    setUser(JSON.parse(storedUser));
+    const checkAuth = async () => {
+      const storedUser = sessionStorage.getItem("user");
+      if (!storedUser) {
+        router.push("/signin");
+        return;
+      }
+      
+      setUser(JSON.parse(storedUser));
+      
+      // Check if game is enabled
+      try {
+        const response = await fetch("/api/admin/game-state");
+        const data = await response.json();
+        setIsGameEnabled(data.isIcebreakerEnabled);
+      } catch (err) {
+        setError("Failed to check game status");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
   }, [router]);
 
   useEffect(() => {
@@ -125,6 +142,25 @@ export default function Icebreaker() {
       setIsSubmitting(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4 flex items-center justify-center">
+        <div className="text-2xl text-gray-600">Ladataan...</div>
+      </div>
+    );
+  }
+
+  if (!isGameEnabled) {
+    return (
+      <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4 flex items-center justify-center">
+        <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Peli ei ole vielä alkanut</h2>
+          <p className="text-gray-600">Odota järjestäjän ilmoitusta pelin alkamisesta.</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!user || !card) {
     return (
