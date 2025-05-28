@@ -24,6 +24,9 @@ model User {
   playerInTeam2  BeerPongMatch[] @relation("Team2")
   wonMatches     BeerPongMatch[] @relation("Winners")
 
+  // Individual beer pong stats
+  beerPongStats  BeerPongStats?
+
   // Icebreaker game
   assignedCard   IcebreakerCard?
   answersGiven   IcebreakerAnswer[] @relation("AnswerGiver")
@@ -69,6 +72,17 @@ model BeerPongMatch {
   // Optional team names
   team1Name   String?
   team2Name   String?
+}
+
+model BeerPongStats {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  wins      Int      @default(0)
+  losses    Int      @default(0)
+  winStreak Int      @default(0)
+  bestStreak Int     @default(0)
+  lastUpdated DateTime @default(now())
 }
 
 model IcebreakerCard {
