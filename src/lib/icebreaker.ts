@@ -125,7 +125,20 @@ export async function getCardWithAnswers(userId: string) {
     title: cardData.title,
     subtitle: cardData.subtitle,
     questions: cardData.questions,
-    answers: assignedCard.answers.reduce((acc: Record<number, any>, answer: any) => {
+    answers: assignedCard.answers.reduce((acc: Record<number, {
+      id: string;
+      name: string;
+      username: string;
+      photoUrl: string;
+    }>, answer: {
+      questionNumber: number;
+      receiver: {
+        id: string;
+        name: string;
+        username: string;
+        photoUrl: string;
+      }
+    }) => {
       acc[answer.questionNumber] = answer.receiver;
       return acc;
     }, {})

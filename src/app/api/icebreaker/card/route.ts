@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
 import { assignCardToUser, getCardWithAnswers } from '@/lib/icebreaker';
 
 // Get user's assigned card

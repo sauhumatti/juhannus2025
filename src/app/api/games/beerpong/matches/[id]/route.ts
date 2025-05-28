@@ -1,15 +1,12 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-interface Context {
-  params: {
-    id: string;
-  };
-}
-
-export async function GET(req: Request, context: Context) {
+export async function GET(
+  req: Request,
+  { params }: { params: Promise<{ id: string }> }
+) {
   try {
-    const matchId = context.params.id;
+    const { id: matchId } = await params;
     
     const match = await prisma.beerPongMatch.findUnique({
       where: { id: matchId },

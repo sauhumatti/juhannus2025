@@ -63,17 +63,17 @@ export async function GET() {
           },
         },
       },
-    });
+    }) as unknown as Match[];
 
     // Calculate stats for each player
     const playerStats: Record<string, PlayerStats> = {};
 
     // Process all matches to build stats
-    matches.forEach((match: Match) => {
+    matches.forEach((match) => {
       const allPlayers = [...match.team1Players, ...match.team2Players];
-      const winnerIds = new Set(match.winners.map((w: User) => w.id));
+      const winnerIds = new Set(match.winners.map(w => w.id));
 
-      allPlayers.forEach((player: User) => {
+      allPlayers.forEach((player) => {
         if (!playerStats[player.id]) {
           playerStats[player.id] = {
             id: player.id,
@@ -107,7 +107,7 @@ export async function GET() {
     // Convert to array and calculate percentages
     const leaderboard = Object.values(playerStats)
       .filter(player => player.wins + player.losses >= 3) // Only include players with 3+ games
-      .map(({ games, ...player }) => ({
+      .map((player) => ({
         ...player,
         winPercentage: Math.round((player.wins / (player.wins + player.losses)) * 100),
         totalGames: player.wins + player.losses,
