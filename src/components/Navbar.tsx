@@ -6,6 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface User {
+  id: string;
+  username: string;
   name: string;
   photoUrl: string;
 }
@@ -16,20 +18,39 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
 
+  // Effect to set mounted state (runs only once on client)
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  // Effect to check user session storage (runs when mounted or pathname changes)
+  useEffect(() => {
+    // Only run on the client side after component has mounted
+    if (!mounted) {
+      return;
+    }
+
     const storedUser = sessionStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setUser(parsedUser);
+      } catch (error) {
+        console.error("Failed to parse user from sessionStorage:", error);
+        sessionStorage.removeItem("user"); // Clear corrupted data
+        setUser(null);
+      }
+    } else {
+      setUser(null); // Ensure user is cleared if not in sessionStorage
     }
-  }, []);
+  }, [pathname, mounted]); // Re-run when pathname changes or when component initially mounts
 
   // Close menu when route changes
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  // Show loading state until component is mounted
+  // Show loading state until component is mounted and user state is determined
   if (!mounted) {
     return (
       <nav className="bg-white shadow-lg">
@@ -41,13 +62,16 @@ export default function Navbar() {
               </div>
             </div>
             <div className="flex items-center">
-              <div className="w-8 h-8 bg-gray-200 rounded-full animate-pulse"></div>
+              {/* Optional loading indicator */}
             </div>
           </div>
         </div>
       </nav>
     );
   }
+
+  // Check if user is admin
+  const isAdmin = user?.username === "admin";
 
   return (
     <nav className="bg-white shadow-lg">
@@ -137,6 +161,18 @@ export default function Navbar() {
                 >
                   Tulokset
                 </Link>
+                {isAdmin && (
+                   <Link
+                    href="/admin"
+                    className={`px-3 py-2 rounded-lg ${
+                      pathname === "/admin"
+                        ? "bg-red-100 text-red-700"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                    }`}
+                  >
+                    Admin
+                  </Link>
+                )}
                 <Link
                   href="/party"
                   className={`flex items-center px-3 py-2 rounded-lg ${
@@ -221,6 +257,18 @@ export default function Navbar() {
               >
                 Tulokset
               </Link>
+               {isAdmin && (
+                   <Link
+                    href="/admin"
+                    className={`block px-3 py-2 rounded-lg ${
+                      pathname === "/admin"
+                        ? "bg-red-100 text-red-700"
+                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                    }`}
+                  >
+                    Admin
+                  </Link>
+                )}
               <Link
                 href="/party"
                 className={`flex items-center px-3 py-2 rounded-lg ${
