@@ -892,21 +892,22 @@ File: src/app/api/admin/beerpong/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-interface User {
+interface BeerPongPlayer {
   id: string;
   name: string;
 }
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
   try {
+    const { id } = await params;
     const data = await request.json();
     const { status, winners } = data;
 
     const updatedMatch = await prisma.beerPongMatch.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         status,
         winners: winners ? {
@@ -986,12 +987,14 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
   try {
+    const { id } = await params;
+    
     // First get the match to check its status
     const match = await prisma.beerPongMatch.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         winners: true,
         team1Players: true,
@@ -1012,7 +1015,7 @@ export async function DELETE(
       
       // Decrement stats for all players
       await Promise.all(allPlayers.map(async (playerId) => {
-        const isWinner = match.winners.some((w: User) => w.id === playerId);
+        const isWinner = match.winners.some((w: BeerPongPlayer) => w.id === playerId);
         
         const stats = await prisma.beerPongStats.findUnique({
           where: { userId: playerId }
@@ -1038,7 +1041,7 @@ export async function DELETE(
 
     // Finally delete the match
     await prisma.beerPongMatch.delete({
-      where: { id: params.id }
+      where: { id }
     });
 
     return NextResponse.json({ success: true });
@@ -1140,11 +1143,13 @@ import { prisma } from "@/lib/prisma";
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+    
     await prisma.icebreakerAnswer.delete({
-      where: { id: params.id }
+      where: { id }
     });
 
     return NextResponse.json({ success: true });
@@ -1250,9 +1255,10 @@ import { prisma } from "@/lib/prisma";
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // TODO: Add admin authentication check
     const data = await request.json();
     const { score, gameType } = data;
@@ -1270,7 +1276,7 @@ export async function PUT(
       switch (gameType) {
         case "Darts":
           updatedRecord = await prisma.dartScore.update({
-            where: { id: params.id },
+            where: { id },
             data: { score },
             include: {
               user: {
@@ -1284,7 +1290,7 @@ export async function PUT(
 
         case "Putting":
           updatedRecord = await prisma.puttingScore.update({
-            where: { id: params.id },
+            where: { id },
             data: { score },
             include: {
               user: {
@@ -1298,7 +1304,7 @@ export async function PUT(
 
         case "Beer":
           updatedRecord = await prisma.beerScore.update({
-            where: { id: params.id },
+            where: { id },
             data: { time: score }, // For beer game, score is actually time
             include: {
               user: {
@@ -1342,9 +1348,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // TODO: Add admin authentication check
     const gameType = request.nextUrl.searchParams.get("gameType");
     
@@ -1359,19 +1366,19 @@ export async function DELETE(
       switch (gameType) {
         case "Darts":
           await prisma.dartScore.delete({
-            where: { id: params.id }
+            where: { id }
           });
           break;
 
         case "Putting":
           await prisma.puttingScore.delete({
-            where: { id: params.id }
+            where: { id }
           });
           break;
 
         case "Beer":
           await prisma.beerScore.delete({
-            where: { id: params.id }
+            where: { id }
           });
           break;
 
@@ -1499,12 +1506,14 @@ import { prisma } from "@/lib/prisma";
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+    
     // Get user to check if it's an admin
     const user = await prisma.user.findUnique({
-      where: { id: params.id }
+      where: { id }
     });
 
     if (!user) {
@@ -1528,29 +1537,29 @@ export async function DELETE(
       prisma.icebreakerAnswer.deleteMany({
         where: {
           OR: [
-            { giverId: params.id },
-            { receiverId: params.id }
+            { giverId: id },
+            { receiverId: id }
           ]
         }
       }),
       prisma.icebreakerCard.deleteMany({
-        where: { userId: params.id }
+        where: { userId: id }
       }),
 
       // Delete game scores
       prisma.dartScore.deleteMany({
-        where: { userId: params.id }
+        where: { userId: id }
       }),
       prisma.puttingScore.deleteMany({
-        where: { userId: params.id }
+        where: { userId: id }
       }),
       prisma.beerScore.deleteMany({
-        where: { userId: params.id }
+        where: { userId: id }
       }),
 
       // Delete beer pong stats
       prisma.beerPongStats.deleteMany({
-        where: { userId: params.id }
+        where: { userId: id }
       }),
 
       // Remove user from beer pong matches
@@ -1558,28 +1567,28 @@ export async function DELETE(
       prisma.beerPongMatch.updateMany({
         where: {
           OR: [
-            { team1Players: { some: { id: params.id } } },
-            { team2Players: { some: { id: params.id } } },
-            { winners: { some: { id: params.id } } }
+            { team1Players: { some: { id } } },
+            { team2Players: { some: { id } } },
+            { winners: { some: { id } } }
           ]
         },
         data: {
           // Remove user from all match relationships
           team1Players: {
-            disconnect: { id: params.id }
+            disconnect: { id }
           },
           team2Players: {
-            disconnect: { id: params.id }
+            disconnect: { id }
           },
           winners: {
-            disconnect: { id: params.id }
+            disconnect: { id }
           }
         }
       }),
 
       // Finally delete the user
       prisma.user.delete({
-        where: { id: params.id }
+        where: { id }
       })
     ]);
 

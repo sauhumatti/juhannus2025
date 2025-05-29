@@ -1,14 +1,17 @@
+// File: src/app/api/admin/users/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+    
     // Get user to check if it's an admin
     const user = await prisma.user.findUnique({
-      where: { id: params.id }
+      where: { id }
     });
 
     if (!user) {
@@ -26,64 +29,71 @@ export async function DELETE(
       );
     }
 
-    // Delete all related data in the correct order to handle foreign key constraints
+    // Step 1: Find all BeerPongMatches that the user is part of.
+    // This query happens outside the `prisma.$transaction` array directly,
+    // as it's a read operation and its result is used to build write operations.
+    const matchesInvolvingUser = await prisma.beerPongMatch.findMany({
+      where: {
+        OR: [
+          { team1Players: { some: { id } } },
+          { team2Players: { some: { id } } },
+          { winners: { some: { id } } }
+        ]
+      },
+      select: { id: true } // We only need the match ID for updates
+    });
+
+    // Step 2: Create an array of update operations for each found match.
+    // These will be individual `prisma.beerPongMatch.update` calls.
+    const beerPongMatchDisconnectOps = matchesInvolvingUser.map(match =>
+      prisma.beerPongMatch.update({
+        where: { id: match.id },
+        data: {
+          team1Players: { disconnect: { id } },
+          team2Players: { disconnect: { id } },
+          winners: { disconnect: { id } }
+        }
+      })
+    );
+
+    // Step 3: Now, perform all deletions and disconnects within a single transaction
     await prisma.$transaction([
       // Delete icebreaker related data
       prisma.icebreakerAnswer.deleteMany({
         where: {
           OR: [
-            { giverId: params.id },
-            { receiverId: params.id }
+            { giverId: id },
+            { receiverId: id }
           ]
         }
       }),
       prisma.icebreakerCard.deleteMany({
-        where: { userId: params.id }
+        where: { userId: id }
       }),
 
       // Delete game scores
       prisma.dartScore.deleteMany({
-        where: { userId: params.id }
+        where: { userId: id }
       }),
       prisma.puttingScore.deleteMany({
-        where: { userId: params.id }
+        where: { userId: id }
       }),
       prisma.beerScore.deleteMany({
-        where: { userId: params.id }
+        where: { userId: id }
       }),
 
       // Delete beer pong stats
       prisma.beerPongStats.deleteMany({
-        where: { userId: params.id }
+        where: { userId: id }
       }),
 
-      // Remove user from beer pong matches
-      // Note: This will leave matches intact but remove the user from them
-      prisma.beerPongMatch.updateMany({
-        where: {
-          OR: [
-            { team1Players: { some: { id: params.id } } },
-            { team2Players: { some: { id: params.id } } },
-            { winners: { some: { id: params.id } } }
-          ]
-        },
-        data: {
-          // Remove user from all match relationships
-          team1Players: {
-            disconnect: { id: params.id }
-          },
-          team2Players: {
-            disconnect: { id: params.id }
-          },
-          winners: {
-            disconnect: { id: params.id }
-          }
-        }
-      }),
+      // Disconnect the user from all relevant BeerPongMatch records.
+      // We spread the array of individual update promises created above.
+      ...beerPongMatchDisconnectOps,
 
       // Finally delete the user
       prisma.user.delete({
-        where: { id: params.id }
+        where: { id }
       })
     ]);
 

@@ -3,9 +3,10 @@ import { prisma } from "@/lib/prisma";
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // TODO: Add admin authentication check
     const data = await request.json();
     const { score, gameType } = data;
@@ -17,13 +18,13 @@ export async function PUT(
       );
     }
 
-    let updatedRecord;
+    let result; // Declare a variable to hold the final result object
 
     try {
       switch (gameType) {
         case "Darts":
-          updatedRecord = await prisma.dartScore.update({
-            where: { id: params.id },
+          const dartRecord = await prisma.dartScore.update({
+            where: { id },
             data: { score },
             include: {
               user: {
@@ -33,11 +34,18 @@ export async function PUT(
               },
             },
           });
+          result = {
+            id: dartRecord.id,
+            userId: dartRecord.userId,
+            userName: dartRecord.user.name,
+            score: dartRecord.score,
+            gameType: 'Darts'
+          };
           break;
 
         case "Putting":
-          updatedRecord = await prisma.puttingScore.update({
-            where: { id: params.id },
+          const puttingRecord = await prisma.puttingScore.update({
+            where: { id },
             data: { score },
             include: {
               user: {
@@ -47,11 +55,18 @@ export async function PUT(
               },
             },
           });
+          result = {
+            id: puttingRecord.id,
+            userId: puttingRecord.userId,
+            userName: puttingRecord.user.name,
+            score: puttingRecord.score,
+            gameType: 'Putting'
+          };
           break;
 
         case "Beer":
-          updatedRecord = await prisma.beerScore.update({
-            where: { id: params.id },
+          const beerRecord = await prisma.beerScore.update({
+            where: { id },
             data: { time: score }, // For beer game, score is actually time
             include: {
               user: {
@@ -61,6 +76,13 @@ export async function PUT(
               },
             },
           });
+          result = {
+            id: beerRecord.id,
+            userId: beerRecord.userId,
+            userName: beerRecord.user.name,
+            score: beerRecord.time, // Access 'time' property for Beer game
+            gameType: 'Beer'
+          };
           break;
 
         default:
@@ -77,13 +99,8 @@ export async function PUT(
       );
     }
 
-    return NextResponse.json({
-      id: updatedRecord.id,
-      userId: updatedRecord.userId,
-      userName: updatedRecord.user.name,
-      score: gameType === "Beer" ? updatedRecord.time : updatedRecord.score,
-      gameType
-    });
+    // Return the correctly structured result
+    return NextResponse.json(result);
   } catch (error) {
     console.error("Score update error:", error);
     return NextResponse.json(
@@ -95,9 +112,10 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     // TODO: Add admin authentication check
     const gameType = request.nextUrl.searchParams.get("gameType");
     
@@ -112,19 +130,19 @@ export async function DELETE(
       switch (gameType) {
         case "Darts":
           await prisma.dartScore.delete({
-            where: { id: params.id }
+            where: { id }
           });
           break;
 
         case "Putting":
           await prisma.puttingScore.delete({
-            where: { id: params.id }
+            where: { id }
           });
           break;
 
         case "Beer":
           await prisma.beerScore.delete({
-            where: { id: params.id }
+            where: { id }
           });
           break;
 

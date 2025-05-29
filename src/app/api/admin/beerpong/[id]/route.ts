@@ -1,21 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-interface User {
+interface BeerPongPlayer {
   id: string;
   name: string;
 }
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
   try {
+    const { id } = await params;
     const data = await request.json();
     const { status, winners } = data;
 
     const updatedMatch = await prisma.beerPongMatch.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         status,
         winners: winners ? {
@@ -72,11 +73,11 @@ export async function PUT(
             winStreak: isWinner ? {
               increment: 1
             } : 0,
-            bestStreak: {
-              set: isWinner ? 
-                { increment: 1 } : 
-                undefined
-            },
+            ...(isWinner && {
+              bestStreak: {
+                increment: 1
+              }
+            }),
             lastUpdated: new Date()
           }
         });
@@ -95,12 +96,14 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
   try {
+    const { id } = await params;
+    
     // First get the match to check its status
     const match = await prisma.beerPongMatch.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         winners: true,
         team1Players: true,
@@ -121,7 +124,7 @@ export async function DELETE(
       
       // Decrement stats for all players
       await Promise.all(allPlayers.map(async (playerId) => {
-        const isWinner = match.winners.some((w: User) => w.id === playerId);
+        const isWinner = match.winners.some((w: BeerPongPlayer) => w.id === playerId);
         
         const stats = await prisma.beerPongStats.findUnique({
           where: { userId: playerId }
@@ -147,7 +150,7 @@ export async function DELETE(
 
     // Finally delete the match
     await prisma.beerPongMatch.delete({
-      where: { id: params.id }
+      where: { id }
     });
 
     return NextResponse.json({ success: true });
