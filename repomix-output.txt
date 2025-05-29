@@ -964,11 +964,11 @@ export async function PUT(
             winStreak: isWinner ? {
               increment: 1
             } : 0,
-            bestStreak: {
-              set: isWinner ? 
-                { increment: 1 } : 
-                undefined
-            },
+            ...(isWinner && {
+              bestStreak: {
+                increment: 1
+              }
+            }),
             lastUpdated: new Date()
           }
         });
@@ -1270,12 +1270,12 @@ export async function PUT(
       );
     }
 
-    let updatedRecord;
+    let result; // Declare a variable to hold the final result object
 
     try {
       switch (gameType) {
         case "Darts":
-          updatedRecord = await prisma.dartScore.update({
+          const dartRecord = await prisma.dartScore.update({
             where: { id },
             data: { score },
             include: {
@@ -1286,10 +1286,17 @@ export async function PUT(
               },
             },
           });
+          result = {
+            id: dartRecord.id,
+            userId: dartRecord.userId,
+            userName: dartRecord.user.name,
+            score: dartRecord.score,
+            gameType: 'Darts'
+          };
           break;
 
         case "Putting":
-          updatedRecord = await prisma.puttingScore.update({
+          const puttingRecord = await prisma.puttingScore.update({
             where: { id },
             data: { score },
             include: {
@@ -1300,10 +1307,17 @@ export async function PUT(
               },
             },
           });
+          result = {
+            id: puttingRecord.id,
+            userId: puttingRecord.userId,
+            userName: puttingRecord.user.name,
+            score: puttingRecord.score,
+            gameType: 'Putting'
+          };
           break;
 
         case "Beer":
-          updatedRecord = await prisma.beerScore.update({
+          const beerRecord = await prisma.beerScore.update({
             where: { id },
             data: { time: score }, // For beer game, score is actually time
             include: {
@@ -1314,6 +1328,13 @@ export async function PUT(
               },
             },
           });
+          result = {
+            id: beerRecord.id,
+            userId: beerRecord.userId,
+            userName: beerRecord.user.name,
+            score: beerRecord.time, // Access 'time' property for Beer game
+            gameType: 'Beer'
+          };
           break;
 
         default:
@@ -1330,13 +1351,8 @@ export async function PUT(
       );
     }
 
-    return NextResponse.json({
-      id: updatedRecord.id,
-      userId: updatedRecord.userId,
-      userName: updatedRecord.user.name,
-      score: gameType === "Beer" ? updatedRecord.time : updatedRecord.score,
-      gameType
-    });
+    // Return the correctly structured result
+    return NextResponse.json(result);
   } catch (error) {
     console.error("Score update error:", error);
     return NextResponse.json(
@@ -1501,6 +1517,7 @@ export async function GET(_request: NextRequest) {
 ================
 File: src/app/api/admin/users/[id]/route.ts
 ================
+// File: src/app/api/admin/users/[id]/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
@@ -1531,7 +1548,34 @@ export async function DELETE(
       );
     }
 
-    // Delete all related data in the correct order to handle foreign key constraints
+    // Step 1: Find all BeerPongMatches that the user is part of.
+    // This query happens outside the `prisma.$transaction` array directly,
+    // as it's a read operation and its result is used to build write operations.
+    const matchesInvolvingUser = await prisma.beerPongMatch.findMany({
+      where: {
+        OR: [
+          { team1Players: { some: { id } } },
+          { team2Players: { some: { id } } },
+          { winners: { some: { id } } }
+        ]
+      },
+      select: { id: true } // We only need the match ID for updates
+    });
+
+    // Step 2: Create an array of update operations for each found match.
+    // These will be individual `prisma.beerPongMatch.update` calls.
+    const beerPongMatchDisconnectOps = matchesInvolvingUser.map(match =>
+      prisma.beerPongMatch.update({
+        where: { id: match.id },
+        data: {
+          team1Players: { disconnect: { id } },
+          team2Players: { disconnect: { id } },
+          winners: { disconnect: { id } }
+        }
+      })
+    );
+
+    // Step 3: Now, perform all deletions and disconnects within a single transaction
     await prisma.$transaction([
       // Delete icebreaker related data
       prisma.icebreakerAnswer.deleteMany({
@@ -1562,29 +1606,9 @@ export async function DELETE(
         where: { userId: id }
       }),
 
-      // Remove user from beer pong matches
-      // Note: This will leave matches intact but remove the user from them
-      prisma.beerPongMatch.updateMany({
-        where: {
-          OR: [
-            { team1Players: { some: { id } } },
-            { team2Players: { some: { id } } },
-            { winners: { some: { id } } }
-          ]
-        },
-        data: {
-          // Remove user from all match relationships
-          team1Players: {
-            disconnect: { id }
-          },
-          team2Players: {
-            disconnect: { id }
-          },
-          winners: {
-            disconnect: { id }
-          }
-        }
-      }),
+      // Disconnect the user from all relevant BeerPongMatch records.
+      // We spread the array of individual update promises created above.
+      ...beerPongMatchDisconnectOps,
 
       // Finally delete the user
       prisma.user.delete({
@@ -5524,7 +5548,7 @@ File: package.json
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
