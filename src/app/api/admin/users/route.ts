@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+interface MinimalIcebreakerAnswer {
+  id: string;
+}
+
 interface DbUser {
   id: string;
   username: string;
@@ -14,7 +18,7 @@ interface DbUser {
     losses: number;
   } | null;
   assignedCard: {
-    answers: any[];
+    answers: MinimalIcebreakerAnswer[];
   } | null;
 }
 
@@ -37,7 +41,7 @@ interface FormattedUser {
   };
 }
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     const users = await prisma.user.findMany({
       include: {

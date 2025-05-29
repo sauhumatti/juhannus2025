@@ -53,6 +53,7 @@ export default function Icebreaker() {
         const data = await response.json();
         setIsGameEnabled(data.isIcebreakerEnabled);
       } catch (err) {
+        console.error("Error checking game status:", err);
         setError("Failed to check game status");
       } finally {
         setLoading(false);

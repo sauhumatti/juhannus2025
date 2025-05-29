@@ -98,6 +98,7 @@ export default function AdminPage() {
       const data = await response.json();
       setGameState(data);
     } catch (err) {
+      console.error("Error fetching game state:", err);
       setError("Failed to load game state");
     } finally {
       setLoading(false);
@@ -111,6 +112,7 @@ export default function AdminPage() {
       const data = await response.json();
       setLeaderboardEntries(data);
     } catch (err) {
+      console.error("Error fetching leaderboard:", err);
       setError("Failed to load leaderboard");
     }
   };
@@ -129,6 +131,7 @@ export default function AdminPage() {
       const data = await response.json();
       setGameState(data);
     } catch (err) {
+      console.error("Error toggling icebreaker:", err);
       setError("Failed to update game state");
     }
   };
@@ -147,6 +150,7 @@ export default function AdminPage() {
       if (!response.ok) throw new Error("Failed to update score");
       fetchLeaderboard();
     } catch (err) {
+      console.error("Error updating score:", err);
       setError("Failed to update score");
     }
   };
@@ -158,6 +162,7 @@ export default function AdminPage() {
       const data = await response.json();
       setIcebreakerAnswers(data);
     } catch (err) {
+      console.error("Error fetching icebreaker answers:", err);
       setError("Failed to load icebreaker answers");
     }
   };
@@ -175,6 +180,7 @@ export default function AdminPage() {
       if (!response.ok) throw new Error("Failed to delete answer");
       fetchIcebreakerAnswers();
     } catch (err) {
+      console.error("Error deleting icebreaker answer:", err);
       setError("Failed to delete answer");
     }
   };
@@ -186,6 +192,7 @@ export default function AdminPage() {
       const data = await response.json();
       setUsers(data);
     } catch (err) {
+      console.error("Error fetching users:", err);
       setError("Failed to load users");
     }
   };
@@ -212,6 +219,7 @@ export default function AdminPage() {
       fetchLeaderboard();
       fetchBeerPongMatches();
     } catch (err) {
+      console.error("Error deleting user:", err);
       setError("Failed to delete user");
     }
   };
@@ -223,6 +231,7 @@ export default function AdminPage() {
       const data = await response.json();
       setBeerPongMatches(data);
     } catch (err) {
+      console.error("Error fetching beer pong matches:", err);
       setError("Failed to load beer pong matches");
     }
   };
@@ -238,6 +247,7 @@ export default function AdminPage() {
       if (!response.ok) throw new Error("Failed to update match");
       fetchBeerPongMatches();
     } catch (err) {
+      console.error("Error updating match status:", err);
       setError("Failed to update match");
     }
   };
@@ -255,6 +265,7 @@ export default function AdminPage() {
       if (!response.ok) throw new Error("Failed to delete match");
       fetchBeerPongMatches();
     } catch (err) {
+      console.error("Error deleting match:", err);
       setError("Failed to delete match");
     }
   };
@@ -272,6 +283,7 @@ export default function AdminPage() {
       if (!response.ok) throw new Error("Failed to delete score");
       fetchLeaderboard();
     } catch (err) {
+      console.error("Error deleting score:", err);
       setError("Failed to delete score");
     }
   };

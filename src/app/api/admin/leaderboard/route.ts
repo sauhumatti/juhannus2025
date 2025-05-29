@@ -19,7 +19,7 @@ interface ScoreWithUser {
   };
 }
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     // Fetch all types of scores
     const [dartScores, puttingScores, beerScores] = await Promise.all([

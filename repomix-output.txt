@@ -55,7 +55,29 @@ public/
   window.svg
 src/
   app/
+    admin/
+      page.tsx
     api/
+      admin/
+        beerpong/
+          [id]/
+            route.ts
+          route.ts
+        game-state/
+          route.ts
+        icebreaker/
+          answers/
+            [id]/
+              route.ts
+            route.ts
+        leaderboard/
+          [id]/
+            route.ts
+          route.ts
+        users/
+          [id]/
+            route.ts
+          route.ts
       auth/
         signin/
           route.ts
@@ -65,9 +87,6 @@ src/
         beer/
           route.ts
         beerpong/
-          [id]/
-            winners/
-              route.ts
           leaderboard/
             route.ts
           matches/
@@ -76,7 +95,6 @@ src/
                 route.ts
               route.ts
             route.ts
-          route.ts
         darts/
           route.ts
         putting/
@@ -278,6 +296,1393 @@ File: public/window.svg
 <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
 
 ================
+File: src/app/admin/page.tsx
+================
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+
+interface GameState {
+  isIcebreakerEnabled: boolean;
+}
+
+interface LeaderboardEntry {
+  id: string;
+  userId: string;
+  score: number;
+  gameType: string;
+  userName: string;
+}
+
+interface IcebreakerAnswer {
+  id: string;
+  cardId: number;
+  cardOwner: string;
+  questionNumber: number;
+  giver: string;
+  receiver: string;
+  createdAt: Date;
+}
+
+interface User {
+  id: string;
+  username: string;
+  name: string;
+  photoUrl: string;
+  dartScores: { score: number }[];
+  puttingScores: { score: number }[];
+  beerScores: { time: number }[];
+  beerPongStats: {
+    wins: number;
+    losses: number;
+  } | null;
+  icebreaker: {
+    hasCard: boolean;
+    answersCount: number;
+    totalQuestions: number;
+  };
+}
+
+interface BeerPongMatch {
+  id: string;
+  status: string;
+  team1Players: { id: string; name: string; }[];
+  team2Players: { id: string; name: string; }[];
+  winners: { id: string; name: string; }[];
+  team1Name?: string;
+  team2Name?: string;
+  createdAt: string;
+}
+
+export default function AdminPage() {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [gameState, setGameState] = useState<GameState>({
+    isIcebreakerEnabled: false
+  });
+  const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>([]);
+  const [beerPongMatches, setBeerPongMatches] = useState<BeerPongMatch[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
+  const [icebreakerAnswers, setIcebreakerAnswers] = useState<IcebreakerAnswer[]>([]);
+  const [error, setError] = useState("");
+  const router = useRouter();
+
+  useEffect(() => {
+    const storedUser = sessionStorage.getItem("user");
+    if (!storedUser) {
+      router.push("/signin");
+      return;
+    }
+
+    const user = JSON.parse(storedUser);
+    // TODO: Replace with actual admin check
+    if (user.username !== "admin") {
+      router.push("/menu");
+      return;
+    }
+
+    setIsAdmin(true);
+    fetchGameState();
+    fetchLeaderboard();
+    fetchBeerPongMatches();
+    fetchUsers();
+    fetchIcebreakerAnswers();
+  }, [router]);
+
+  const fetchGameState = async () => {
+    try {
+      const response = await fetch("/api/admin/game-state");
+      if (!response.ok) throw new Error("Failed to fetch game state");
+      const data = await response.json();
+      setGameState(data);
+    } catch (err) {
+      console.error("Error fetching game state:", err);
+      setError("Failed to load game state");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchLeaderboard = async () => {
+    try {
+      const response = await fetch("/api/admin/leaderboard");
+      if (!response.ok) throw new Error("Failed to fetch leaderboard");
+      const data = await response.json();
+      setLeaderboardEntries(data);
+    } catch (err) {
+      console.error("Error fetching leaderboard:", err);
+      setError("Failed to load leaderboard");
+    }
+  };
+
+  const toggleIcebreaker = async () => {
+    try {
+      const response = await fetch("/api/admin/game-state", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          isIcebreakerEnabled: !gameState.isIcebreakerEnabled
+        })
+      });
+
+      if (!response.ok) throw new Error("Failed to update game state");
+      const data = await response.json();
+      setGameState(data);
+    } catch (err) {
+      console.error("Error toggling icebreaker:", err);
+      setError("Failed to update game state");
+    }
+  };
+
+  const updateScore = async (entryId: string, newScore: number, gameType: string) => {
+    try {
+      const response = await fetch(`/api/admin/leaderboard/${entryId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          score: newScore,
+          gameType
+        })
+      });
+
+      if (!response.ok) throw new Error("Failed to update score");
+      fetchLeaderboard();
+    } catch (err) {
+      console.error("Error updating score:", err);
+      setError("Failed to update score");
+    }
+  };
+
+  const fetchIcebreakerAnswers = async () => {
+    try {
+      const response = await fetch("/api/admin/icebreaker/answers");
+      if (!response.ok) throw new Error("Failed to fetch icebreaker answers");
+      const data = await response.json();
+      setIcebreakerAnswers(data);
+    } catch (err) {
+      console.error("Error fetching icebreaker answers:", err);
+      setError("Failed to load icebreaker answers");
+    }
+  };
+
+  const deleteIcebreakerAnswer = async (answerId: string) => {
+    if (!confirm("Are you sure you want to delete this answer?")) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/icebreaker/answers/${answerId}`, {
+        method: "DELETE"
+      });
+
+      if (!response.ok) throw new Error("Failed to delete answer");
+      fetchIcebreakerAnswers();
+    } catch (err) {
+      console.error("Error deleting icebreaker answer:", err);
+      setError("Failed to delete answer");
+    }
+  };
+
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch("/api/admin/users");
+      if (!response.ok) throw new Error("Failed to fetch users");
+      const data = await response.json();
+      setUsers(data);
+    } catch (err) {
+      console.error("Error fetching users:", err);
+      setError("Failed to load users");
+    }
+  };
+
+  const deleteUser = async (userId: string, username: string) => {
+    if (username === "admin") {
+      alert("Cannot delete admin user");
+      return;
+    }
+
+    if (!confirm(`Are you sure you want to delete user ${username}? This will remove all their scores and game data.`)) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/users/${userId}`, {
+        method: "DELETE"
+      });
+
+      if (!response.ok) throw new Error("Failed to delete user");
+      
+      // Refresh all data as user deletion affects multiple sections
+      fetchUsers();
+      fetchLeaderboard();
+      fetchBeerPongMatches();
+    } catch (err) {
+      console.error("Error deleting user:", err);
+      setError("Failed to delete user");
+    }
+  };
+
+  const fetchBeerPongMatches = async () => {
+    try {
+      const response = await fetch("/api/admin/beerpong");
+      if (!response.ok) throw new Error("Failed to fetch beer pong matches");
+      const data = await response.json();
+      setBeerPongMatches(data);
+    } catch (err) {
+      console.error("Error fetching beer pong matches:", err);
+      setError("Failed to load beer pong matches");
+    }
+  };
+
+  const updateMatchStatus = async (matchId: string, status: string, winners?: string[]) => {
+    try {
+      const response = await fetch(`/api/admin/beerpong/${matchId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ status, winners })
+      });
+
+      if (!response.ok) throw new Error("Failed to update match");
+      fetchBeerPongMatches();
+    } catch (err) {
+      console.error("Error updating match status:", err);
+      setError("Failed to update match");
+    }
+  };
+
+  const deleteMatch = async (matchId: string) => {
+    if (!confirm("Are you sure you want to delete this match? This will affect player statistics.")) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/beerpong/${matchId}`, {
+        method: "DELETE"
+      });
+
+      if (!response.ok) throw new Error("Failed to delete match");
+      fetchBeerPongMatches();
+    } catch (err) {
+      console.error("Error deleting match:", err);
+      setError("Failed to delete match");
+    }
+  };
+
+  const deleteScore = async (entryId: string, gameType: string) => {
+    if (!confirm("Are you sure you want to delete this score?")) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/leaderboard/${entryId}?gameType=${gameType}`, {
+        method: "DELETE"
+      });
+
+      if (!response.ok) throw new Error("Failed to delete score");
+      fetchLeaderboard();
+    } catch (err) {
+      console.error("Error deleting score:", err);
+      setError("Failed to delete score");
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen p-4 flex items-center justify-center">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return null;
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50 p-4">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+
+        {error && (
+          <div className="bg-red-100 text-red-700 p-4 rounded-lg mb-6">
+            {error}
+          </div>
+        )}
+
+        <div className="bg-white rounded-lg shadow p-6 mb-8">
+          <h2 className="text-xl font-semibold mb-4">Game Controls</h2>
+          <div className="flex items-center gap-4">
+            <span>Tutustumispeli:</span>
+            <button
+              onClick={toggleIcebreaker}
+              className={`px-4 py-2 rounded-lg ${
+                gameState.isIcebreakerEnabled
+                  ? "bg-red-600 hover:bg-red-700"
+                  : "bg-green-600 hover:bg-green-700"
+              } text-white`}
+            >
+              {gameState.isIcebreakerEnabled ? "Disable" : "Enable"}
+            </button>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow p-6">
+          <h2 className="text-xl font-semibold mb-4">Leaderboard Management</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left p-2">Player</th>
+                  <th className="text-left p-2">Game</th>
+                  <th className="text-left p-2">Score</th>
+                  <th className="text-left p-2">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {leaderboardEntries.map((entry) => (
+                  <tr key={entry.id} className="border-b">
+                    <td className="p-2">{entry.userName}</td>
+                    <td className="p-2">{entry.gameType}</td>
+                    <td className="p-2">
+                      {entry.gameType === 'Beer'
+                        ? `${entry.score}s`
+                        : entry.score}
+                    </td>
+                    <td className="p-2 flex items-center gap-2">
+                      <input
+                        type="number"
+                        className="w-20 border rounded px-2 py-1"
+                        defaultValue={entry.score}
+                        step={entry.gameType === 'Beer' ? "0.01" : "1"}
+                        onBlur={(e) => {
+                          const newScore = parseFloat(e.target.value);
+                          if (!isNaN(newScore) && newScore !== entry.score) {
+                            updateScore(entry.id, newScore, entry.gameType);
+                          }
+                        }}
+                      />
+                      <button
+                        onClick={() => deleteScore(entry.id, entry.gameType)}
+                        className="p-1 text-red-600 hover:text-red-800"
+                        title="Delete score"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow p-6 mt-8">
+          <h2 className="text-xl font-semibold mb-4">Beer Pong Matches</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left p-2">Teams</th>
+                  <th className="text-left p-2">Status</th>
+                  <th className="text-left p-2">Winners</th>
+                  <th className="text-left p-2">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {beerPongMatches.map((match) => (
+                  <tr key={match.id} className="border-b">
+                    <td className="p-2">
+                      <div>
+                        {match.team1Name || match.team1Players.map(p => p.name).join(", ")}
+                        <span className="mx-2">vs</span>
+                        {match.team2Name || match.team2Players.map(p => p.name).join(", ")}
+                      </div>
+                    </td>
+                    <td className="p-2">
+                      <select
+                        value={match.status}
+                        onChange={(e) => updateMatchStatus(match.id, e.target.value)}
+                        className="border rounded px-2 py-1"
+                      >
+                        <option value="ongoing">Ongoing</option>
+                        <option value="completed">Completed</option>
+                      </select>
+                    </td>
+                    <td className="p-2">
+                      {match.status === "completed" && (
+                        <select
+                          value={match.winners.map(w => w.id).join(",")}
+                          onChange={(e) => {
+                            const winners = e.target.value ? e.target.value.split(",") : [];
+                            updateMatchStatus(match.id, "completed", winners);
+                          }}
+                          className="border rounded px-2 py-1"
+                        >
+                          <option value="">Select Winners</option>
+                          <option value={match.team1Players.map(p => p.id).join(",")}>
+                            Team 1
+                          </option>
+                          <option value={match.team2Players.map(p => p.id).join(",")}>
+                            Team 2
+                          </option>
+                        </select>
+                      )}
+                    </td>
+                    <td className="p-2">
+                      <button
+                        onClick={() => deleteMatch(match.id)}
+                        className="p-1 text-red-600 hover:text-red-800"
+                        title="Delete match"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow p-6 mt-8">
+          <h2 className="text-xl font-semibold mb-4">User Management</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left p-2">User</th>
+                  <th className="text-left p-2">Username</th>
+                  <th className="text-left p-2">Game Stats</th>
+                  <th className="text-left p-2">Beer Pong</th>
+                  <th className="text-left p-2">Tutustumispeli</th>
+                  <th className="text-left p-2">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user.id} className="border-b">
+                    <td className="p-2 flex items-center gap-2">
+                      <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                        <Image
+                          src={user.photoUrl}
+                          alt={user.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <span>{user.name}</span>
+                    </td>
+                    <td className="p-2">{user.username}</td>
+                    <td className="p-2">
+                      <div className="text-sm">
+                        Darts: {user.dartScores.length > 0 ?
+                          `Best: ${Math.max(...user.dartScores.map(s => s.score))}` :
+                          'No scores'}
+                      </div>
+                      <div className="text-sm">
+                        Putting: {user.puttingScores.length > 0 ?
+                          `Best: ${Math.max(...user.puttingScores.map(s => s.score))}` :
+                          'No scores'}
+                      </div>
+                      <div className="text-sm">
+                        Beer: {user.beerScores.length > 0 ?
+                          `Best: ${Math.min(...user.beerScores.map(s => s.time))}s` :
+                          'No scores'}
+                      </div>
+                    </td>
+                    <td className="p-2">
+                      {user.beerPongStats ?
+                        `${user.beerPongStats.wins}W/${user.beerPongStats.losses}L` :
+                        'No games'}
+                    </td>
+                    <td className="p-2">
+                      {user.icebreaker.hasCard ? (
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">{user.icebreaker.answersCount} / {user.icebreaker.totalQuestions}</span>
+                          <div className="w-24 bg-gray-200 rounded-full h-2">
+                            <div
+                              className={`h-2 rounded-full ${
+                                user.icebreaker.answersCount === user.icebreaker.totalQuestions
+                                  ? "bg-green-600"
+                                  : "bg-blue-600"
+                              }`}
+                              style={{ width: `${(user.icebreaker.answersCount / user.icebreaker.totalQuestions) * 100}%` }}
+                            />
+                          </div>
+                        </div>
+                      ) : (
+                        <span className="text-sm text-gray-500">No card assigned</span>
+                      )}
+                    </td>
+                    <td className="p-2">
+                      {user.username !== "admin" && (
+                        <button
+                          onClick={() => deleteUser(user.id, user.username)}
+                          className="p-1 text-red-600 hover:text-red-800"
+                          title="Delete user"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                          </svg>
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow p-6 mt-8">
+          <h2 className="text-xl font-semibold mb-4">Tutustumispeli Answers</h2>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left p-2">Card Owner</th>
+                  <th className="text-left p-2">Question</th>
+                  <th className="text-left p-2">Given By</th>
+                  <th className="text-left p-2">Given To</th>
+                  <th className="text-left p-2">Time</th>
+                  <th className="text-left p-2">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {icebreakerAnswers.map((answer) => (
+                  <tr key={answer.id} className="border-b">
+                    <td className="p-2">{answer.cardOwner}</td>
+                    <td className="p-2">{answer.questionNumber}</td>
+                    <td className="p-2">{answer.giver}</td>
+                    <td className="p-2">{answer.receiver}</td>
+                    <td className="p-2">
+                      {new Date(answer.createdAt).toLocaleString('fi-FI')}
+                    </td>
+                    <td className="p-2">
+                      <button
+                        onClick={() => deleteIcebreakerAnswer(answer.id)}
+                        className="p-1 text-red-600 hover:text-red-800"
+                        title="Delete answer"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+================
+File: src/app/api/admin/beerpong/[id]/route.ts
+================
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+interface User {
+  id: string;
+  name: string;
+}
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const data = await request.json();
+    const { status, winners } = data;
+
+    const updatedMatch = await prisma.beerPongMatch.update({
+      where: { id: params.id },
+      data: {
+        status,
+        winners: winners ? {
+          set: winners.map((id: string) => ({ id }))
+        } : undefined
+      },
+      include: {
+        team1Players: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        team2Players: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        winners: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+    });
+
+    // Update player stats if the match is completed
+    if (status === "completed" && winners) {
+      // Get all players involved in the match
+      const allPlayers = [...updatedMatch.team1Players, ...updatedMatch.team2Players].map(p => p.id);
+      
+      // Update stats for all players
+      await Promise.all(allPlayers.map(async (playerId) => {
+        const isWinner = winners.includes(playerId);
+        
+        await prisma.beerPongStats.upsert({
+          where: { userId: playerId },
+          create: {
+            userId: playerId,
+            wins: isWinner ? 1 : 0,
+            losses: isWinner ? 0 : 1,
+            winStreak: isWinner ? 1 : 0,
+            bestStreak: isWinner ? 1 : 0
+          },
+          update: {
+            wins: {
+              increment: isWinner ? 1 : 0
+            },
+            losses: {
+              increment: isWinner ? 0 : 1
+            },
+            winStreak: isWinner ? {
+              increment: 1
+            } : 0,
+            bestStreak: {
+              set: isWinner ? 
+                { increment: 1 } : 
+                undefined
+            },
+            lastUpdated: new Date()
+          }
+        });
+      }));
+    }
+
+    return NextResponse.json(updatedMatch);
+  } catch (error) {
+    console.error("Match update error:", error);
+    return NextResponse.json(
+      { error: "Failed to update match" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    // First get the match to check its status
+    const match = await prisma.beerPongMatch.findUnique({
+      where: { id: params.id },
+      include: {
+        winners: true,
+        team1Players: true,
+        team2Players: true
+      }
+    });
+
+    if (!match) {
+      return NextResponse.json(
+        { error: "Match not found" },
+        { status: 404 }
+      );
+    }
+
+    // If the match was completed, we need to update player stats
+    if (match.status === "completed" && match.winners.length > 0) {
+      const allPlayers = [...match.team1Players, ...match.team2Players].map(p => p.id);
+      
+      // Decrement stats for all players
+      await Promise.all(allPlayers.map(async (playerId) => {
+        const isWinner = match.winners.some((w: User) => w.id === playerId);
+        
+        const stats = await prisma.beerPongStats.findUnique({
+          where: { userId: playerId }
+        });
+
+        if (stats) {
+          await prisma.beerPongStats.update({
+            where: { userId: playerId },
+            data: {
+              wins: {
+                decrement: isWinner ? 1 : 0
+              },
+              losses: {
+                decrement: isWinner ? 0 : 1
+              },
+              // Note: We don't adjust win streaks as historical streaks should remain
+              lastUpdated: new Date()
+            }
+          });
+        }
+      }));
+    }
+
+    // Finally delete the match
+    await prisma.beerPongMatch.delete({
+      where: { id: params.id }
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Match delete error:", error);
+    return NextResponse.json(
+      { error: "Failed to delete match" },
+      { status: 500 }
+    );
+  }
+}
+
+================
+File: src/app/api/admin/beerpong/route.ts
+================
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+export async function GET(_request: NextRequest) {
+  try {
+    const matches = await prisma.beerPongMatch.findMany({
+      include: {
+        team1Players: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        team2Players: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        winners: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+
+    return NextResponse.json(matches);
+  } catch (error) {
+    console.error("Error fetching beer pong matches:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch matches" },
+      { status: 500 }
+    );
+  }
+}
+
+================
+File: src/app/api/admin/game-state/route.ts
+================
+import { NextRequest, NextResponse } from "next/server";
+
+// In-memory state for quick access (in production, this should be in Redis/DB)
+let isIcebreakerEnabled = false;
+
+export async function GET(_request: NextRequest) {
+  try {
+    // TODO: Add admin authentication check
+    return NextResponse.json({ isIcebreakerEnabled });
+  } catch (error) {
+    console.error("Error fetching game state:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch game state" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    // TODO: Add admin authentication check
+    const data = await request.json();
+    isIcebreakerEnabled = data.isIcebreakerEnabled;
+    
+    return NextResponse.json({ isIcebreakerEnabled });
+  } catch (error) {
+    console.error("Error updating game state:", error);
+    return NextResponse.json(
+      { error: "Failed to update game state" },
+      { status: 500 }
+    );
+  }
+}
+
+================
+File: src/app/api/admin/icebreaker/answers/[id]/route.ts
+================
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    await prisma.icebreakerAnswer.delete({
+      where: { id: params.id }
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Error deleting icebreaker answer:", error);
+    return NextResponse.json(
+      { error: "Failed to delete answer" },
+      { status: 500 }
+    );
+  }
+}
+
+================
+File: src/app/api/admin/icebreaker/answers/route.ts
+================
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+interface IcebreakerAnswer {
+  id: string;
+  questionNumber: number;
+  createdAt: Date;
+  card: {
+    cardId: number;
+    user: {
+      name: string;
+    };
+  };
+  giver: {
+    name: string;
+  };
+  receiver: {
+    name: string;
+  };
+}
+
+interface FormattedAnswer {
+  id: string;
+  cardId: number;
+  cardOwner: string;
+  questionNumber: number;
+  giver: string;
+  receiver: string;
+  createdAt: Date;
+}
+
+export async function GET(_request: NextRequest) {
+  try {
+    const answers = await prisma.icebreakerAnswer.findMany({
+      include: {
+        card: {
+          select: {
+            cardId: true,
+            user: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
+        giver: {
+          select: {
+            name: true,
+          },
+        },
+        receiver: {
+          select: {
+            name: true,
+          },
+        },
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
+
+    // Format the answers for easier consumption
+    const formattedAnswers: FormattedAnswer[] = answers.map((answer: IcebreakerAnswer) => ({
+      id: answer.id,
+      cardId: answer.card.cardId,
+      cardOwner: answer.card.user.name,
+      questionNumber: answer.questionNumber,
+      giver: answer.giver.name,
+      receiver: answer.receiver.name,
+      createdAt: answer.createdAt
+    }));
+
+    return NextResponse.json(formattedAnswers);
+  } catch (error) {
+    console.error("Error fetching icebreaker answers:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch icebreaker answers" },
+      { status: 500 }
+    );
+  }
+}
+
+================
+File: src/app/api/admin/leaderboard/[id]/route.ts
+================
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    // TODO: Add admin authentication check
+    const data = await request.json();
+    const { score, gameType } = data;
+
+    if (typeof score !== "number") {
+      return NextResponse.json(
+        { error: "Score must be a number" },
+        { status: 400 }
+      );
+    }
+
+    let updatedRecord;
+
+    try {
+      switch (gameType) {
+        case "Darts":
+          updatedRecord = await prisma.dartScore.update({
+            where: { id: params.id },
+            data: { score },
+            include: {
+              user: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          });
+          break;
+
+        case "Putting":
+          updatedRecord = await prisma.puttingScore.update({
+            where: { id: params.id },
+            data: { score },
+            include: {
+              user: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          });
+          break;
+
+        case "Beer":
+          updatedRecord = await prisma.beerScore.update({
+            where: { id: params.id },
+            data: { time: score }, // For beer game, score is actually time
+            include: {
+              user: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          });
+          break;
+
+        default:
+          return NextResponse.json(
+            { error: "Invalid game type" },
+            { status: 400 }
+          );
+      }
+    } catch (error) {
+      console.error("Database update error:", error);
+      return NextResponse.json(
+        { error: "Record not found or update failed" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      id: updatedRecord.id,
+      userId: updatedRecord.userId,
+      userName: updatedRecord.user.name,
+      score: gameType === "Beer" ? updatedRecord.time : updatedRecord.score,
+      gameType
+    });
+  } catch (error) {
+    console.error("Score update error:", error);
+    return NextResponse.json(
+      { error: "Failed to update score" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    // TODO: Add admin authentication check
+    const gameType = request.nextUrl.searchParams.get("gameType");
+    
+    if (!gameType) {
+      return NextResponse.json(
+        { error: "Game type is required" },
+        { status: 400 }
+      );
+    }
+
+    try {
+      switch (gameType) {
+        case "Darts":
+          await prisma.dartScore.delete({
+            where: { id: params.id }
+          });
+          break;
+
+        case "Putting":
+          await prisma.puttingScore.delete({
+            where: { id: params.id }
+          });
+          break;
+
+        case "Beer":
+          await prisma.beerScore.delete({
+            where: { id: params.id }
+          });
+          break;
+
+        default:
+          return NextResponse.json(
+            { error: "Invalid game type" },
+            { status: 400 }
+          );
+      }
+    } catch (error) {
+      console.error("Database delete error:", error);
+      return NextResponse.json(
+        { error: "Record not found or delete failed" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Score delete error:", error);
+    return NextResponse.json(
+      { error: "Failed to delete score" },
+      { status: 500 }
+    );
+  }
+}
+
+================
+File: src/app/api/admin/leaderboard/route.ts
+================
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+interface LeaderboardEntry {
+  id: string;
+  userId: string;
+  userName: string;
+  score: number;
+  gameType: string;
+}
+
+interface ScoreWithUser {
+  id: string;
+  userId: string;
+  score?: number;
+  time?: number;
+  user: {
+    name: string;
+  };
+}
+
+export async function GET(_request: NextRequest) {
+  try {
+    // Fetch all types of scores
+    const [dartScores, puttingScores, beerScores] = await Promise.all([
+      prisma.dartScore.findMany({
+        include: {
+          user: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      }),
+      prisma.puttingScore.findMany({
+        include: {
+          user: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      }),
+      prisma.beerScore.findMany({
+        include: {
+          user: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      }),
+    ]);
+
+    // Format all scores into a unified format
+    const formattedEntries: LeaderboardEntry[] = [
+      ...dartScores.map((entry: ScoreWithUser) => ({
+        id: entry.id,
+        userId: entry.userId,
+        userName: entry.user.name,
+        score: entry.score || 0,
+        gameType: 'Darts'
+      })),
+      ...puttingScores.map((entry: ScoreWithUser) => ({
+        id: entry.id,
+        userId: entry.userId,
+        userName: entry.user.name,
+        score: entry.score || 0,
+        gameType: 'Putting'
+      })),
+      ...beerScores.map((entry: ScoreWithUser) => ({
+        id: entry.id,
+        userId: entry.userId,
+        userName: entry.user.name,
+        score: entry.time ? Math.round(entry.time * 100) / 100 : 0,
+        gameType: 'Beer'
+      }))
+    ];
+
+    return NextResponse.json(formattedEntries);
+  } catch (error) {
+    console.error("Leaderboard fetch error:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch leaderboard" },
+      { status: 500 }
+    );
+  }
+}
+
+================
+File: src/app/api/admin/users/[id]/route.ts
+================
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    // Get user to check if it's an admin
+    const user = await prisma.user.findUnique({
+      where: { id: params.id }
+    });
+
+    if (!user) {
+      return NextResponse.json(
+        { error: "User not found" },
+        { status: 404 }
+      );
+    }
+
+    // Prevent deleting admin users
+    if (user.username === "admin") {
+      return NextResponse.json(
+        { error: "Cannot delete admin user" },
+        { status: 403 }
+      );
+    }
+
+    // Delete all related data in the correct order to handle foreign key constraints
+    await prisma.$transaction([
+      // Delete icebreaker related data
+      prisma.icebreakerAnswer.deleteMany({
+        where: {
+          OR: [
+            { giverId: params.id },
+            { receiverId: params.id }
+          ]
+        }
+      }),
+      prisma.icebreakerCard.deleteMany({
+        where: { userId: params.id }
+      }),
+
+      // Delete game scores
+      prisma.dartScore.deleteMany({
+        where: { userId: params.id }
+      }),
+      prisma.puttingScore.deleteMany({
+        where: { userId: params.id }
+      }),
+      prisma.beerScore.deleteMany({
+        where: { userId: params.id }
+      }),
+
+      // Delete beer pong stats
+      prisma.beerPongStats.deleteMany({
+        where: { userId: params.id }
+      }),
+
+      // Remove user from beer pong matches
+      // Note: This will leave matches intact but remove the user from them
+      prisma.beerPongMatch.updateMany({
+        where: {
+          OR: [
+            { team1Players: { some: { id: params.id } } },
+            { team2Players: { some: { id: params.id } } },
+            { winners: { some: { id: params.id } } }
+          ]
+        },
+        data: {
+          // Remove user from all match relationships
+          team1Players: {
+            disconnect: { id: params.id }
+          },
+          team2Players: {
+            disconnect: { id: params.id }
+          },
+          winners: {
+            disconnect: { id: params.id }
+          }
+        }
+      }),
+
+      // Finally delete the user
+      prisma.user.delete({
+        where: { id: params.id }
+      })
+    ]);
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    return NextResponse.json(
+      { error: "Failed to delete user" },
+      { status: 500 }
+    );
+  }
+}
+
+================
+File: src/app/api/admin/users/route.ts
+================
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+
+interface MinimalIcebreakerAnswer {
+  id: string;
+}
+
+interface DbUser {
+  id: string;
+  username: string;
+  name: string;
+  photoUrl: string;
+  dartScores: { score: number }[];
+  puttingScores: { score: number }[];
+  beerScores: { time: number }[];
+  beerPongStats: {
+    wins: number;
+    losses: number;
+  } | null;
+  assignedCard: {
+    answers: MinimalIcebreakerAnswer[];
+  } | null;
+}
+
+interface FormattedUser {
+  id: string;
+  username: string;
+  name: string;
+  photoUrl: string;
+  dartScores: { score: number }[];
+  puttingScores: { score: number }[];
+  beerScores: { time: number }[];
+  beerPongStats: {
+    wins: number;
+    losses: number;
+  } | null;
+  icebreaker: {
+    hasCard: boolean;
+    answersCount: number;
+    totalQuestions: number;
+  };
+}
+
+export async function GET(_request: NextRequest) {
+  try {
+    const users = await prisma.user.findMany({
+      include: {
+        dartScores: true,
+        puttingScores: true,
+        beerScores: true,
+        beerPongStats: true,
+        assignedCard: {
+          include: {
+            answers: true
+          }
+        }
+      }
+    });
+
+    // Format the user data to include icebreaker progress
+    const formattedUsers: FormattedUser[] = users.map((user: DbUser) => ({
+      id: user.id,
+      username: user.username,
+      name: user.name,
+      photoUrl: user.photoUrl,
+      dartScores: user.dartScores,
+      puttingScores: user.puttingScores,
+      beerScores: user.beerScores,
+      beerPongStats: user.beerPongStats,
+      icebreaker: {
+        hasCard: !!user.assignedCard,
+        answersCount: user.assignedCard?.answers.length || 0,
+        totalQuestions: 20
+      }
+    }));
+
+    return NextResponse.json(formattedUsers);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch users" },
+      { status: 500 }
+    );
+  }
+}
+
+================
 File: src/app/api/auth/signin/route.ts
 ================
 import { NextResponse } from 'next/server';
@@ -437,93 +1842,6 @@ export async function POST(req: Request) {
 }
 
 ================
-File: src/app/api/games/beerpong/[id]/winners/route.ts
-================
-import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
-import { updateBeerPongStats } from "@/lib/beerpong";
-
-type Player = {
-  id: string;
-  name: string;
-  username: string;
-  photoUrl: string | null;
-};
-
-export async function POST(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
-  try {
-    const { id: matchId } = await params;
-    const { winnerIds } = await req.json();
-
-    if (!winnerIds || !Array.isArray(winnerIds) || winnerIds.length === 0) {
-      return NextResponse.json(
-        { error: "Winner IDs are required" },
-        { status: 400 }
-      );
-    }
-
-    // Get the match to find all players
-    const match = await prisma.beerPongMatch.findUnique({
-      where: { id: matchId },
-      include: {
-        team1Players: true,
-        team2Players: true,
-      },
-    });
-
-    if (!match) {
-      return NextResponse.json(
-        { error: "Match not found" },
-        { status: 404 }
-      );
-    }
-
-    if (match.status === "completed") {
-      return NextResponse.json(
-        { error: "Match already completed" },
-        { status: 400 }
-      );
-    }
-
-    // Update match with winners
-    const updatedMatch = await prisma.beerPongMatch.update({
-      where: { id: matchId },
-      data: {
-        winners: {
-          connect: winnerIds.map((id: string) => ({ id })),
-        },
-        status: "completed",
-      },
-      include: {
-        team1Players: true,
-        team2Players: true,
-        winners: true,
-      },
-    });
-
-    // Update player statistics
-    const allPlayerIds = [
-      ...match.team1Players.map((p: Player) => p.id),
-      ...match.team2Players.map((p: Player) => p.id),
-    ];
-    const loserIds = allPlayerIds.filter(id => !winnerIds.includes(id));
-
-    await updateBeerPongStats(winnerIds, loserIds);
-
-    return NextResponse.json(updatedMatch);
-  } catch (error) {
-    console.error("Error updating match winners:", error);
-    return NextResponse.json(
-      { error: "Error updating match" },
-      { status: 500 }
-    );
-  }
-}
-
-================
 File: src/app/api/games/beerpong/leaderboard/route.ts
 ================
 import { NextResponse } from "next/server";
@@ -591,17 +1909,17 @@ export async function GET() {
           },
         },
       },
-    });
+    }) as unknown as Match[];
 
     // Calculate stats for each player
     const playerStats: Record<string, PlayerStats> = {};
 
     // Process all matches to build stats
-    matches.forEach((match: Match) => {
+    matches.forEach((match) => {
       const allPlayers = [...match.team1Players, ...match.team2Players];
-      const winnerIds = new Set(match.winners.map((w: User) => w.id));
+      const winnerIds = new Set(match.winners.map(w => w.id));
 
-      allPlayers.forEach((player: User) => {
+      allPlayers.forEach((player) => {
         if (!playerStats[player.id]) {
           playerStats[player.id] = {
             id: player.id,
@@ -663,6 +1981,14 @@ File: src/app/api/games/beerpong/matches/[id]/winners/route.ts
 ================
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { updateBeerPongStats } from "@/lib/beerpong";
+
+type Player = {
+  id: string;
+  name: string;
+  username: string;
+  photoUrl: string | null;
+};
 
 export async function POST(
   req: Request,
@@ -675,6 +2001,29 @@ export async function POST(
     if (!winnerIds || !Array.isArray(winnerIds) || winnerIds.length === 0) {
       return NextResponse.json(
         { error: "Winner IDs are required" },
+        { status: 400 }
+      );
+    }
+
+    // Get the match to find all players
+    const match = await prisma.beerPongMatch.findUnique({
+      where: { id: matchId },
+      include: {
+        team1Players: true,
+        team2Players: true,
+      },
+    });
+
+    if (!match) {
+      return NextResponse.json(
+        { error: "Match not found" },
+        { status: 404 }
+      );
+    }
+
+    if (match.status === "completed") {
+      return NextResponse.json(
+        { error: "Match already completed" },
         { status: 400 }
       );
     }
@@ -694,6 +2043,16 @@ export async function POST(
         winners: true,
       },
     });
+
+    // Calculate loser IDs from all players not in winners
+    const allPlayerIds = [
+      ...match.team1Players.map((p: Player) => p.id),
+      ...match.team2Players.map((p: Player) => p.id),
+    ];
+    const loserIds = allPlayerIds.filter(id => !winnerIds.includes(id));
+
+    // Update player statistics
+    await updateBeerPongStats(winnerIds, loserIds);
 
     return NextResponse.json(updatedMatch);
   } catch (error) {
@@ -872,105 +2231,6 @@ export async function GET() {
     console.error("Error fetching matches:", error);
     return NextResponse.json(
       { error: "Virhe pelien haussa" },
-      { status: 500 }
-    );
-  }
-}
-
-================
-File: src/app/api/games/beerpong/route.ts
-================
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-
-// Get all matches
-export async function GET() {
-  try {
-    const matches = await prisma.beerPongMatch.findMany({
-      include: {
-        team1Players: {
-          select: {
-            id: true,
-            name: true,
-            username: true,
-            photoUrl: true,
-          },
-        },
-        team2Players: {
-          select: {
-            id: true,
-            name: true,
-            username: true,
-            photoUrl: true,
-          },
-        },
-        winners: {
-          select: {
-            id: true,
-            name: true,
-            username: true,
-            photoUrl: true,
-          },
-        },
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
-
-    return NextResponse.json(matches);
-  } catch (error) {
-    console.error('Virhe pelien haussa:', error);
-    return NextResponse.json(
-      { error: 'Virhe pelien haussa' },
-      { status: 500 }
-    );
-  }
-}
-
-// Create new match
-export async function POST(req: Request) {
-  try {
-    const { team1PlayerIds, team2PlayerIds, team1Name, team2Name } = await req.json();
-
-    // Validate teams
-    if (!team1PlayerIds?.length || !team2PlayerIds?.length) {
-      return NextResponse.json(
-        { error: 'Molemmissa joukkueissa tulee olla pelaajia' },
-        { status: 400 }
-      );
-    }
-
-    if (team1PlayerIds.length > 2 || team2PlayerIds.length > 2) {
-      return NextResponse.json(
-        { error: 'Joukkueessa voi olla korkeintaan 2 pelaajaa' },
-        { status: 400 }
-      );
-    }
-
-    // Create match
-    const match = await prisma.beerPongMatch.create({
-      data: {
-        team1Players: {
-          connect: team1PlayerIds.map((id: string) => ({ id })),
-        },
-        team2Players: {
-          connect: team2PlayerIds.map((id: string) => ({ id })),
-        },
-        team1Name,
-        team2Name,
-      },
-      include: {
-        team1Players: true,
-        team2Players: true,
-      },
-    });
-
-    return NextResponse.json(match);
-  } catch (error) {
-    console.error('Virhe pelin luonnissa:', error);
-    return NextResponse.json(
-      { error: 'Virhe pelin luonnissa' },
       { status: 500 }
     );
   }
@@ -1505,16 +2765,34 @@ export default function Icebreaker() {
   const [activeQuestion, setActiveQuestion] = useState<number | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [isGameEnabled, setIsGameEnabled] = useState(false);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const storedUser = sessionStorage.getItem("user");
-    if (!storedUser) {
-      router.push("/signin");
-      return;
-    }
-    
-    setUser(JSON.parse(storedUser));
+    const checkAuth = async () => {
+      const storedUser = sessionStorage.getItem("user");
+      if (!storedUser) {
+        router.push("/signin");
+        return;
+      }
+      
+      setUser(JSON.parse(storedUser));
+      
+      // Check if game is enabled
+      try {
+        const response = await fetch("/api/admin/game-state");
+        const data = await response.json();
+        setIsGameEnabled(data.isIcebreakerEnabled);
+      } catch (err) {
+        console.error("Error checking game status:", err);
+        setError("Failed to check game status");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
   }, [router]);
 
   useEffect(() => {
@@ -1597,6 +2875,25 @@ export default function Icebreaker() {
       setIsSubmitting(false);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4 flex items-center justify-center">
+        <div className="text-2xl text-gray-600">Ladataan...</div>
+      </div>
+    );
+  }
+
+  if (!isGameEnabled) {
+    return (
+      <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4 flex items-center justify-center">
+        <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Peli ei ole vielä alkanut</h2>
+          <p className="text-gray-600">Odota järjestäjän ilmoitusta pelin alkamisesta.</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!user || !card) {
     return (
@@ -4166,6 +5463,22 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    files: ["**/*.ts", "**/*.tsx"],
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          "vars": "all",
+          "args": "after-used",
+          "ignoreRestSiblings": true,
+          "varsIgnorePattern": "^_",
+          "argsIgnorePattern": "^_",
+          "caughtErrorsIgnorePattern": "^_"
+        }
+      ]
+    }
+  }
 ];
 
 export default eslintConfig;
