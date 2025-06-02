@@ -3,7 +3,17 @@ import { prisma } from '@/lib/prisma';
 
 export async function POST(req: Request) {
   try {
-    const { username } = await req.json();
+    let body;
+    try {
+      body = await req.json();
+    } catch (e) {
+      return NextResponse.json(
+        { error: 'Virheellinen pyyntö - tyhjä tai virheellinen JSON' },
+        { status: 400 }
+      );
+    }
+    
+    const { username } = body;
 
     if (!username) {
       return NextResponse.json(

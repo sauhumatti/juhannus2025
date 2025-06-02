@@ -161,6 +161,16 @@ export default function Navbar() {
                 >
                   Tulokset
                 </Link>
+                <Link
+                  href="/photos"
+                  className={`px-3 py-2 rounded-lg ${
+                    pathname === "/photos"
+                      ? "bg-blue-100 text-blue-700"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                  }`}
+                >
+                  Kuvat
+                </Link>
                 {isAdmin && (
                    <Link
                     href="/admin"
@@ -256,6 +266,16 @@ export default function Navbar() {
                 }`}
               >
                 Tulokset
+              </Link>
+              <Link
+                href="/photos"
+                className={`block px-3 py-2 rounded-lg ${
+                  pathname === "/photos"
+                    ? "bg-blue-100 text-blue-700"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                }`}
+              >
+                Kuvat
               </Link>
                {isAdmin && (
                    <Link

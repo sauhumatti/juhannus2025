@@ -1,0 +1,71 @@
+
+> saku30v@0.1.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.3.2 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://10.255.255.254:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 948ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1540ms
+ GET / 200 in 1767ms
+ ○ Compiling /favicon.ico ...
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 687ms
+ ✓ Compiled /favicon.ico in 712ms
+ GET /party 200 in 726ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 225ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 239ms
+ ✓ Compiled /api/photos in 402ms
+ GET /api/photos 200 in 890ms
+ GET /api/photos 200 in 204ms
+ GET /party 200 in 31ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 222ms
+ ○ Compiling /menu ...
+ ✓ Compiled /menu in 576ms
+ GET /menu 200 in 598ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 225ms
+ ○ Compiling /photos ...
+ ✓ Compiled /photos in 585ms
+ GET /photos 200 in 605ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 228ms
+ GET /api/photos 200 in 226ms
+ GET /api/photos 200 in 198ms
+ GET /party 200 in 27ms
+ GET /api/photos 200 in 203ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 224ms
+ GET /api/photos 200 in 185ms
+ GET /party 200 in 24ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 219ms
+ GET /menu 200 in 26ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 223ms
+ ○ Compiling /games ...
+ ✓ Compiled /games in 610ms
+ GET /games 200 in 632ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 227ms
+ ✓ Compiled /api/games/darts in 326ms
+ GET /api/games/darts 200 in 529ms
+ GET /api/games/darts 200 in 211ms
+ ○ Compiling /icebreaker ...
+ ✓ Compiled /icebreaker in 594ms
+ GET /icebreaker 200 in 616ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 226ms
+ GET /api/admin/game-state 200 in 386ms
+ GET /api/admin/game-state 200 in 20ms
+ ✓ Compiled /api/admin/game-state in 419ms
+ GET /api/icebreaker/card?userId=cmb95m8ky0000jo0afwu1yl1o 200 in 702ms
+ ✓ Compiled /api/icebreaker/answers in 411ms
+ GET /api/icebreaker/answers 200 in 573ms
+ GET /party 200 in 29ms
+ ✓ Compiled /api/icebreaker/leaderboard in 342ms
+ GET /api/photos 200 in 205ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 226ms
+ GET /api/icebreaker/leaderboard 200 in 635ms
+ GET /api/photos 200 in 432ms
+ GET /party 200 in 30ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 219ms
+ ○ Compiling /_not-found/page ...
+ ✓ Compiled /_not-found/page in 781ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 831ms

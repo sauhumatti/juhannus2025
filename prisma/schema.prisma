@@ -31,6 +31,9 @@ model User {
   assignedCard   IcebreakerCard?
   answersGiven   IcebreakerAnswer[] @relation("AnswerGiver")
   answersReceived IcebreakerAnswer[] @relation("AnswerReceiver")
+
+  // Photo moments
+  photoMoments   PhotoMoment[]
 }
 
 model DartScore {
@@ -106,4 +109,13 @@ model IcebreakerAnswer {
   createdAt DateTime @default(now())
 
   @@unique([cardId, questionNumber, giverId])
+}
+
+model PhotoMoment {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  photoUrl  String   // Cloudinary URL
+  caption   String?  // Optional caption
+  createdAt DateTime @default(now())
 }
