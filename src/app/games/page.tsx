@@ -12,8 +12,9 @@ const BeerGame = dynamic(() => import("@/components/games/BeerGame"));
 const tabs = [
   { id: "darts", name: "Tikanheitto" },
   { id: "putting", name: "Puttaus" },
-  { id: "beerpong", name: "Beer Pong" },
   { id: "beer", name: "Kaljakellotus" },
+  { id: "icebreaker", name: "Tutustumispeli" },
+  { id: "beerpong", name: "Beer Pong" },
 ];
 
 export default function Games() {
@@ -26,14 +27,15 @@ export default function Games() {
           <h1 className="text-3xl font-bold text-gray-900 mb-6">Pelit</h1>
 
           {/* Tabs */}
-          <div className="border-b border-gray-200">
-            <nav className="-mb-px flex space-x-8">
-              {tabs.map((tab) => (
+          <div className="relative">
+            <div className="border-b border-gray-200 -mx-6 px-6 overflow-x-auto scrollbar-hide">
+              <nav className="-mb-px flex space-x-4 sm:space-x-8 min-w-max">
+                {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`
-                    py-4 px-1 border-b-2 font-medium text-sm
+                    py-3 sm:py-4 px-2 sm:px-1 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap
                     ${
                       activeTab === tab.id
                         ? "border-blue-500 text-blue-600"
@@ -46,6 +48,7 @@ export default function Games() {
               ))}
             </nav>
           </div>
+        </div>
 
           {/* Content */}
           <div className="mt-6">
@@ -53,6 +56,22 @@ export default function Games() {
             {activeTab === "putting" && <PuttingGame />}
             {activeTab === "beerpong" && <BeerPongGame />}
             {activeTab === "beer" && <BeerGame />}
+            {activeTab === "icebreaker" && (
+              <div className="text-center py-8">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+                  🎯 Tutustumispeli
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  Opi tuntemaan muut juhlijat hauskan pelin avulla!
+                </p>
+                <a
+                  href="/icebreaker"
+                  className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Siirry Tutustumispeliin
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </div>

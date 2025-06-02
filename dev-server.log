@@ -8,64 +8,85 @@
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 948ms
- ○ Compiling / ...
- ✓ Compiled / in 1540ms
- GET / 200 in 1767ms
- ○ Compiling /favicon.ico ...
- GET /favicon.ico?favicon.45db1c09.ico 200 in 687ms
- ✓ Compiled /favicon.ico in 712ms
- GET /party 200 in 726ms
- GET /favicon.ico?favicon.45db1c09.ico 200 in 225ms
- GET /favicon.ico?favicon.45db1c09.ico 200 in 239ms
- ✓ Compiled /api/photos in 402ms
- GET /api/photos 200 in 890ms
- GET /api/photos 200 in 204ms
- GET /party 200 in 31ms
+ ✓ Ready in 857ms
+ ○ Compiling /records ...
+ ✓ Compiled /records in 2.4s
+ GET /records 200 in 2553ms
+ ✓ Compiled /api/users/records in 467ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 644ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 650ms
  GET /favicon.ico?favicon.45db1c09.ico 200 in 222ms
- ○ Compiling /menu ...
- ✓ Compiled /menu in 576ms
- GET /menu 200 in 598ms
- GET /favicon.ico?favicon.45db1c09.ico 200 in 225ms
- ○ Compiling /photos ...
- ✓ Compiled /photos in 585ms
- GET /photos 200 in 605ms
+ GET /api/users/records?userId=cmb95m8ky0000jo0afwu1yl1o 200 in 1244ms
+ ✓ Compiled /api/games/darts in 296ms
+ GET /api/games/darts 200 in 507ms
+ ✓ Compiled /api/games/putting in 307ms
+ GET /api/games/putting 200 in 516ms
+ ✓ Compiled /api/games/beer in 308ms
+ GET /api/games/beer 200 in 460ms
+ ✓ Compiled /api/icebreaker/leaderboard in 350ms
+ GET /api/icebreaker/leaderboard 200 in 637ms
+ ○ Compiling /party ...
+ ✓ Compiled /party in 589ms
+ GET /party 200 in 632ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 229ms
+ ✓ Compiled /api/photos in 336ms
+ GET /api/photos 200 in 584ms
+ GET /records 200 in 29ms
  GET /favicon.ico?favicon.45db1c09.ico 200 in 228ms
- GET /api/photos 200 in 226ms
- GET /api/photos 200 in 198ms
- GET /party 200 in 27ms
- GET /api/photos 200 in 203ms
- GET /favicon.ico?favicon.45db1c09.ico 200 in 224ms
- GET /api/photos 200 in 185ms
- GET /party 200 in 24ms
- GET /favicon.ico?favicon.45db1c09.ico 200 in 219ms
- GET /menu 200 in 26ms
- GET /favicon.ico?favicon.45db1c09.ico 200 in 223ms
+ GET /api/users/records?userId=cmb95m8ky0000jo0afwu1yl1o 200 in 421ms
+ GET /api/users/records?userId=cmb95m8ky0000jo0afwu1yl1o 200 in 419ms
+ ✓ Compiled /api/users/stats in 300ms
+ GET /api/users/stats?userId=cmb95m8ky0000jo0afwu1yl1o 200 in 909ms
+ GET /api/icebreaker/leaderboard 200 in 283ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 121ms
+ GET /records 200 in 133ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 236ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 234ms
+ GET /api/users/records?userId=cmb95m8ky0000jo0afwu1yl1o 200 in 485ms
+ GET /api/users/stats?userId=cmb95m8ky0000jo0afwu1yl1o 200 in 633ms
+ GET /api/icebreaker/leaderboard 200 in 269ms
+ GET /api/games/beer 200 in 174ms
+ GET /api/games/putting 200 in 202ms
+ GET /api/games/darts 200 in 206ms
+ GET /api/games/putting 200 in 207ms
+ GET /api/games/darts 200 in 209ms
+ GET /api/users/records?userId=cmb95m8ky0000jo0afwu1yl1o 200 in 437ms
  ○ Compiling /games ...
- ✓ Compiled /games in 610ms
- GET /games 200 in 632ms
+ ✓ Compiled /games in 613ms
+ GET /games 200 in 635ms
+ GET /api/games/darts 200 in 223ms
  GET /favicon.ico?favicon.45db1c09.ico 200 in 227ms
- ✓ Compiled /api/games/darts in 326ms
- GET /api/games/darts 200 in 529ms
- GET /api/games/darts 200 in 211ms
+ GET /api/games/darts 200 in 245ms
  ○ Compiling /icebreaker ...
- ✓ Compiled /icebreaker in 594ms
- GET /icebreaker 200 in 616ms
- GET /favicon.ico?favicon.45db1c09.ico 200 in 226ms
- GET /api/admin/game-state 200 in 386ms
- GET /api/admin/game-state 200 in 20ms
- ✓ Compiled /api/admin/game-state in 419ms
- GET /api/icebreaker/card?userId=cmb95m8ky0000jo0afwu1yl1o 200 in 702ms
- ✓ Compiled /api/icebreaker/answers in 411ms
- GET /api/icebreaker/answers 200 in 573ms
- GET /party 200 in 29ms
- ✓ Compiled /api/icebreaker/leaderboard in 342ms
- GET /api/photos 200 in 205ms
- GET /favicon.ico?favicon.45db1c09.ico 200 in 226ms
- GET /api/icebreaker/leaderboard 200 in 635ms
- GET /api/photos 200 in 432ms
- GET /party 200 in 30ms
- GET /favicon.ico?favicon.45db1c09.ico 200 in 219ms
+ ✓ Compiled /icebreaker in 668ms
+ GET /icebreaker 200 in 712ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 232ms
+ ✓ Compiled /api/admin/game-state in 401ms
+ GET /api/admin/game-state 200 in 428ms
+ GET /api/icebreaker/card?userId=cmb95m8ky0000jo0afwu1yl1o 200 in 632ms
+ ✓ Compiled /api/icebreaker/answers in 368ms
+ GET /api/icebreaker/answers 200 in 536ms
+ GET /api/icebreaker/leaderboard 200 in 268ms
+ GET /games 200 in 52ms
+ GET /api/games/darts 200 in 223ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 230ms
+ ✓ Compiled in 159ms
+ GET /api/games/beer 200 in 373ms
+ GET /api/games/beer 200 in 149ms
  ○ Compiling /_not-found/page ...
- ✓ Compiled /_not-found/page in 781ms
- GET /.well-known/appspecific/com.chrome.devtools.json 404 in 831ms
+ ✓ Compiled /_not-found/page in 620ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 658ms
+ ○ Compiling /photos ...
+ ✓ Compiled /photos in 637ms
+ GET /photos 200 in 660ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 223ms
+ GET /api/photos 200 in 253ms
+ GET /api/photos 200 in 209ms
+ GET /party 200 in 27ms
+ GET /api/photos 200 in 216ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 226ms
+ GET /api/photos 200 in 207ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 40ms
+ ✓ Compiled in 157ms
+ GET /favicon.ico?favicon.45db1c09.ico 200 in 220ms

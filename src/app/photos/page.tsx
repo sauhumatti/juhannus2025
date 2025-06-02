@@ -22,6 +22,8 @@ interface PhotoMoment {
 export default function PhotosPage() {
   const [user, setUser] = useState<User | null>(null);
   const [photos, setPhotos] = useState<PhotoMoment[]>([]);
+  const [filteredPhotos, setFilteredPhotos] = useState<PhotoMoment[]>([]);
+  const [showOwnPhotos, setShowOwnPhotos] = useState(false);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [caption, setCaption] = useState("");
@@ -56,11 +58,21 @@ export default function PhotosPage() {
       if (!response.ok) throw new Error("Failed to fetch photos");
       const data = await response.json();
       setPhotos(data);
+      setFilteredPhotos(data);
     } catch (err) {
       console.error("Error fetching photos:", err);
       setError("Virhe kuvien latauksessa");
     }
   };
+
+  // Filter photos when toggle changes
+  useEffect(() => {
+    if (showOwnPhotos && user) {
+      setFilteredPhotos(photos.filter(photo => photo.user.id === user.id));
+    } else {
+      setFilteredPhotos(photos);
+    }
+  }, [showOwnPhotos, photos, user]);
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -349,19 +361,49 @@ export default function PhotosPage() {
 
           {/* Photos Gallery */}
           <div className="space-y-6">
-            <h2 className="text-xl font-semibold text-gray-900">
-              Kaikki kuvat ({photos.length})
-            </h2>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <h2 className="text-xl font-semibold text-gray-900">
+                {showOwnPhotos ? `Omat kuvat (${filteredPhotos.length})` : `Kaikki kuvat (${filteredPhotos.length})`}
+              </h2>
+              
+              {/* Toggle buttons */}
+              <div className="flex rounded-lg bg-gray-100 p-1">
+                <button
+                  onClick={() => setShowOwnPhotos(false)}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    !showOwnPhotos 
+                      ? "bg-white text-gray-900 shadow-sm" 
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  Kaikki kuvat
+                </button>
+                <button
+                  onClick={() => setShowOwnPhotos(true)}
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                    showOwnPhotos 
+                      ? "bg-white text-gray-900 shadow-sm" 
+                      : "text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  Omat kuvat
+                </button>
+              </div>
+            </div>
 
-            {photos.length === 0 ? (
+            {filteredPhotos.length === 0 ? (
               <div className="text-center py-12">
                 <div className="text-6xl mb-4">📷</div>
-                <p className="text-gray-500 text-lg">Ei kuvia vielä</p>
-                <p className="text-gray-400 text-sm">Ole ensimmäinen, joka jakaa muiston!</p>
+                <p className="text-gray-500 text-lg">
+                  {showOwnPhotos ? "Et ole vielä jakanut kuvia" : "Ei kuvia vielä"}
+                </p>
+                <p className="text-gray-400 text-sm">
+                  {showOwnPhotos ? "Jaa ensimmäinen kuvasi!" : "Ole ensimmäinen, joka jakaa muiston!"}
+                </p>
               </div>
             ) : (
               <div className="grid gap-6">
-                {photos.map((photo) => (
+                {filteredPhotos.map((photo) => (
                   <div
                     key={photo.id}
                     className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"

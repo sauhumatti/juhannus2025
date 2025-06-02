@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Leaderboard from "@/components/Leaderboard";
 
 interface Stats {
   answersGiven: number;
@@ -23,6 +24,18 @@ interface Records {
   beerScores: GameScore[];
 }
 
+interface LeaderboardEntry {
+  id: string;
+  score?: number;
+  time?: number;
+  user: {
+    name: string;
+    username: string;
+    photoUrl: string;
+  };
+  createdAt: string;
+}
+
 const tabs = [
   { id: "darts", name: "Tikanheitto" },
   { id: "putting", name: "Puttaus" },
@@ -32,7 +45,9 @@ const tabs = [
 
 export default function Records() {
   const [activeTab, setActiveTab] = useState("darts");
+  const [viewMode, setViewMode] = useState<"personal" | "leaderboard">("personal");
   const [records, setRecords] = useState<Records | null>(null);
+  const [leaderboards, setLeaderboards] = useState<{ [key: string]: LeaderboardEntry[] }>({});
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -47,18 +62,42 @@ export default function Records() {
           return;
         }
 
-        if (activeTab === "icebreaker") {
-          const statsRes = await fetch(`/api/users/stats?userId=${user.id}`);
-          if (!statsRes.ok) throw new Error("Failed to fetch stats");
-          const statsData = await statsRes.json();
-          setStats(statsData);
-          setRecords(null);
+        if (viewMode === "personal") {
+          if (activeTab === "icebreaker") {
+            const statsRes = await fetch(`/api/users/stats?userId=${user.id}`);
+            if (!statsRes.ok) throw new Error("Failed to fetch stats");
+            const statsData = await statsRes.json();
+            setStats(statsData);
+            setRecords(null);
+          } else {
+            setStats(null);
+            const scoresRes = await fetch(`/api/users/records?userId=${user.id}`);
+            if (!scoresRes.ok) throw new Error("Failed to fetch records");
+            const scoresData = await scoresRes.json();
+            setRecords(scoresData);
+          }
         } else {
+          // Fetch leaderboards
           setStats(null);
-          const scoresRes = await fetch(`/api/users/records?userId=${user.id}`);
-          if (!scoresRes.ok) throw new Error("Failed to fetch records");
-          const scoresData = await scoresRes.json();
-          setRecords(scoresData);
+          setRecords(null);
+          
+          if (activeTab === "icebreaker") {
+            const res = await fetch("/api/icebreaker/leaderboard");
+            if (!res.ok) throw new Error("Failed to fetch leaderboard");
+            const data = await res.json();
+            setLeaderboards({ icebreaker: data });
+          } else {
+            const gameMap: { [key: string]: string } = {
+              darts: "darts",
+              putting: "putting",
+              beer: "beer"
+            };
+            const res = await fetch(`/api/games/${gameMap[activeTab]}`);
+            if (!res.ok) throw new Error("Failed to fetch leaderboard");
+            const data = await res.json();
+            // The API returns the array directly, not as data.leaderboard
+            setLeaderboards({ [activeTab]: data });
+          }
         }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Error loading game data");
@@ -68,7 +107,7 @@ export default function Records() {
     };
 
     fetchData();
-  }, [router, activeTab]);
+  }, [router, activeTab, viewMode]);
 
   const getStats = (scores: GameScore[]) => {
     if (!scores || scores.length === 0) return null;
@@ -102,17 +141,45 @@ export default function Records() {
     <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-6">Pelituloksesi</h1>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+            <h1 className="text-3xl font-bold text-gray-900 mb-4 sm:mb-0">
+              {viewMode === "personal" ? "Omat tulokset" : "Tulostaulukko"}
+            </h1>
+            
+            {/* View mode toggle */}
+            <div className="flex rounded-lg bg-gray-100 p-1">
+              <button
+                onClick={() => setViewMode("personal")}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  viewMode === "personal" 
+                    ? "bg-white text-gray-900 shadow-sm" 
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                Omat tulokset
+              </button>
+              <button
+                onClick={() => setViewMode("leaderboard")}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  viewMode === "leaderboard" 
+                    ? "bg-white text-gray-900 shadow-sm" 
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                Tulostaulukko
+              </button>
+            </div>
+          </div>
 
           {/* Tabs */}
-          <div className="border-b border-gray-200">
-            <nav className="-mb-px flex space-x-8">
+          <div className="border-b border-gray-200 -mx-6 px-6 overflow-x-auto">
+            <nav className="-mb-px flex space-x-4 sm:space-x-8 min-w-max">
               {tabs.map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={`
-                    py-4 px-1 border-b-2 font-medium text-sm
+                    py-3 sm:py-4 px-2 sm:px-1 border-b-2 font-medium text-xs sm:text-sm whitespace-nowrap
                     ${
                       activeTab === tab.id
                         ? "border-blue-500 text-blue-600"
@@ -293,6 +360,85 @@ export default function Records() {
                   </tbody>
                 </table>
               </div>
+            )}
+
+            {/* Leaderboards */}
+            {viewMode === "leaderboard" && (
+              <>
+                {/* Darts Leaderboard */}
+                {activeTab === "darts" && leaderboards.darts && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Top 10 Pelaajat</h3>
+                    {leaderboards.darts.length === 0 ? (
+                      <p className="text-gray-500 text-center py-8">Ei tuloksia vielä</p>
+                    ) : (
+                      <Leaderboard scores={leaderboards.darts.slice(0, 10)} type="points" maxScore={50} />
+                    )}
+                  </div>
+                )}
+
+                {/* Putting Leaderboard */}
+                {activeTab === "putting" && leaderboards.putting && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Top 10 Pelaajat</h3>
+                    {leaderboards.putting.length === 0 ? (
+                      <p className="text-gray-500 text-center py-8">Ei tuloksia vielä</p>
+                    ) : (
+                      <Leaderboard scores={leaderboards.putting.slice(0, 10)} type="points" maxScore={10} />
+                    )}
+                  </div>
+                )}
+
+                {/* Beer Leaderboard */}
+                {activeTab === "beer" && leaderboards.beer && (
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Top 10 Pelaajat</h3>
+                    {leaderboards.beer.length === 0 ? (
+                      <p className="text-gray-500 text-center py-8">Ei tuloksia vielä</p>
+                    ) : (
+                      <Leaderboard scores={leaderboards.beer.slice(0, 10)} type="time" />
+                    )}
+                  </div>
+                )}
+
+                {/* Icebreaker Leaderboard */}
+                {activeTab === "icebreaker" && leaderboards.icebreaker && (
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-4">Top 10 Pelaajat</h3>
+                    {leaderboards.icebreaker.length === 0 ? (
+                      <p className="text-gray-500 text-center py-8">Ei tuloksia vielä</p>
+                    ) : (
+                      <div className="space-y-2">
+                        {leaderboards.icebreaker.slice(0, 10).map((entry: any, index) => (
+                          <div
+                            key={entry.userId}
+                            className={`flex items-center justify-between p-4 rounded-lg ${
+                              index === 0 ? "bg-yellow-50" : 
+                              index === 1 ? "bg-gray-100" :
+                              index === 2 ? "bg-orange-50" : "bg-gray-50"
+                            }`}
+                          >
+                            <div className="flex items-center space-x-4">
+                              <span className={`text-lg font-bold ${
+                                index === 0 ? "text-yellow-600" : 
+                                index === 1 ? "text-gray-600" :
+                                index === 2 ? "text-orange-600" : "text-gray-500"
+                              }`}>
+                                #{index + 1}
+                              </span>
+                              <span className="font-medium">{entry.name}</span>
+                            </div>
+                            <div className="text-right">
+                              <span className="text-lg font-semibold">{entry.questionsAnswered}/{entry.totalQuestions}</span>
+                              <span className="text-sm text-gray-500 block">{entry.completionPercentage}% valmis</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </>
             )}
 
             {error && (

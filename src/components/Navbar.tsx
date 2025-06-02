@@ -53,12 +53,20 @@ export default function Navbar() {
   // Show loading state until component is mounted and user state is determined
   if (!mounted) {
     return (
-      <nav className="bg-white shadow-lg">
+      <nav className="bg-white shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <div className="flex items-center px-2 py-2">
-                <span className="text-xl font-bold text-gray-700">Juhlat</span>
+                <Image
+                  src="/logo.png"
+                  alt="Logo"
+                  width={120}
+                  height={40}
+                  className="h-10 w-auto"
+                  priority
+                  quality={100}
+                />
               </div>
             </div>
             <div className="flex items-center">
@@ -74,15 +82,23 @@ export default function Navbar() {
   const isAdmin = user?.username === "admin";
 
   return (
-    <nav className="bg-white shadow-lg">
+    <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link
               href={user ? "/party" : "/"}
-              className="flex items-center px-2 py-2 text-gray-700 hover:text-gray-900"
+              className="flex items-center px-2 py-2"
             >
-              <span className="text-xl font-bold">Juhlat</span>
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={120}
+                height={40}
+                className="h-10 w-auto hover:opacity-80 transition-opacity"
+                priority
+                quality={100}
+              />
             </Link>
           </div>
 
@@ -129,27 +145,27 @@ export default function Navbar() {
                       : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                   }`}
                 >
-                  Ruokalista
+                  Ruoka ja Juomalista
+                </Link>
+                <Link
+                  href="/photos"
+                  className={`px-3 py-2 rounded-lg ${
+                    pathname === "/photos"
+                      ? "bg-blue-100 text-blue-700"
+                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                  }`}
+                >
+                  Bilekuvat
                 </Link>
                 <Link
                   href="/games"
                   className={`px-3 py-2 rounded-lg ${
-                    pathname === "/games"
+                    pathname === "/games" || pathname === "/icebreaker"
                       ? "bg-blue-100 text-blue-700"
                       : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                   }`}
                 >
                   Pelit
-                </Link>
-                <Link
-                  href="/icebreaker"
-                  className={`px-3 py-2 rounded-lg ${
-                    pathname === "/icebreaker"
-                      ? "bg-blue-100 text-blue-700"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                  }`}
-                >
-                  Tutustumispeli
                 </Link>
                 <Link
                   href="/records"
@@ -160,16 +176,6 @@ export default function Navbar() {
                   }`}
                 >
                   Tulokset
-                </Link>
-                <Link
-                  href="/photos"
-                  className={`px-3 py-2 rounded-lg ${
-                    pathname === "/photos"
-                      ? "bg-blue-100 text-blue-700"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                  }`}
-                >
-                  Kuvat
                 </Link>
                 {isAdmin && (
                    <Link
@@ -184,9 +190,9 @@ export default function Navbar() {
                   </Link>
                 )}
                 <Link
-                  href="/party"
+                  href="/profile"
                   className={`flex items-center px-3 py-2 rounded-lg ${
-                    pathname === "/party"
+                    pathname === "/profile"
                       ? "bg-blue-100"
                       : "hover:bg-gray-100"
                   }`}
@@ -223,7 +229,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <div className={`${isMenuOpen ? "block" : "hidden"} sm:hidden bg-white border-t`}>
+      <div className={`${isMenuOpen ? "block" : "hidden"} sm:hidden bg-white border-t relative z-50`}>
         <div className="px-2 pt-2 pb-3 space-y-1">
           {user ? (
             <>
@@ -235,27 +241,27 @@ export default function Navbar() {
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
-                Ruokalista
+                Ruoka ja Juomalista
+              </Link>
+              <Link
+                href="/photos"
+                className={`block px-3 py-2 rounded-lg ${
+                  pathname === "/photos"
+                    ? "bg-blue-100 text-blue-700"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                }`}
+              >
+                Bilekuvat
               </Link>
               <Link
                 href="/games"
                 className={`block px-3 py-2 rounded-lg ${
-                  pathname === "/games"
+                  pathname === "/games" || pathname === "/icebreaker"
                     ? "bg-blue-100 text-blue-700"
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
                 Pelit
-              </Link>
-              <Link
-                href="/icebreaker"
-                className={`block px-3 py-2 rounded-lg ${
-                  pathname === "/icebreaker"
-                    ? "bg-blue-100 text-blue-700"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                }`}
-              >
-                Tutustumispeli
               </Link>
               <Link
                 href="/records"
@@ -266,16 +272,6 @@ export default function Navbar() {
                 }`}
               >
                 Tulokset
-              </Link>
-              <Link
-                href="/photos"
-                className={`block px-3 py-2 rounded-lg ${
-                  pathname === "/photos"
-                    ? "bg-blue-100 text-blue-700"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                }`}
-              >
-                Kuvat
               </Link>
                {isAdmin && (
                    <Link
@@ -290,9 +286,9 @@ export default function Navbar() {
                   </Link>
                 )}
               <Link
-                href="/party"
+                href="/profile"
                 className={`flex items-center px-3 py-2 rounded-lg ${
-                  pathname === "/party"
+                  pathname === "/profile"
                     ? "bg-blue-100"
                     : "hover:bg-gray-100"
                 }`}
