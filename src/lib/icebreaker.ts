@@ -88,6 +88,42 @@ export async function submitAnswer(
   });
 }
 
+export async function updateAnswer(
+  cardId: string,
+  questionNumber: number,
+  giverId: string,
+  newReceiverId: string
+): Promise<void> {
+  // Find the existing answer
+  const existingAnswer = await prisma.icebreakerAnswer.findUnique({
+    where: {
+      cardId_questionNumber_giverId: {
+        cardId,
+        questionNumber,
+        giverId
+      }
+    }
+  });
+
+  if (!existingAnswer) {
+    throw new Error('Answer not found');
+  }
+
+  // Update the answer
+  await prisma.icebreakerAnswer.update({
+    where: {
+      cardId_questionNumber_giverId: {
+        cardId,
+        questionNumber,
+        giverId
+      }
+    },
+    data: {
+      receiverId: newReceiverId,
+    }
+  });
+}
+
 export async function getCardWithAnswers(userId: string) {
   const assignedCard = await prisma.icebreakerCard.findFirst({
     where: { userId },

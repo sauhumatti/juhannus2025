@@ -25,6 +25,16 @@ interface Card {
   answers: Record<number, User>;
 }
 
+interface LeaderboardEntry {
+  userId: string;
+  name: string;
+  photoUrl: string;
+  questionsAnswered: number;
+  totalQuestions: number;
+  completionPercentage: number;
+  cardTitle: string;
+}
+
 export default function Icebreaker() {
   const [user, setUser] = useState<User | null>(null);
   const [card, setCard] = useState<Card | null>(null);
@@ -35,6 +45,10 @@ export default function Icebreaker() {
   const [error, setError] = useState("");
   const [isGameEnabled, setIsGameEnabled] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [editingQuestion, setEditingQuestion] = useState<number | null>(null);
+  const [editSelectedParticipant, setEditSelectedParticipant] = useState<string>("");
   const router = useRouter();
 
   useEffect(() => {
@@ -79,6 +93,12 @@ export default function Icebreaker() {
         if (!participantsRes.ok) throw new Error("Failed to fetch participants");
         const participantsData = await participantsRes.json();
         setParticipants(participantsData);
+
+        // Fetch leaderboard
+        const leaderboardRes = await fetch("/api/icebreaker/leaderboard");
+        if (!leaderboardRes.ok) throw new Error("Failed to fetch leaderboard");
+        const leaderboardData = await leaderboardRes.json();
+        setLeaderboard(leaderboardData);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Error loading game data");
       }
@@ -102,6 +122,24 @@ export default function Icebreaker() {
       p.id !== user?.id && !usedParticipantIds.includes(p.id)
     );
   }, [card, participants, user]);
+
+  // Get available participants for editing (includes currently selected person)
+  const editAvailableParticipants = useMemo(() => {
+    if (!card || !participants || editingQuestion === null) return [];
+
+    // Initialize empty answers object if not present
+    const answers = card.answers || {};
+
+    // Get all user IDs that have been used in answers, excluding the one being edited
+    const usedParticipantIds = Object.entries(answers)
+      .filter(([questionNum]) => parseInt(questionNum) !== editingQuestion)
+      .map(([, p]) => (p as User).id);
+
+    // Filter out the current user and already used participants (except the one being edited)
+    return participants.filter((p: User) => 
+      p.id !== user?.id && !usedParticipantIds.includes(p.id)
+    );
+  }, [card, participants, user, editingQuestion]);
 
   const handleSubmitAnswer = async (questionNumber: number) => {
     if (!user || !card || !selectedParticipant) return;
@@ -134,6 +172,13 @@ export default function Icebreaker() {
       const cardData = await cardRes.json();
       setCard(cardData);
 
+      // Refresh leaderboard
+      const leaderboardRes = await fetch("/api/icebreaker/leaderboard");
+      if (leaderboardRes.ok) {
+        const leaderboardData = await leaderboardRes.json();
+        setLeaderboard(leaderboardData);
+      }
+
       // Reset selection
       setSelectedParticipant("");
       setActiveQuestion(null);
@@ -142,6 +187,67 @@ export default function Icebreaker() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleUpdateAnswer = async (questionNumber: number) => {
+    if (!user || !card || !editSelectedParticipant) return;
+
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/icebreaker/answers", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cardId: card.dbId,
+          questionNumber,
+          giverId: user.id,
+          newReceiverId: editSelectedParticipant,
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || "Failed to update answer");
+      }
+
+      // Refetch card data to update answers
+      const cardRes = await fetch(`/api/icebreaker/card?userId=${user.id}`);
+      if (!cardRes.ok) throw new Error("Failed to fetch updated card");
+      const cardData = await cardRes.json();
+      setCard(cardData);
+
+      // Refresh leaderboard
+      const leaderboardRes = await fetch("/api/icebreaker/leaderboard");
+      if (leaderboardRes.ok) {
+        const leaderboardData = await leaderboardRes.json();
+        setLeaderboard(leaderboardData);
+      }
+
+      // Reset edit state
+      setEditSelectedParticipant("");
+      setEditingQuestion(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update answer");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const startEditing = (questionNumber: number) => {
+    setEditingQuestion(questionNumber);
+    setEditSelectedParticipant("");
+    // Clear any active new answer selection
+    setActiveQuestion(null);
+    setSelectedParticipant("");
+  };
+
+  const cancelEditing = () => {
+    setEditingQuestion(null);
+    setEditSelectedParticipant("");
   };
 
   if (loading) {
@@ -190,6 +296,95 @@ export default function Icebreaker() {
             </p>
           </div>
 
+          <div className="mb-6">
+            <button
+              onClick={() => setShowLeaderboard(!showLeaderboard)}
+              className="w-full sm:w-auto px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              {showLeaderboard ? "Piilota tulostaulu" : "Näytä tulostaulu"}
+            </button>
+          </div>
+
+          {showLeaderboard && (
+            <div className="bg-purple-50 rounded-xl p-4 sm:p-6 mb-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">🏆 Tulostaulu</h2>
+              <div className="space-y-3">
+                {leaderboard.map((entry, index) => (
+                  <div
+                    key={entry.userId}
+                    className={`flex items-center justify-between p-3 rounded-lg ${
+                      entry.userId === user?.id
+                        ? "bg-blue-100 border-2 border-blue-300"
+                        : "bg-white"
+                    }`}
+                  >
+                    <div className="flex items-center space-x-3">
+                      <div className="flex-shrink-0 w-8 text-center">
+                        {index === 0 && entry.completionPercentage === 100 ? (
+                          <span className="text-2xl">👑</span>
+                        ) : index < 3 ? (
+                          <span className="text-lg font-bold text-purple-600">
+                            {index + 1}
+                          </span>
+                        ) : (
+                          <span className="text-sm text-gray-500">
+                            {index + 1}
+                          </span>
+                        )}
+                      </div>
+                      <div className="relative w-8 h-8 rounded-full overflow-hidden">
+                        <Image
+                          src={entry.photoUrl}
+                          alt={entry.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-900">
+                          {entry.name}
+                          {entry.userId === user?.id && (
+                            <span className="ml-2 text-xs text-blue-600 font-bold">
+                              (Sinä)
+                            </span>
+                          )}
+                        </p>
+                        <p className="text-xs text-gray-500">{entry.cardTitle}</p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-sm font-medium">
+                          {entry.questionsAnswered}/{entry.totalQuestions}
+                        </span>
+                        <div className="w-16 bg-gray-200 rounded-full h-2">
+                          <div
+                            className={`h-2 rounded-full ${
+                              entry.completionPercentage === 100
+                                ? "bg-green-500"
+                                : entry.completionPercentage >= 75
+                                ? "bg-yellow-500"
+                                : "bg-purple-500"
+                            }`}
+                            style={{ width: `${entry.completionPercentage}%` }}
+                          />
+                        </div>
+                        <span className="text-xs text-gray-600 w-8">
+                          {entry.completionPercentage}%
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {leaderboard.length === 0 && (
+                <p className="text-gray-500 text-center py-4">
+                  Ei osallistujia vielä
+                </p>
+              )}
+            </div>
+          )}
+
           <div className="space-y-4 sm:space-y-6">
             {card.questions.map((question) => (
               <div
@@ -207,19 +402,61 @@ export default function Icebreaker() {
                     {question.number}. {question.text}
                   </p>
                   {card.answers?.[question.number] ? (
-                    <div className="flex items-center space-x-2 self-end sm:self-start">
-                      <div className="relative w-8 h-8 sm:w-6 sm:h-6 rounded-full overflow-hidden">
-                        <Image
-                          src={card.answers[question.number].photoUrl}
-                          alt={card.answers[question.number].name}
-                          fill
-                          className="object-cover"
-                        />
+                    editingQuestion === question.number ? (
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 self-stretch">
+                        <select
+                          value={editSelectedParticipant}
+                          onChange={(e) => setEditSelectedParticipant(e.target.value)}
+                          className="p-2 sm:p-1 border rounded text-base sm:text-sm min-w-[200px]"
+                        >
+                          <option value="">Valitse uusi henkilö</option>
+                          <option value={card.answers[question.number].id}>
+                            {card.answers[question.number].name} (nykyinen)
+                          </option>
+                          {editAvailableParticipants.map((participant) => (
+                            <option key={participant.id} value={participant.id}>
+                              {participant.name}
+                            </option>
+                          ))}
+                        </select>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => handleUpdateAnswer(question.number)}
+                            disabled={!editSelectedParticipant || isSubmitting}
+                            className="flex-1 sm:flex-none px-4 py-2 sm:py-1 bg-blue-600 text-white rounded-lg sm:rounded hover:bg-blue-700 disabled:opacity-50 text-base sm:text-sm"
+                          >
+                            {isSubmitting ? "..." : "Päivitä"}
+                          </button>
+                          <button
+                            onClick={cancelEditing}
+                            className="flex-1 sm:flex-none px-4 py-2 sm:py-1 bg-gray-100 text-gray-700 rounded-lg sm:rounded hover:bg-gray-200 text-base sm:text-sm"
+                          >
+                            Peru
+                          </button>
+                        </div>
                       </div>
-                      <span className="text-green-700">
-                        {card.answers[question.number].name}
-                      </span>
-                    </div>
+                    ) : (
+                      <div className="flex items-center space-x-2 self-end sm:self-start">
+                        <div className="relative w-8 h-8 sm:w-6 sm:h-6 rounded-full overflow-hidden">
+                          <Image
+                            src={card.answers[question.number].photoUrl}
+                            alt={card.answers[question.number].name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <span className="text-green-700">
+                          {card.answers[question.number].name}
+                        </span>
+                        <button
+                          onClick={() => startEditing(question.number)}
+                          className="ml-2 px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded hover:bg-gray-200"
+                          title="Muokkaa vastausta"
+                        >
+                          Muokkaa
+                        </button>
+                      </div>
+                    )
                   ) : activeQuestion === question.number ? (
                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 self-stretch">
                       <select
@@ -263,10 +500,12 @@ export default function Icebreaker() {
                   ) : (
                     <button
                       onClick={() => setActiveQuestion(question.number)}
-                      disabled={availableParticipants.length === 0}
+                      disabled={availableParticipants.length === 0 || editingQuestion !== null}
                       className="w-full sm:w-auto px-4 py-2 sm:py-1 bg-blue-600 text-white rounded-lg sm:rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-base sm:text-sm"
                     >
-                      {availableParticipants.length === 0 
+                      {editingQuestion !== null
+                        ? "Lopeta muokkaus ensin"
+                        : availableParticipants.length === 0 
                         ? "Ei vapaita henkilöitä" 
                         : "Valitse henkilö"}
                     </button>
