@@ -94,9 +94,10 @@ export default function SignUp() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
               Käyttäjänimi
             </label>
+            <p className="text-xs text-gray-500 mb-2">Tällä kirjaudut sisään</p>
             <input
               id="username"
               type="text"
@@ -109,9 +110,10 @@ export default function SignUp() {
           </div>
 
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
               Nimi
             </label>
+            <p className="text-xs text-gray-500 mb-2">Etunimesi, tämä näkyy myös muille</p>
             <input
               id="name"
               type="text"
@@ -124,9 +126,10 @@ export default function SignUp() {
           </div>
 
           <div>
-            <label htmlFor="photo" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="photo" className="block text-sm font-medium text-gray-700 mb-1">
               Profiilikuva
             </label>
+            <p className="text-xs text-gray-500 mb-2">Kuva itsestäsi: tämä näkyy myös muille</p>
             <div className="mt-1 flex flex-col items-center space-y-4">
               {preview ? (
                 <div className="relative w-32 h-32 rounded-full overflow-hidden">

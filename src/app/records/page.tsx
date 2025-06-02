@@ -36,6 +36,15 @@ interface LeaderboardEntry {
   createdAt: string;
 }
 
+interface IcebreakerLeaderboardEntry {
+  userId: string;
+  name: string;
+  photoUrl: string;
+  questionsAnswered: number;
+  totalQuestions: number;
+  completionPercentage: number;
+}
+
 const tabs = [
   { id: "darts", name: "Tikanheitto" },
   { id: "putting", name: "Puttaus" },
@@ -47,7 +56,7 @@ export default function Records() {
   const [activeTab, setActiveTab] = useState("darts");
   const [viewMode, setViewMode] = useState<"personal" | "leaderboard">("personal");
   const [records, setRecords] = useState<Records | null>(null);
-  const [leaderboards, setLeaderboards] = useState<{ [key: string]: LeaderboardEntry[] }>({});
+  const [leaderboards, setLeaderboards] = useState<{ [key: string]: LeaderboardEntry[] | IcebreakerLeaderboardEntry[] }>({});
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -372,7 +381,7 @@ export default function Records() {
                     {leaderboards.darts.length === 0 ? (
                       <p className="text-gray-500 text-center py-8">Ei tuloksia vielä</p>
                     ) : (
-                      <Leaderboard scores={leaderboards.darts.slice(0, 10)} type="points" maxScore={50} />
+                      <Leaderboard scores={(leaderboards.darts as LeaderboardEntry[]).slice(0, 10)} type="points" maxScore={50} />
                     )}
                   </div>
                 )}
@@ -384,7 +393,7 @@ export default function Records() {
                     {leaderboards.putting.length === 0 ? (
                       <p className="text-gray-500 text-center py-8">Ei tuloksia vielä</p>
                     ) : (
-                      <Leaderboard scores={leaderboards.putting.slice(0, 10)} type="points" maxScore={10} />
+                      <Leaderboard scores={(leaderboards.putting as LeaderboardEntry[]).slice(0, 10)} type="points" maxScore={10} />
                     )}
                   </div>
                 )}
@@ -396,7 +405,7 @@ export default function Records() {
                     {leaderboards.beer.length === 0 ? (
                       <p className="text-gray-500 text-center py-8">Ei tuloksia vielä</p>
                     ) : (
-                      <Leaderboard scores={leaderboards.beer.slice(0, 10)} type="time" />
+                      <Leaderboard scores={(leaderboards.beer as LeaderboardEntry[]).slice(0, 10)} type="time" />
                     )}
                   </div>
                 )}
@@ -409,7 +418,7 @@ export default function Records() {
                       <p className="text-gray-500 text-center py-8">Ei tuloksia vielä</p>
                     ) : (
                       <div className="space-y-2">
-                        {leaderboards.icebreaker.slice(0, 10).map((entry: any, index) => (
+                        {(leaderboards.icebreaker as IcebreakerLeaderboardEntry[]).slice(0, 10).map((entry, index) => (
                           <div
                             key={entry.userId}
                             className={`flex items-center justify-between p-4 rounded-lg ${

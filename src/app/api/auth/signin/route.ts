@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     let body;
     try {
       body = await req.json();
-    } catch (e) {
+    } catch (_e) {
       return NextResponse.json(
         { error: 'Virheellinen pyyntö - tyhjä tai virheellinen JSON' },
         { status: 400 }

@@ -21,6 +21,7 @@ interface PhotoMoment {
 }
 
 export default function Party() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [user, setUser] = useState<User | null>(null);
   const [recentPhotos, setRecentPhotos] = useState<PhotoMoment[]>([]);
   const [loading, setLoading] = useState(true);
@@ -60,7 +61,7 @@ export default function Party() {
     };
 
     checkAuth();
-  }, []);
+  }, [router]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -82,13 +83,13 @@ export default function Party() {
 
   return (
     <div className="relative">
-      {/* Fixed background image - optimized for mobile */}
-      <div className="fixed inset-0 z-0" style={{ top: '64px' }}>
+      {/* Fixed background image - responsive behavior */}
+      <div className="fixed inset-0 z-0 sm:bg-black" style={{ top: '64px' }}>
         <Image
           src="/photo_of_me.jpg"
           alt="Background"
           fill
-          className="object-cover object-center"
+          className="object-cover sm:object-contain"
           quality={100}
           priority
         />
@@ -115,15 +116,36 @@ export default function Party() {
           <div className="max-w-4xl mx-auto p-4 space-y-8">
             {/* Party Info Section */}
             <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 -mt-20">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Juhlatiedot</h2>
-              <p className="text-gray-600 mb-4">
-                Täällä voit pelata juhlapeleja, jakaa kuvia ja muistoja sekä tutustua muihin juhlijoihin.
-                Kaikki tuloksesi tallentuvat automaattisesti ja voit seurata edistymistäsi.
-              </p>
-              <div className="text-sm text-gray-500 space-y-1">
-                <p>📅 Lauantai 6.2.2025</p>
-                <p>📍 Juhlapaikka</p>
-                <p>🕒 Klo 18:00 alkaen</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Tervetuloa juhliini!</h2>
+              
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-gray-800 mb-4">Juhlien aikataulu</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span className="font-medium text-gray-900">Klo 16:00</span>
+                    <span className="text-gray-700">Vieraat saapuvat</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span className="font-medium text-gray-900">Klo 17:00</span>
+                    <span className="text-gray-700">Ohjelma alkaa</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span className="font-medium text-gray-900">Klo 19:00</span>
+                    <span className="text-gray-700">Kakkukahvit</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span className="font-medium text-gray-900">Klo 21:00</span>
+                    <span className="text-gray-700">Grillailua ja Sauna</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                    <span className="font-medium text-gray-900">Klo 23:00-06:00</span>
+                    <span className="text-gray-700">Juhlat jatkuvat yöhön asti</span>
+                  </div>
+                  <div className="flex justify-between items-center py-2">
+                    <span className="font-medium text-gray-900">Klo 11:00</span>
+                    <span className="text-gray-700">Teltan purku</span>
+                  </div>
+                </div>
               </div>
             </div>
 
