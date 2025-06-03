@@ -102,10 +102,10 @@ export default function Party() {
         {/* Hero section with transparent background */}
         <div className="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-20">
           <div className="text-center text-white">
-            <h1 className="text-5xl sm:text-6xl font-bold mb-4 drop-shadow-lg">
+            <h1 className="text-5xl sm:text-6xl font-bold mb-4 drop-shadow-lg" style={{ fontFamily: 'var(--font-dancing)' }}>
               Saku 30v
             </h1>
-            <p className="text-xl sm:text-2xl drop-shadow-lg mb-2">
+            <p className="text-xl sm:text-2xl drop-shadow-lg mb-2" style={{ fontFamily: 'var(--font-dancing)' }}>
               ja Insinööri
             </p>
           </div>
@@ -218,12 +218,12 @@ export default function Party() {
                         </div>
                       </div>
                       
-                      <div className="relative w-full h-48 rounded-lg overflow-hidden mb-2">
+                      <div className="relative w-full h-48 rounded-lg overflow-hidden mb-2 bg-gray-100">
                         <Image
                           src={photo.photoUrl}
                           alt={photo.caption || "Juhlahetki"}
                           fill
-                          className="object-cover"
+                          className="object-contain"
                         />
                       </div>
                       

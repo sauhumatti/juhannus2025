@@ -291,12 +291,12 @@ export default function PhotosPage() {
                 <>
                   {/* Image preview */}
                   {previewUrl && (
-                    <div className="relative w-full h-48 rounded-lg overflow-hidden">
+                    <div className="relative w-full h-48 rounded-lg overflow-hidden bg-gray-100">
                       <Image
                         src={previewUrl}
                         alt="Esikatselu"
                         fill
-                        className="object-cover"
+                        className="object-contain"
                       />
                     </div>
                   )}
@@ -452,12 +452,12 @@ export default function PhotosPage() {
                     </div>
 
                     {/* Photo */}
-                    <div className="relative w-full h-64 sm:h-96 rounded-lg overflow-hidden mb-4">
+                    <div className="relative w-full h-64 sm:h-96 rounded-lg overflow-hidden mb-4 bg-gray-100">
                       <Image
                         src={photo.photoUrl}
                         alt={photo.caption || "Juhlahetki"}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                       />
                     </div>
 

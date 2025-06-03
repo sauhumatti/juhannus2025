@@ -58,15 +58,9 @@ export default function Navbar() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <div className="flex items-center px-2 py-2">
-                <Image
-                  src="/logo.png"
-                  alt="Logo"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto"
-                  priority
-                  quality={100}
-                />
+                <span className="text-3xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-dancing)' }}>
+                  Saku 30v
+                </span>
               </div>
             </div>
             <div className="flex items-center">
@@ -88,17 +82,11 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link
               href={user ? "/party" : "/"}
-              className="flex items-center px-2 py-2"
+              className="flex items-center px-2 py-2 hover:opacity-80 transition-opacity"
             >
-              <Image
-                src="/logo.png"
-                alt="Logo"
-                width={120}
-                height={40}
-                className="h-10 w-auto hover:opacity-80 transition-opacity"
-                priority
-                quality={100}
-              />
+              <span className="text-3xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-dancing)' }}>
+                Saku 30v
+              </span>
             </Link>
           </div>
 
