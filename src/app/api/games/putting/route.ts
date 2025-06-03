@@ -4,23 +4,46 @@ import { prisma } from '@/lib/prisma';
 // Get leaderboard
 export async function GET() {
   try {
-    const scores = await prisma.puttingScore.findMany({
-      include: {
-        user: {
-          select: {
-            name: true,
-            username: true,
-            photoUrl: true
-          }
-        }
+    // Get the best score for each user
+    const bestScores = await prisma.puttingScore.groupBy({
+      by: ['userId'],
+      _max: {
+        score: true,
       },
-      orderBy: {
-        score: 'desc'
-      },
-      take: 10 // Top 10 scores
     });
 
-    return NextResponse.json(scores);
+    // Get the full score details for each user's best score
+    const scores = await Promise.all(
+      bestScores.map(async (best) => {
+        const score = await prisma.puttingScore.findFirst({
+          where: {
+            userId: best.userId,
+            score: best._max.score!,
+          },
+          include: {
+            user: {
+              select: {
+                name: true,
+                username: true,
+                photoUrl: true,
+              },
+            },
+          },
+          orderBy: {
+            createdAt: 'desc', // If same score, get the most recent
+          },
+        });
+        return score;
+      })
+    );
+
+    // Filter out nulls and sort by score (descending)
+    const sortedScores = scores
+      .filter((score) => score !== null)
+      .sort((a, b) => b!.score - a!.score)
+      .slice(0, 10); // Top 10
+
+    return NextResponse.json(sortedScores);
   } catch (error) {
     console.error('Error fetching putting scores:', error);
     return NextResponse.json(
@@ -42,6 +65,15 @@ export async function POST(req: Request) {
       );
     }
 
+    // Check if this is a personal best
+    const previousBest = await prisma.puttingScore.findFirst({
+      where: { userId },
+      orderBy: { score: 'desc' },
+    });
+
+    const isPersonalBest = !previousBest || score > previousBest.score;
+
+    // Create the score
     const puttingScore = await prisma.puttingScore.create({
       data: {
         score,
@@ -57,6 +89,29 @@ export async function POST(req: Request) {
         }
       }
     });
+
+    // If it's a personal best, create a feed post
+    if (isPersonalBest) {
+      // Get all scores to determine position
+      const allBestScores = await prisma.puttingScore.groupBy({
+        by: ['userId'],
+        _max: { score: true },
+      });
+
+      const sortedScores = allBestScores
+        .sort((a, b) => b._max.score! - a._max.score!);
+
+      const position = sortedScores.findIndex(s => s.userId === userId) + 1;
+
+      // Create a "photo" moment for the feed
+      await prisma.photoMoment.create({
+        data: {
+          userId,
+          photoUrl: 'highscore', // Special marker for high score posts
+          caption: `⛳ Uusi henkilökohtainen ennätys! Puttaus: ${score}/10 pistettä - Sija #${position} tulostaululla!`
+        }
+      });
+    }
 
     return NextResponse.json(puttingScore);
   } catch (error) {

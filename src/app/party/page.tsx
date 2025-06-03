@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -25,21 +25,29 @@ export default function Party() {
   const [user, setUser] = useState<User | null>(null);
   const [recentPhotos, setRecentPhotos] = useState<PhotoMoment[]>([]);
   const [loading, setLoading] = useState(true);
+  const [allPhotos, setAllPhotos] = useState<PhotoMoment[]>([]);
+  const [showCount, setShowCount] = useState(5);
   const router = useRouter();
 
-  const fetchRecentPhotos = async () => {
+  const fetchRecentPhotos = useCallback(async () => {
     try {
-      const response = await fetch("/api/photos");
+      const response = await fetch("/api/photos?includeHighscores=true");
       if (response.ok) {
         const photos = await response.json();
-        // Take only the 5 most recent photos
-        setRecentPhotos(photos.slice(0, 5));
+        setAllPhotos(photos);
+        setRecentPhotos(photos.slice(0, showCount));
       }
     } catch (error) {
       console.error("Error fetching photos:", error);
     } finally {
       setLoading(false);
     }
+  }, [showCount]);
+
+  const loadMorePhotos = () => {
+    const newCount = showCount + 5;
+    setShowCount(newCount);
+    setRecentPhotos(allPhotos.slice(0, newCount));
   };
 
   useEffect(() => {
@@ -61,7 +69,14 @@ export default function Party() {
     };
 
     checkAuth();
-  }, [router]);
+  }, [router, fetchRecentPhotos]);
+
+  // Update displayed photos when showCount changes
+  useEffect(() => {
+    if (allPhotos.length > 0) {
+      setRecentPhotos(allPhotos.slice(0, showCount));
+    }
+  }, [showCount, allPhotos]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -190,11 +205,6 @@ export default function Party() {
               <div className="p-6 sm:p-8">
                 <h2 className="text-4xl font-bold text-black mb-2 text-center" style={{ fontFamily: 'var(--font-dancing)', textShadow: '2px 2px 3px rgba(255,255,255,0.7), -2px -2px 3px rgba(255,255,255,0.7), 2px -2px 3px rgba(255,255,255,0.7), -2px 2px 3px rgba(255,255,255,0.7)' }}>Juhlien päivitykset</h2>
                 <div className="w-40 h-1 bg-gradient-to-r from-purple-400 to-blue-400 mx-auto mb-6 rounded-full shadow-lg"></div>
-                <div className="text-center mb-6">
-                  <Link href="/photos" className="text-white hover:text-purple-300 font-medium text-sm drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
-                    Katso kaikki →
-                  </Link>
-                </div>
                 
                 <div className="space-y-6 max-w-md mx-auto">
                   {recentPhotos.map((photo, index) => (
@@ -215,14 +225,25 @@ export default function Party() {
                           </div>
                         </div>
                         
-                        <div className="relative w-full h-64 rounded-lg overflow-hidden mb-3">
-                          <Image
-                            src={photo.photoUrl}
-                            alt={photo.caption || "Juhlahetki"}
-                            fill
-                            className="object-contain"
-                          />
-                        </div>
+                        {photo.photoUrl !== 'highscore' ? (
+                          <div className="relative w-full h-64 rounded-lg overflow-hidden mb-3">
+                            <Image
+                              src={photo.photoUrl}
+                              alt={photo.caption || "Juhlahetki"}
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className="w-full p-8 rounded-lg mb-3 bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 border-2 border-yellow-400/50 backdrop-blur-sm">
+                            <div className="text-center">
+                              <div className="text-6xl mb-2">🏆</div>
+                              <p className="text-yellow-300 font-bold text-lg drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>
+                                Uusi ennätys!
+                              </p>
+                            </div>
+                          </div>
+                        )}
                         
                         {photo.caption && (
                           <p className="text-white text-base drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>{photo.caption}</p>
@@ -234,6 +255,18 @@ export default function Party() {
                     </div>
                   ))}
                 </div>
+                
+                {/* Load more button */}
+                {recentPhotos.length < allPhotos.length && (
+                  <div className="text-center mt-6">
+                    <button
+                      onClick={loadMorePhotos}
+                      className="px-6 py-3 bg-white/20 border-2 border-white/50 text-white rounded-lg hover:bg-white/30 hover:border-white transition-all backdrop-blur-sm"
+                    >
+                      Näytä lisää
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 

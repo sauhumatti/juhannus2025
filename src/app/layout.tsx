@@ -4,7 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
-export const dancingScript = Dancing_Script({ 
+const dancingScript = Dancing_Script({ 
   subsets: ["latin"],
   variable: "--font-dancing",
   display: "swap"

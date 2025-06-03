@@ -209,21 +209,15 @@ export default function Records() {
             {/* Icebreaker Stats */}
             {activeTab === "icebreaker" && stats && (
               <div className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="bg-blue-50 p-4 rounded-lg text-center">
                     <p className="text-sm text-blue-600 font-medium">Oma kortti</p>
                     <p className="text-2xl font-semibold text-blue-900">{stats.ownCardProgress}/20</p>
-                    <p className="text-xs text-blue-500 mt-1">löydettyä henkilöä</p>
-                  </div>
-                  
-                  <div className="bg-green-50 p-4 rounded-lg text-center">
-                    <p className="text-sm text-green-600 font-medium">Vastauksia annettu</p>
-                    <p className="text-2xl font-semibold text-green-900">{stats.answersGiven}</p>
-                    <p className="text-xs text-green-500 mt-1">muiden kortteihin</p>
+                    <p className="text-xs text-blue-500 mt-1">vastauksia löydetty</p>
                   </div>
 
                   <div className="bg-purple-50 p-4 rounded-lg text-center">
-                    <p className="text-sm text-purple-600 font-medium">Sinut löydetty</p>
+                    <p className="text-sm text-purple-600 font-medium">Sinut valittu</p>
                     <p className="text-2xl font-semibold text-purple-900">{stats.timesSelected}</p>
                     <p className="text-xs text-purple-500 mt-1">kertaa vastaukseksi</p>
                   </div>

@@ -4,23 +4,46 @@ import { prisma } from '@/lib/prisma';
 // Get leaderboard
 export async function GET() {
   try {
-    const scores = await prisma.beerScore.findMany({
-      include: {
-        user: {
-          select: {
-            name: true,
-            username: true,
-            photoUrl: true
-          }
-        }
+    // Get the best score for each user
+    const bestScores = await prisma.beerScore.groupBy({
+      by: ['userId'],
+      _min: {
+        time: true,
       },
-      orderBy: {
-        time: 'asc' // Fastest times first
-      },
-      take: 10 // Top 10 scores
     });
 
-    return NextResponse.json(scores);
+    // Get the full score details for each user's best time
+    const scores = await Promise.all(
+      bestScores.map(async (best) => {
+        const score = await prisma.beerScore.findFirst({
+          where: {
+            userId: best.userId,
+            time: best._min.time!,
+          },
+          include: {
+            user: {
+              select: {
+                name: true,
+                username: true,
+                photoUrl: true,
+              },
+            },
+          },
+          orderBy: {
+            createdAt: 'desc', // If same time, get the most recent
+          },
+        });
+        return score;
+      })
+    );
+
+    // Filter out nulls and sort by time
+    const sortedScores = scores
+      .filter((score) => score !== null)
+      .sort((a, b) => a!.time - b!.time)
+      .slice(0, 10); // Top 10
+
+    return NextResponse.json(sortedScores);
   } catch (error) {
     console.error('Error fetching beer scores:', error);
     return NextResponse.json(
@@ -42,6 +65,15 @@ export async function POST(req: Request) {
       );
     }
 
+    // Check if this is a personal best
+    const previousBest = await prisma.beerScore.findFirst({
+      where: { userId },
+      orderBy: { time: 'asc' },
+    });
+
+    const isPersonalBest = !previousBest || time < previousBest.time;
+
+    // Create the score
     const beerScore = await prisma.beerScore.create({
       data: {
         time,
@@ -57,6 +89,29 @@ export async function POST(req: Request) {
         }
       }
     });
+
+    // If it's a personal best, create a feed post
+    if (isPersonalBest) {
+      // Get all scores to determine position
+      const allBestScores = await prisma.beerScore.groupBy({
+        by: ['userId'],
+        _min: { time: true },
+      });
+
+      const sortedScores = allBestScores
+        .sort((a, b) => a._min.time! - b._min.time!);
+
+      const position = sortedScores.findIndex(s => s.userId === userId) + 1;
+
+      // Create a "photo" moment for the feed
+      await prisma.photoMoment.create({
+        data: {
+          userId,
+          photoUrl: 'highscore', // Special marker for high score posts
+          caption: `🏆 Uusi henkilökohtainen ennätys! Kaljakellotus: ${time.toFixed(2)}s - Sija #${position} tulostaululla!`
+        }
+      });
+    }
 
     return NextResponse.json(beerScore);
   } catch (error) {

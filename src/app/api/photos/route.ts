@@ -2,9 +2,19 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
 // Get all photo moments in chronological order
-export async function GET() {
+export async function GET(req: Request) {
   try {
+    const { searchParams } = new URL(req.url);
+    const includeHighscores = searchParams.get('includeHighscores') === 'true';
+
+    const whereClause = includeHighscores ? {} : {
+      photoUrl: {
+        not: 'highscore' // Exclude highscore posts from photos page by default
+      }
+    };
+
     const photos = await prisma.photoMoment.findMany({
+      where: whereClause,
       include: {
         user: {
           select: {
