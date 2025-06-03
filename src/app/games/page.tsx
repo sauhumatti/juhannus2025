@@ -23,8 +23,9 @@ export default function Games() {
   return (
     <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-6">Pelit</h1>
+        <div className="bg-white rounded-xl shadow-lg p-6 mt-8 border-2 border-blue-200">
+          <h1 className="text-5xl font-bold text-center mb-2" style={{ fontFamily: 'var(--font-dancing)' }}>Pelit</h1>
+          <div className="w-32 h-1 bg-blue-400 mx-auto mb-6"></div>
 
           {/* Tabs */}
           <div className="relative">

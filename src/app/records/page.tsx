@@ -149,11 +149,13 @@ export default function Records() {
   return (
     <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-xl shadow-lg p-6 mt-8">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4 sm:mb-0">
-              {viewMode === "personal" ? "Omat tulokset" : "Tulostaulukko"}
-            </h1>
+        <div className="bg-white rounded-xl shadow-lg p-6 mt-8 border-2 border-green-200">
+          <h1 className="text-5xl font-bold text-center mb-2" style={{ fontFamily: 'var(--font-dancing)' }}>
+            {viewMode === "personal" ? "Omat tulokset" : "Tulostaulukko"}
+          </h1>
+          <div className="w-32 h-1 bg-green-400 mx-auto mb-6"></div>
+          
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center mb-6">
             
             {/* View mode toggle */}
             <div className="flex rounded-lg bg-gray-100 p-1">

@@ -254,13 +254,14 @@ export default function PhotosPage() {
   return (
     <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-pink-50 to-purple-50 px-4 py-2 sm:p-4">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8 mt-4 sm:mt-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">📸 Juhlahetket</h1>
-          <p className="text-gray-600 mb-6">Jaa kuvia ja muistoja juhlista!</p>
+        <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8 mt-4 sm:mt-8 border-2 border-pink-200">
+          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-2" style={{ fontFamily: 'var(--font-dancing)' }}>Juhlakuvat</h1>
+          <div className="w-32 h-1 bg-pink-400 mx-auto mb-4"></div>
+          <p className="text-gray-600 text-center mb-6 italic">Jaa kuvia ja muistoja juhlista!</p>
 
           {/* Upload Section */}
-          <div className="bg-purple-50 rounded-xl p-4 sm:p-6 mb-8">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Lataa uusi kuva</h2>
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 sm:p-6 mb-8 border border-purple-200">
+            <h2 className="text-xl font-semibold text-center mb-4" style={{ fontFamily: 'var(--font-dancing)' }}>Lataa uusi kuva</h2>
             
             <div className="space-y-4">
               {/* File selection button */}
@@ -279,9 +280,9 @@ export default function PhotosPage() {
                   className="w-full sm:w-auto px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {selectedFile ? (
-                    <>✅ Kuva valittu</>
+                    <>Kuva valittu</>
                   ) : (
-                    <>📁 Valitse kuva</>
+                    <>Valitse kuva</>
                   )}
                 </button>
               </div>
@@ -331,7 +332,7 @@ export default function PhotosPage() {
                           Ladataan...
                         </>
                       ) : (
-                        <>📤 Julkaise</>
+                        <>Julkaise</>
                       )}
                     </button>
                     <button

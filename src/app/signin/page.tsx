@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SignIn() {
   const [username, setUsername] = useState("");
@@ -40,8 +41,24 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 flex flex-col items-center justify-center">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 space-y-8">
+    <div className="relative min-h-screen">
+      {/* Background image - responsive behavior */}
+      <div className="fixed inset-0 z-0 sm:bg-black">
+        <Image
+          src="/photo_of_me.jpg"
+          alt="Background"
+          fill
+          className="object-cover sm:object-contain"
+          quality={100}
+          priority
+        />
+        {/* Gradient overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 min-h-screen p-4 flex flex-col items-center justify-center">
+        <div className="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-8 space-y-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Tervetuloa takaisin!</h1>
           <p className="text-gray-600">Anna käyttäjänimesi jatkaaksesi</p>
@@ -82,6 +99,7 @@ export default function SignIn() {
             </Link>
           </div>
         </form>
+        </div>
       </div>
     </div>
   );

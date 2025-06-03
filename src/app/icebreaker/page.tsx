@@ -283,9 +283,10 @@ export default function Icebreaker() {
   return (
     <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 px-4 py-2 sm:p-4">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8 mt-4 sm:mt-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{card.title}</h1>
-          <p className="text-gray-600 mb-4 sm:mb-6">{card.subtitle}</p>
+        <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8 mt-4 sm:mt-8 border-2 border-blue-200">
+          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-2" style={{ fontFamily: 'var(--font-dancing)' }}>{card.title}</h1>
+          <div className="w-32 h-1 bg-blue-400 mx-auto mb-4"></div>
+          <p className="text-gray-600 text-center mb-4 sm:mb-6 italic">{card.subtitle}</p>
 
           <div className="bg-blue-50 p-4 rounded-lg mb-6">
             <p className="text-blue-800">

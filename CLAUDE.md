@@ -15,9 +15,25 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npx prisma db push` - Push schema changes to database
 - `npx prisma studio` - Open database browser
 
+## Environment Variables
+
+**Required for photo uploads:**
+- `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` - Cloudinary cloud name
+- `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET` - Upload preset for unsigned uploads
+- `CLOUDINARY_API_KEY` - (Optional) For signed uploads
+- `CLOUDINARY_API_SECRET` - (Optional) For signed uploads
+
 ## Architecture Overview
 
-This is a Finnish party/social gaming application built with **Next.js 15 App Router**, **TypeScript**, **Prisma ORM**, and **PostgreSQL**. The app manages multiple party games, user profiles, and social interactions for birthday party guests.
+This is a Finnish party/social gaming application built with:
+- **Next.js 15.3.2** with App Router
+- **React 19.0.0**
+- **TypeScript**
+- **Prisma ORM v6.8.2** with PostgreSQL
+- **Tailwind CSS v4** (new version with postcss plugin)
+- **Cloudinary** for photo uploads
+
+The app manages multiple party games, user profiles, photo sharing, and social interactions for birthday party guests.
 
 ### Admin Dashboard (`/admin`)
 
@@ -29,6 +45,7 @@ This is a Finnish party/social gaming application built with **Next.js 15 App Ro
 - **Beer Pong Match Management**: Change match status (ongoing/completed), assign winners, delete matches
 - **User Management**: View all user stats, delete users (except admin), track icebreaker progress
 - **Icebreaker Answer Moderation**: View and delete individual answer submissions
+- **Photo Moderation**: Delete any user's photos (not just own)
 
 **Admin API Endpoints:**
 - `/api/admin/game-state` - GET/PUT icebreaker toggle state
@@ -49,12 +66,15 @@ This is a Finnish party/social gaming application built with **Next.js 15 App Ro
 - Game scores: `DartScore` (0-50), `PuttingScore` (0-10), `BeerScore` (time in seconds)
 - `BeerPongMatch` - Complex tournament system with teams and statistics
 - `IcebreakerCard`/`IcebreakerAnswer` - Social card game system using `tutustumiskortit.json`
+- `PhotoMoment` - Photo sharing with user relationship, photoUrl, caption, and timestamps
 
 **API Structure:**
 - `/api/auth/*` - Authentication endpoints
 - `/api/games/*` - Game-specific scoring APIs
 - `/api/admin/*` - Administrative functions
 - `/api/icebreaker/*` - Social game management
+- `/api/photos/*` - Photo CRUD operations
+- `/api/photos/upload-signature` - Cloudinary upload signature generation
 
 ### Key Technical Details
 
@@ -73,9 +93,27 @@ This is a Finnish party/social gaming application built with **Next.js 15 App Ro
 - Social interaction system where users answer questions about each other
 - Database tracks who answered what about whom
 
+**Photo Sharing System:**
+- Cloudinary integration for photo uploads
+- Users can upload, view, edit captions, and delete their own photos
+- Admin can delete any user's photos
+- Photos page with filtering (all photos vs own photos)
+- Recent photos feed displayed on party landing page
+
+**Party Page (`/party`):**
+- Central landing page with party schedule
+- Quick navigation links to all features
+- Live photo feed showing recent uploads
+
 **Error Handling:**
 - Finnish language error messages throughout API endpoints
 - Consistent error response format across all routes
+
+**UI/UX Features:**
+- Custom scrollbar hiding with `.scrollbar-hide` utility
+- Responsive image handling (different behaviors on mobile/desktop)
+- Google Fonts integration with Dancing Script for decorative headers
+- Tailwind CSS v4 with inline theme configuration (no tailwind.config.js)
 
 ## Development Guidelines
 

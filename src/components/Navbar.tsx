@@ -74,6 +74,9 @@ export default function Navbar() {
 
   // Check if user is admin
   const isAdmin = user?.username === "admin";
+  
+  // Check if we're on the landing page
+  const isLandingPage = pathname === "/" && !user;
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -90,39 +93,41 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Hamburger menu button */}
-          <div className="flex items-center sm:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
-            >
-              <svg
-                className="h-6 w-6"
-                stroke="currentColor"
-                fill="none"
-                viewBox="0 0 24 24"
+          {/* Hamburger menu button - hide on landing page */}
+          {!isLandingPage && (
+            <div className="flex items-center sm:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
               >
-                {isMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
+                <svg
+                  className="h-6 w-6"
+                  stroke="currentColor"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  {isMenuOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  )}
+                </svg>
+              </button>
+            </div>
+          )}
 
-          {/* Desktop navigation */}
-          <div className="hidden sm:flex sm:items-center sm:space-x-4">
+          {/* Desktop navigation - on landing page, show on mobile too */}
+          <div className={`${isLandingPage ? 'flex' : 'hidden sm:flex'} items-center space-x-4`}>
             {user ? (
               <>
                 <Link
@@ -200,13 +205,13 @@ export default function Navbar() {
               <>
                 <Link
                   href="/signin"
-                  className="px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+                  className="px-2 sm:px-3 py-2 text-sm sm:text-base text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
                 >
-                  Kirjaudu sisään
+                  Kirjaudu
                 </Link>
                 <Link
                   href="/signup"
-                  className="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  className="px-2 sm:px-3 py-2 text-sm sm:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                 >
                   Luo tili
                 </Link>
