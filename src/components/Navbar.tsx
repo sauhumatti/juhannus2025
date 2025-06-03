@@ -155,7 +155,7 @@ export default function Navbar() {
                       : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                   }`}
                 >
-                  Bilekuvat
+                  Juhlakuvat
                 </Link>
                 <Link
                   href="/games"
@@ -251,7 +251,7 @@ export default function Navbar() {
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
-                Bilekuvat
+                Juhlakuvat
               </Link>
               <Link
                 href="/games"

@@ -424,18 +424,20 @@ export default function PhotosPage() {
                           <p className="text-sm text-gray-500">{formatDate(photo.createdAt)}</p>
                         </div>
                       </div>
-                      {/* Edit/Delete buttons for own photos */}
-                      {user?.id === photo.user.id && (
+                      {/* Edit/Delete buttons for own photos or admin */}
+                      {(user?.id === photo.user.id || user?.username === "admin") && (
                         <div className="flex gap-2">
                           {editingPhotoId !== photo.id && (
                             <>
-                              <button
-                                onClick={() => handleEdit(photo)}
-                                className="text-blue-600 hover:text-blue-800 p-2"
-                                title="Muokkaa"
-                              >
-                                ✏️
-                              </button>
+                              {user?.id === photo.user.id && (
+                                <button
+                                  onClick={() => handleEdit(photo)}
+                                  className="text-blue-600 hover:text-blue-800 p-2"
+                                  title="Muokkaa"
+                                >
+                                  ✏️
+                                </button>
+                              )}
                               <button
                                 onClick={() => handleDelete(photo.id)}
                                 className="text-red-600 hover:text-red-800 p-2"

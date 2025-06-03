@@ -153,12 +153,30 @@ export default function Party() {
             <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-6">Mitä tehdä?</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <Link href="/photos" className="group">
+                  <div className="p-4 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors">
+                    <h3 className="text-lg font-semibold text-pink-900 group-hover:text-pink-700">
+                      📸 Juhlakuvat
+                    </h3>
+                    <p className="text-pink-700 text-sm">Lataa ja katso hauskoja juhlakuvia</p>
+                  </div>
+                </Link>
+                
                 <Link href="/games" className="group">
                   <div className="p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
                     <h3 className="text-lg font-semibold text-purple-900 group-hover:text-purple-700">
-                      🎮 Juhlapelat
+                      🎮 Pelit
                     </h3>
-                    <p className="text-purple-700 text-sm">Tikkapeli, minigolf, olutpeli ja beer pong</p>
+                    <p className="text-purple-700 text-sm">Tikanheitto, puttaus, kaljakellotus ja beer pong</p>
+                  </div>
+                </Link>
+                
+                <Link href="/records" className="group">
+                  <div className="p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+                    <h3 className="text-lg font-semibold text-green-900 group-hover:text-green-700">
+                      🏆 Tulokset
+                    </h3>
+                    <p className="text-green-700 text-sm">Katso omat ja muiden pelitulokset</p>
                   </div>
                 </Link>
                 
@@ -167,25 +185,6 @@ export default function Party() {
                     <h3 className="text-lg font-semibold text-blue-900 group-hover:text-blue-700">
                       🎯 Tutustumispeli
                     </h3>
-                    <p className="text-blue-700 text-sm">Opi tuntemaan muut juhlijat</p>
-                  </div>
-                </Link>
-                
-                <Link href="/photos" className="group">
-                  <div className="p-4 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors">
-                    <h3 className="text-lg font-semibold text-pink-900 group-hover:text-pink-700">
-                      📸 Kuvamuistot
-                    </h3>
-                    <p className="text-pink-700 text-sm">Jaa ja katso juhlahetkiä</p>
-                  </div>
-                </Link>
-                
-                <Link href="/records" className="group">
-                  <div className="p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
-                    <h3 className="text-lg font-semibold text-green-900 group-hover:text-green-700">
-                      🏆 Tulostaulukot
-                    </h3>
-                    <p className="text-green-700 text-sm">Katso pelien tuloksia</p>
                   </div>
                 </Link>
               </div>
