@@ -147,7 +147,7 @@ export default function Records() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
+    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4 records-page">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 mt-8 border-2 border-green-200">
           <h1 className="text-5xl font-bold text-center mb-2 dancing-font">
@@ -426,16 +426,16 @@ export default function Records() {
                             <div className="flex items-center space-x-4">
                               <span className={`text-lg font-bold ${
                                 index === 0 ? "text-yellow-600" : 
-                                index === 1 ? "text-gray-600" :
-                                index === 2 ? "text-orange-600" : "text-gray-500"
+                                index === 1 ? "text-gray-800" :
+                                index === 2 ? "text-orange-600" : "text-gray-700"
                               }`}>
                                 #{index + 1}
                               </span>
-                              <span className="font-medium">{entry.name}</span>
+                              <span className="font-medium text-gray-900">{entry.name}</span>
                             </div>
                             <div className="text-right">
-                              <span className="text-lg font-semibold">{entry.questionsAnswered}/{entry.totalQuestions}</span>
-                              <span className="text-sm text-gray-500 block">{entry.completionPercentage}% valmis</span>
+                              <span className="text-lg font-semibold text-gray-900">{entry.questionsAnswered}/{entry.totalQuestions}</span>
+                              <span className="text-sm text-gray-700 block">{entry.completionPercentage}% valmis</span>
                             </div>
                           </div>
                         ))}

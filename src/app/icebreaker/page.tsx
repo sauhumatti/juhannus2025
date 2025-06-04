@@ -35,6 +35,13 @@ interface LeaderboardEntry {
   cardTitle: string;
 }
 
+interface SelectedAsAnswer {
+  cardOwner: string;
+  cardTitle: string;
+  questionNumber: number;
+  questionText: string;
+}
+
 export default function Icebreaker() {
   const [user, setUser] = useState<User | null>(null);
   const [card, setCard] = useState<Card | null>(null);
@@ -49,6 +56,8 @@ export default function Icebreaker() {
   const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [editingQuestion, setEditingQuestion] = useState<number | null>(null);
   const [editSelectedParticipant, setEditSelectedParticipant] = useState<string>("");
+  const [selectedAsAnswers, setSelectedAsAnswers] = useState<SelectedAsAnswer[]>([]);
+  const [showSelectedAsAnswers, setShowSelectedAsAnswers] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -99,6 +108,13 @@ export default function Icebreaker() {
         if (!leaderboardRes.ok) throw new Error("Failed to fetch leaderboard");
         const leaderboardData = await leaderboardRes.json();
         setLeaderboard(leaderboardData);
+
+        // Fetch questions where user was selected as answer
+        const selectedRes = await fetch(`/api/icebreaker/selected-as-answer?userId=${user.id}`);
+        if (selectedRes.ok) {
+          const selectedData = await selectedRes.json();
+          setSelectedAsAnswers(selectedData);
+        }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Error loading game data");
       }
@@ -341,13 +357,22 @@ export default function Icebreaker() {
             </p>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-6 space-y-3">
             <button
               onClick={() => setShowLeaderboard(!showLeaderboard)}
-              className="w-full sm:w-auto px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+              className="w-full sm:w-auto px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors mr-3"
             >
               {showLeaderboard ? "Piilota tulostaulu" : "Näytä tulostaulu"}
             </button>
+            
+            {selectedAsAnswers.length > 0 && (
+              <button
+                onClick={() => setShowSelectedAsAnswers(!showSelectedAsAnswers)}
+                className="w-full sm:w-auto px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                {showSelectedAsAnswers ? "Piilota omat vastaukset" : `Näytä omat vastaukset (${selectedAsAnswers.length})`}
+              </button>
+            )}
           </div>
 
           {showLeaderboard && (
@@ -499,6 +524,46 @@ export default function Icebreaker() {
             </div>
           )}
 
+          {showSelectedAsAnswers && selectedAsAnswers.length > 0 && (
+            <div className="bg-green-50 rounded-xl p-4 sm:p-6 mb-6">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">🎯 Sinut on valittu vastaukseksi</h2>
+              <p className="text-green-900 mb-4 text-sm font-medium">
+                Nämä ovat kysymykset, joihin muut pelaajat ovat valinneet sinut vastaukseksi:
+              </p>
+              
+              <div className="space-y-3">
+                {selectedAsAnswers.map((answer, index) => (
+                  <div
+                    key={`${answer.cardOwner}-${answer.questionNumber}`}
+                    className="bg-white p-4 rounded-lg border border-green-200"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <p className="text-sm text-gray-800 mb-1 font-medium">
+                          <strong className="text-gray-900">{answer.cardOwner}</strong> - {answer.cardTitle}
+                        </p>
+                        <p className="text-gray-900 font-semibold">
+                          {answer.questionNumber}. {answer.questionText}
+                        </p>
+                      </div>
+                      <div className="ml-4 flex-shrink-0">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-900">
+                          Sinä
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              {selectedAsAnswers.length === 0 && (
+                <p className="text-gray-800 text-center py-4 font-medium">
+                  Kukaan ei ole vielä valinnut sinua vastaukseksi.
+                </p>
+              )}
+            </div>
+          )}
+
           <div className="space-y-4 sm:space-y-6">
             {card.questions.map((question) => (
               <div
@@ -559,7 +624,7 @@ export default function Icebreaker() {
                             className="object-cover"
                           />
                         </div>
-                        <span className="text-green-700 font-medium">
+                        <span className="text-green-800 font-semibold">
                           {card.answers[question.number].name}
                         </span>
                         <button

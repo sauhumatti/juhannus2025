@@ -158,10 +158,49 @@ body {
     color: #1d4ed8 !important; /* Dark blue */
   }
   
+  /* Make green text darker on mobile for better visibility */
+  .icebreaker-page .text-green-700 {
+    color: #14532d !important; /* Very dark green */
+  }
+  
+  .icebreaker-page .text-green-800 {
+    color: #166534 !important; /* Very dark green */
+  }
+  
+  .icebreaker-page .text-green-900 {
+    color: #14532d !important; /* Very dark green */
+  }
+  
   /* Preserve other colored text */
-  .icebreaker-page .text-green-700,
   .icebreaker-page .text-red-600,
   .icebreaker-page .text-white {
     color: inherit !important;
+  }
+  
+  /* Records page text visibility fixes */
+  .records-page span,
+  .records-page td {
+    color: #111827 !important; /* Force dark text on mobile */
+  }
+  
+  /* Preserve specific colored text in records */
+  .records-page .text-yellow-600,
+  .records-page .text-orange-600,
+  .records-page .text-blue-600,
+  .records-page .text-green-600 {
+    color: inherit !important;
+  }
+  
+  /* Make gray text darker in records */
+  .records-page .text-gray-500 {
+    color: #374151 !important;
+  }
+  
+  .records-page .text-gray-600 {
+    color: #4b5563 !important;
+  }
+  
+  .records-page .text-gray-700 {
+    color: #374151 !important;
   }
 }

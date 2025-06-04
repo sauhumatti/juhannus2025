@@ -226,3 +226,41 @@ export async function getParticipants() {
     }
   });
 }
+
+export async function getSelectedAsAnswers(userId: string) {
+  // Find all answers where this user is the receiver (selected as answer)
+  const answers = await prisma.icebreakerAnswer.findMany({
+    where: {
+      receiverId: userId
+    },
+    include: {
+      card: {
+        include: {
+          user: {
+            select: {
+              name: true
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // Load all cards to get question texts and card titles
+  const allCards = await loadCards();
+
+  // Map the results to include question text and card title
+  const result = answers.map(answer => {
+    const cardData = allCards.find(c => c.id === answer.card.cardId);
+    const question = cardData?.questions.find(q => q.number === answer.questionNumber);
+    
+    return {
+      cardOwner: answer.card.user.name,
+      cardTitle: cardData?.title || 'Unknown Card',
+      questionNumber: answer.questionNumber,
+      questionText: question?.text || 'Unknown Question'
+    };
+  });
+
+  return result;
+}
