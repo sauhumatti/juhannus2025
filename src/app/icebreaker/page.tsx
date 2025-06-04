@@ -281,7 +281,7 @@ export default function Icebreaker() {
   const totalQuestions = card.questions.length;
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 px-4 py-2 sm:p-4">
+    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 px-4 py-2 sm:p-4 icebreaker-page">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8 mt-4 sm:mt-8 border-2 border-blue-200">
           <h1 className="text-4xl sm:text-5xl font-bold text-center mb-2 dancing-font">{card.title}</h1>
@@ -355,7 +355,7 @@ export default function Icebreaker() {
                     </div>
                     <div className="text-right">
                       <div className="flex items-center space-x-2">
-                        <span className="text-sm font-medium">
+                        <span className="text-sm font-medium text-gray-900">
                           {entry.questionsAnswered}/{entry.totalQuestions}
                         </span>
                         <div className="w-16 bg-gray-200 rounded-full h-2">
@@ -370,7 +370,7 @@ export default function Icebreaker() {
                             style={{ width: `${entry.completionPercentage}%` }}
                           />
                         </div>
-                        <span className="text-xs text-gray-600 w-8">
+                        <span className="text-xs text-gray-700 w-8">
                           {entry.completionPercentage}%
                         </span>
                       </div>
@@ -399,7 +399,7 @@ export default function Icebreaker() {
                 }`}
               >
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-                  <p className="text-base sm:text-lg flex-1">
+                  <p className="text-base sm:text-lg flex-1 text-gray-900">
                     {question.number}. {question.text}
                   </p>
                   {card.answers?.[question.number] ? (
@@ -408,14 +408,14 @@ export default function Icebreaker() {
                         <select
                           value={editSelectedParticipant}
                           onChange={(e) => setEditSelectedParticipant(e.target.value)}
-                          className="p-2 sm:p-1 border rounded text-base sm:text-sm min-w-[200px]"
+                          className="p-2 sm:p-1 border rounded text-base sm:text-sm min-w-[200px] text-gray-900"
                         >
-                          <option value="">Valitse uusi henkilö</option>
-                          <option value={card.answers[question.number].id}>
+                          <option value="" className="text-gray-900">Valitse uusi henkilö</option>
+                          <option value={card.answers[question.number].id} className="text-gray-900">
                             {card.answers[question.number].name} (nykyinen)
                           </option>
                           {editAvailableParticipants.map((participant) => (
-                            <option key={participant.id} value={participant.id}>
+                            <option key={participant.id} value={participant.id} className="text-gray-900">
                               {participant.name}
                             </option>
                           ))}
@@ -446,7 +446,7 @@ export default function Icebreaker() {
                             className="object-cover"
                           />
                         </div>
-                        <span className="text-green-700">
+                        <span className="text-green-700 font-medium">
                           {card.answers[question.number].name}
                         </span>
                         <button
@@ -463,18 +463,18 @@ export default function Icebreaker() {
                       <select
                         value={selectedParticipant}
                         onChange={(e) => setSelectedParticipant(e.target.value)}
-                        className={`p-2 sm:p-1 border rounded text-base sm:text-sm min-w-[200px] ${
+                        className={`p-2 sm:p-1 border rounded text-base sm:text-sm min-w-[200px] text-gray-900 ${
                           availableParticipants.length === 0 ? "bg-gray-100" : ""
                         }`}
                         disabled={availableParticipants.length === 0}
                       >
-                        <option value="">
+                        <option value="" className="text-gray-900">
                           {availableParticipants.length === 0 
                             ? "Ei vapaita henkilöitä" 
                             : "Valitse henkilö"}
                         </option>
                         {availableParticipants.map((participant) => (
-                          <option key={participant.id} value={participant.id}>
+                          <option key={participant.id} value={participant.id} className="text-gray-900">
                             {participant.name}
                           </option>
                         ))}

@@ -102,4 +102,26 @@ body {
   .admin-page .text-sm {
     color: #111827 !important;
   }
+  
+  /* Icebreaker page text visibility fixes */
+  .icebreaker-page select,
+  .icebreaker-page option,
+  .icebreaker-page input,
+  .icebreaker-page textarea {
+    color: #111827 !important;
+  }
+  
+  .icebreaker-page p,
+  .icebreaker-page span {
+    color: #111827 !important;
+  }
+  
+  /* Preserve specific colored text */
+  .icebreaker-page .text-blue-800,
+  .icebreaker-page .text-blue-600,
+  .icebreaker-page .text-green-700,
+  .icebreaker-page .text-red-600,
+  .icebreaker-page .text-white {
+    color: inherit !important;
+  }
 }
