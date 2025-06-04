@@ -94,7 +94,7 @@ export default function DartGame() {
               required
               value={score}
               onChange={(e) => setScore(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-gray-900 placeholder:text-gray-500"
               placeholder="Syötä pisteet (0-50)"
             />
           </div>

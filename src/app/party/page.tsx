@@ -107,6 +107,12 @@ export default function Party() {
           className="object-cover sm:object-contain"
           quality={100}
           priority
+          sizes="100vw"
+          style={{
+            objectPosition: 'center',
+            transform: 'scale(1)',
+            willChange: 'auto'
+          }}
         />
         {/* Gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/60" />

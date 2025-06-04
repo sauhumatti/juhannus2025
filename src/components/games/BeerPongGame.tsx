@@ -164,7 +164,7 @@ const BeerPongGame: FC = () => {
                   type="text"
                   value={team1Name}
                   onChange={(e) => setTeam1Name(e.target.value)}
-                  className="w-full border rounded-lg p-2"
+                  className="w-full border rounded-lg p-2 text-gray-900 placeholder:text-gray-500"
                   placeholder="Anna joukkueen nimi"
                 />
               </div>
@@ -184,7 +184,7 @@ const BeerPongGame: FC = () => {
                       setTeam1Players(team1Players.slice(1));
                     }
                   }}
-                  className="w-full border rounded-lg p-2"
+                  className="w-full border rounded-lg p-2 text-gray-900"
                 >
                   <option value="">Valitse pelaaja</option>
                   {getAvailablePlayers(team1Players.slice(1), team2Players).map(player => (
@@ -208,7 +208,7 @@ const BeerPongGame: FC = () => {
                       setTeam1Players(team1Players.slice(0, 1));
                     }
                   }}
-                  className="w-full border rounded-lg p-2"
+                  className="w-full border rounded-lg p-2 text-gray-900"
                   disabled={!team1Players[0]} // Disable if first player not selected
                 >
                   <option value="">Valitse pelaaja</option>
@@ -229,7 +229,7 @@ const BeerPongGame: FC = () => {
                   type="text"
                   value={team2Name}
                   onChange={(e) => setTeam2Name(e.target.value)}
-                  className="w-full border rounded-lg p-2"
+                  className="w-full border rounded-lg p-2 text-gray-900 placeholder:text-gray-500"
                   placeholder="Anna joukkueen nimi"
                 />
               </div>
@@ -249,7 +249,7 @@ const BeerPongGame: FC = () => {
                       setTeam2Players(team2Players.slice(1));
                     }
                   }}
-                  className="w-full border rounded-lg p-2"
+                  className="w-full border rounded-lg p-2 text-gray-900"
                 >
                   <option value="">Valitse pelaaja</option>
                   {getAvailablePlayers(team2Players.slice(1), team1Players).map(player => (
@@ -273,7 +273,7 @@ const BeerPongGame: FC = () => {
                       setTeam2Players(team2Players.slice(0, 1));
                     }
                   }}
-                  className="w-full border rounded-lg p-2"
+                  className="w-full border rounded-lg p-2 text-gray-900"
                   disabled={!team2Players[0]} // Disable if first player not selected
                 >
                   <option value="">Valitse pelaaja</option>

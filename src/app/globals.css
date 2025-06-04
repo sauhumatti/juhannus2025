@@ -35,3 +35,18 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* Fix for mobile background image zoom issue */
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Prevent iOS zoom on fixed backgrounds */
+  .fixed {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}

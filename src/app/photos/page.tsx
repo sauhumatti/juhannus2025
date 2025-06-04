@@ -311,7 +311,7 @@ export default function PhotosPage() {
                       value={caption}
                       onChange={(e) => setCaption(e.target.value)}
                       placeholder="Kuvaile hetkeä..."
-                      className="w-full p-3 border border-gray-300 rounded-lg resize-none"
+                      className="w-full p-3 border border-gray-300 rounded-lg resize-none text-gray-900 placeholder:text-gray-500"
                       rows={3}
                       maxLength={300}
                       disabled={uploading}
@@ -468,7 +468,7 @@ export default function PhotosPage() {
                         <textarea
                           value={editingCaption}
                           onChange={(e) => setEditingCaption(e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded-lg resize-none"
+                          className="w-full p-2 border border-gray-300 rounded-lg resize-none text-gray-900"
                           rows={3}
                           maxLength={300}
                         />

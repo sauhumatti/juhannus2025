@@ -266,7 +266,7 @@ export default function Records() {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {records.dartScores.map((score) => (
                       <tr key={score.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm">{score.score}/50</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{score.score}/50</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {new Date(score.createdAt).toLocaleDateString('fi-FI')}
                         </td>
@@ -311,7 +311,7 @@ export default function Records() {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {records.puttingScores.map((score) => (
                       <tr key={score.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm">{score.score}/10</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{score.score}/10</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {new Date(score.createdAt).toLocaleDateString('fi-FI')}
                         </td>
@@ -356,7 +356,7 @@ export default function Records() {
                   <tbody className="bg-white divide-y divide-gray-200">
                     {records.beerScores.map((score) => (
                       <tr key={score.id}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm">{score.time?.toFixed(2)}s</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{score.time?.toFixed(2)}s</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                           {new Date(score.createdAt).toLocaleDateString('fi-FI')}
                         </td>

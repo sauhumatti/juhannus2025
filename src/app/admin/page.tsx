@@ -353,7 +353,7 @@ export default function AdminPage() {
                     <td className="p-2 flex items-center gap-2">
                       <input
                         type="number"
-                        className="w-20 border rounded px-2 py-1"
+                        className="w-20 border rounded px-2 py-1 text-gray-900"
                         defaultValue={entry.score}
                         step={entry.gameType === 'Beer' ? "0.01" : "1"}
                         onBlur={(e) => {
@@ -406,7 +406,7 @@ export default function AdminPage() {
                       <select
                         value={match.status}
                         onChange={(e) => updateMatchStatus(match.id, e.target.value)}
-                        className="border rounded px-2 py-1"
+                        className="border rounded px-2 py-1 text-gray-900"
                       >
                         <option value="ongoing">Ongoing</option>
                         <option value="completed">Completed</option>
@@ -420,7 +420,7 @@ export default function AdminPage() {
                             const winners = e.target.value ? e.target.value.split(",") : [];
                             updateMatchStatus(match.id, "completed", winners);
                           }}
-                          className="border rounded px-2 py-1"
+                          className="border rounded px-2 py-1 text-gray-900"
                         >
                           <option value="">Select Winners</option>
                           <option value={match.team1Players.map(p => p.id).join(",")}>
