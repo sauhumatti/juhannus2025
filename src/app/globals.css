@@ -268,4 +268,32 @@ body {
   .games-page .text-red-600 {
     color: inherit !important; /* Keep original colors for active states */
   }
+  
+  /* Beer Pong section headings and team names */
+  .games-page h2,
+  .games-page h3 {
+    color: #111827 !important;
+    font-weight: 700 !important;
+  }
+  
+  /* Force all text content to be dark - more aggressive targeting */
+  .games-page * {
+    color: #111827 !important;
+  }
+  
+  /* Then restore specific elements that should keep their colors */
+  .games-page .bg-blue-600,
+  .games-page .bg-green-600,
+  .games-page .bg-red-600,
+  .games-page .border-blue-500,
+  .games-page button {
+    color: inherit !important; /* Restore button text colors */
+  }
+  
+  /* Ensure button text stays white when on colored backgrounds */
+  .games-page .bg-blue-600 *,
+  .games-page .bg-green-600 *,
+  .games-page .bg-red-600 * {
+    color: white !important;
+  }
 }
