@@ -1,0 +1,24 @@
+{
+  "name": "Saku 30v - Syntymäpäivä & Valmistujaisjuhlat",
+  "short_name": "Saku 30v",
+  "description": "Tervetuloa juhlimaan Sakun 30-vuotissyntymäpäiviä ja valmistujaisia!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#667eea",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
