@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { submitAnswer, updateAnswer, getParticipants } from '@/lib/icebreaker';
+import { submitAnswer, updateAnswer, deleteAnswer, getParticipants } from '@/lib/icebreaker';
 
 // Get all participants
 export async function GET() {
@@ -100,6 +100,44 @@ export async function PUT(req: Request) {
     console.error('Virhe vastauksen päivittämisessä:', error);
     return NextResponse.json(
       { error: 'Virhe vastauksen päivittämisessä' },
+      { status: 500 }
+    );
+  }
+}
+
+// Delete an existing answer
+export async function DELETE(req: Request) {
+  try {
+    const { cardId, questionNumber, giverId } = await req.json();
+
+    if (!cardId) {
+      return NextResponse.json(
+        { error: 'Kortin tunniste puuttuu' },
+        { status: 400 }
+      );
+    }
+
+    if (!questionNumber) {
+      return NextResponse.json(
+        { error: 'Kysymyksen numero puuttuu' },
+        { status: 400 }
+      );
+    }
+
+    if (!giverId) {
+      return NextResponse.json(
+        { error: 'Vastaajan tunniste puuttuu' },
+        { status: 400 }
+      );
+    }
+
+    await deleteAnswer(cardId, questionNumber, giverId);
+    
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Virhe vastauksen poistamisessa:', error);
+    return NextResponse.json(
+      { error: 'Virhe vastauksen poistamisessa' },
       { status: 500 }
     );
   }

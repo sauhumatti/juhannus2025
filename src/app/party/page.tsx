@@ -97,9 +97,9 @@ export default function Party() {
   }
 
   return (
-    <div className="relative">
+    <div className="relative" style={{ overscrollBehavior: 'none' }}>
       {/* Fixed background image - responsive behavior */}
-      <div className="fixed inset-0 z-0 sm:bg-black" style={{ top: '64px' }}>
+      <div className="fixed inset-0 z-0 sm:bg-black party-background" style={{ top: '64px' }}>
         <Image
           src="/photo_of_me.jpg"
           alt="Background"
@@ -109,9 +109,10 @@ export default function Party() {
           priority
           sizes="100vw"
           style={{
-            objectPosition: 'center',
+            objectPosition: 'center center',
             transform: 'scale(1)',
-            willChange: 'auto'
+            willChange: 'auto',
+            transition: 'none'
           }}
         />
         {/* Gradient overlay for better text readability */}
@@ -160,12 +161,8 @@ export default function Party() {
                     <span className="text-white drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Grillailua ja Sauna</span>
                   </div>
                   <div className="flex justify-between items-center py-2">
-                    <span className="font-medium text-white drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Klo 23:00-06:00</span>
-                    <span className="text-white drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Juhlat jatkuvat yöhön asti</span>
-                  </div>
-                  <div className="flex justify-between items-center py-2">
-                    <span className="font-medium text-white drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Klo 11:00</span>
-                    <span className="text-white drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Teltan purku</span>
+                    <span className="font-medium text-white drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Klo 23:00</span>
+                    <span className="text-white drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Iltahämärästä nautiskelu</span>
                   </div>
                 </div>
               </div>

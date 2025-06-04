@@ -190,14 +190,65 @@ export default function Icebreaker() {
   };
 
   const handleUpdateAnswer = async (questionNumber: number) => {
-    if (!user || !card || !editSelectedParticipant) return;
+    if (!user || !card) return;
 
     setIsSubmitting(true);
     setError("");
 
     try {
+      if (editSelectedParticipant === "") {
+        // Delete the answer if no participant is selected
+        await handleDeleteAnswer(questionNumber);
+      } else {
+        // Update the answer with new participant
+        const response = await fetch("/api/icebreaker/answers", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            cardId: card.dbId,
+            questionNumber,
+            giverId: user.id,
+            newReceiverId: editSelectedParticipant,
+          }),
+        });
+
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || "Failed to update answer");
+        }
+
+        // Refetch card data to update answers
+        const cardRes = await fetch(`/api/icebreaker/card?userId=${user.id}`);
+        if (!cardRes.ok) throw new Error("Failed to fetch updated card");
+        const cardData = await cardRes.json();
+        setCard(cardData);
+
+        // Refresh leaderboard
+        const leaderboardRes = await fetch("/api/icebreaker/leaderboard");
+        if (leaderboardRes.ok) {
+          const leaderboardData = await leaderboardRes.json();
+          setLeaderboard(leaderboardData);
+        }
+      }
+
+      // Reset edit state
+      setEditSelectedParticipant("");
+      setEditingQuestion(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to update answer");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleDeleteAnswer = async (questionNumber: number) => {
+    if (!user || !card) return;
+
+    try {
       const response = await fetch("/api/icebreaker/answers", {
-        method: "PUT",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
@@ -205,13 +256,12 @@ export default function Icebreaker() {
           cardId: card.dbId,
           questionNumber,
           giverId: user.id,
-          newReceiverId: editSelectedParticipant,
         }),
       });
 
       if (!response.ok) {
         const data = await response.json();
-        throw new Error(data.error || "Failed to update answer");
+        throw new Error(data.error || "Failed to delete answer");
       }
 
       // Refetch card data to update answers
@@ -226,14 +276,8 @@ export default function Icebreaker() {
         const leaderboardData = await leaderboardRes.json();
         setLeaderboard(leaderboardData);
       }
-
-      // Reset edit state
-      setEditSelectedParticipant("");
-      setEditingQuestion(null);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to update answer");
-    } finally {
-      setIsSubmitting(false);
+      throw err; // Re-throw so handleUpdateAnswer can catch it
     }
   };
 
@@ -479,7 +523,7 @@ export default function Icebreaker() {
                           onChange={(e) => setEditSelectedParticipant(e.target.value)}
                           className="p-2 sm:p-1 border rounded text-base sm:text-sm min-w-[200px] text-gray-900"
                         >
-                          <option value="" className="text-gray-900">Valitse uusi henkilö</option>
+                          <option value="" className="text-gray-900">Poista vastaus</option>
                           <option value={card.answers[question.number].id} className="text-gray-900">
                             {card.answers[question.number].name} (nykyinen)
                           </option>
@@ -492,10 +536,10 @@ export default function Icebreaker() {
                         <div className="flex gap-2">
                           <button
                             onClick={() => handleUpdateAnswer(question.number)}
-                            disabled={!editSelectedParticipant || isSubmitting}
+                            disabled={isSubmitting}
                             className="flex-1 sm:flex-none px-4 py-2 sm:py-1 bg-blue-600 text-white rounded-lg sm:rounded hover:bg-blue-700 disabled:opacity-50 text-base sm:text-sm"
                           >
-                            {isSubmitting ? "..." : "Päivitä"}
+                            {isSubmitting ? "..." : (editSelectedParticipant === "" ? "Poista" : "Päivitä")}
                           </button>
                           <button
                             onClick={cancelEditing}
