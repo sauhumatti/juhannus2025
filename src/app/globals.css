@@ -50,3 +50,21 @@ body {
     backface-visibility: hidden;
   }
 }
+
+/* Dancing Script font improvements for mobile */
+.dancing-font {
+  font-family: var(--font-dancing), cursive;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Mobile-specific font styling */
+@media (max-width: 640px) {
+  .dancing-font {
+    font-weight: 700 !important;
+    text-shadow: 0 0 1px rgba(0,0,0,0.1);
+    -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);
+  }
+}

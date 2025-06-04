@@ -58,7 +58,7 @@ export default function Navbar() {
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <div className="flex items-center px-2 py-2">
-                <span className="text-3xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-dancing)' }}>
+                <span className="text-3xl font-bold text-gray-900 dancing-font">
                   Saku 30v
                 </span>
               </div>
@@ -87,7 +87,7 @@ export default function Navbar() {
               href={user ? "/party" : "/"}
               className="flex items-center px-2 py-2 hover:opacity-80 transition-opacity"
             >
-              <span className="text-3xl font-bold text-gray-900" style={{ fontFamily: 'var(--font-dancing)' }}>
+              <span className="text-3xl font-bold text-gray-900 dancing-font">
                 Saku 30v
               </span>
             </Link>

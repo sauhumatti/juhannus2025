@@ -33,14 +33,14 @@ export default function Menu() {
     <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-amber-50 to-orange-50 p-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-8 mt-8 border-2 border-amber-200">
-          <h1 className="text-5xl font-bold text-center mb-2" style={{ fontFamily: 'var(--font-dancing)' }}>Menu</h1>
+          <h1 className="text-5xl font-bold text-center mb-2 dancing-font">Menu</h1>
           <div className="w-32 h-1 bg-amber-400 mx-auto mb-8"></div>
           
           {/* Menu content */}
           <div className="space-y-8">
             {/* Food Section */}
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-semibold mb-1" style={{ fontFamily: 'var(--font-dancing)' }}>Ruoka</h2>
+              <h2 className="text-3xl font-semibold mb-1 dancing-font">Ruoka</h2>
               <div className="w-20 h-0.5 bg-amber-300 mx-auto mb-6"></div>
               
               <div className="space-y-6">
@@ -63,7 +63,7 @@ export default function Menu() {
 
             {/* Drinks Section */}
             <div className="text-center">
-              <h2 className="text-3xl font-semibold mb-1" style={{ fontFamily: 'var(--font-dancing)' }}>Juomat</h2>
+              <h2 className="text-3xl font-semibold mb-1 dancing-font">Juomat</h2>
               <div className="w-20 h-0.5 bg-amber-300 mx-auto mb-6"></div>
               
               {/* Non-alcoholic drinks */}

@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 const dancingScript = Dancing_Script({ 
   subsets: ["latin"],
   variable: "--font-dancing",
+  weight: ["400", "700"],
   display: "swap"
 });
 

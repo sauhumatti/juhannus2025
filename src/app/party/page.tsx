@@ -123,10 +123,10 @@ export default function Party() {
         {/* Hero section with transparent background */}
         <div className="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-20">
           <div className="text-center text-white">
-            <h1 className="text-5xl sm:text-6xl font-bold mb-4 drop-shadow-lg" style={{ fontFamily: 'var(--font-dancing)' }}>
+            <h1 className="text-5xl sm:text-6xl font-bold mb-4 drop-shadow-lg dancing-font">
               Saku 30v
             </h1>
-            <p className="text-xl sm:text-2xl drop-shadow-lg mb-2" style={{ fontFamily: 'var(--font-dancing)' }}>
+            <p className="text-xl sm:text-2xl drop-shadow-lg mb-2 dancing-font">
               ja Insinööri
             </p>
           </div>
@@ -137,7 +137,7 @@ export default function Party() {
           <div className="max-w-4xl mx-auto p-4 space-y-8">
             {/* Party Info Section */}
             <div className="p-6 sm:p-8 -mt-20">
-              <h2 className="text-5xl font-bold text-black mb-2 text-center" style={{ fontFamily: 'var(--font-dancing)', textShadow: '2px 2px 3px rgba(255,255,255,0.7), -2px -2px 3px rgba(255,255,255,0.7), 2px -2px 3px rgba(255,255,255,0.7), -2px 2px 3px rgba(255,255,255,0.7)' }}>Tervetuloa juhliini!</h2>
+              <h2 className="text-5xl font-bold text-black mb-2 text-center dancing-font" style={{ textShadow: '2px 2px 3px rgba(255,255,255,0.7), -2px -2px 3px rgba(255,255,255,0.7), 2px -2px 3px rgba(255,255,255,0.7), -2px 2px 3px rgba(255,255,255,0.7)' }}>Tervetuloa juhliini!</h2>
               <div className="w-48 h-1 bg-gradient-to-r from-purple-400 to-blue-400 mx-auto mb-6 rounded-full shadow-lg"></div>
               
               <div className="mb-6">
@@ -173,7 +173,7 @@ export default function Party() {
 
             {/* Quick Links */}
             <div className="p-6 sm:p-8">
-              <h2 className="text-4xl font-bold text-black mb-2 text-center" style={{ fontFamily: 'var(--font-dancing)', textShadow: '2px 2px 3px rgba(255,255,255,0.7), -2px -2px 3px rgba(255,255,255,0.7), 2px -2px 3px rgba(255,255,255,0.7), -2px 2px 3px rgba(255,255,255,0.7)' }}>Mitä tehdä?</h2>
+              <h2 className="text-4xl font-bold text-black mb-2 text-center dancing-font" style={{ textShadow: '2px 2px 3px rgba(255,255,255,0.7), -2px -2px 3px rgba(255,255,255,0.7), 2px -2px 3px rgba(255,255,255,0.7), -2px 2px 3px rgba(255,255,255,0.7)' }}>Mitä tehdä?</h2>
               <div className="w-40 h-1 bg-gradient-to-r from-purple-400 to-blue-400 mx-auto mb-6 rounded-full shadow-lg"></div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <Link href="/photos" className="group block p-6 text-center border-2 border-white/50 rounded-xl hover:border-white hover:bg-white/10 transition-all backdrop-blur-sm">
@@ -209,7 +209,7 @@ export default function Party() {
             {/* Recent Photos Feed */}
             {recentPhotos.length > 0 && (
               <div className="p-6 sm:p-8">
-                <h2 className="text-4xl font-bold text-black mb-2 text-center" style={{ fontFamily: 'var(--font-dancing)', textShadow: '2px 2px 3px rgba(255,255,255,0.7), -2px -2px 3px rgba(255,255,255,0.7), 2px -2px 3px rgba(255,255,255,0.7), -2px 2px 3px rgba(255,255,255,0.7)' }}>Juhlien päivitykset</h2>
+                <h2 className="text-4xl font-bold text-black mb-2 text-center dancing-font" style={{ textShadow: '2px 2px 3px rgba(255,255,255,0.7), -2px -2px 3px rgba(255,255,255,0.7), 2px -2px 3px rgba(255,255,255,0.7), -2px 2px 3px rgba(255,255,255,0.7)' }}>Juhlien päivitykset</h2>
                 <div className="w-40 h-1 bg-gradient-to-r from-purple-400 to-blue-400 mx-auto mb-6 rounded-full shadow-lg"></div>
                 
                 <div className="space-y-6 max-w-md mx-auto">
@@ -279,7 +279,7 @@ export default function Party() {
             {/* No photos yet */}
             {recentPhotos.length === 0 && (
               <div className="p-6 sm:p-8 text-center">
-                <h2 className="text-4xl font-bold text-black mb-2 text-center" style={{ fontFamily: 'var(--font-dancing)', textShadow: '2px 2px 3px rgba(255,255,255,0.7), -2px -2px 3px rgba(255,255,255,0.7), 2px -2px 3px rgba(255,255,255,0.7), -2px 2px 3px rgba(255,255,255,0.7)' }}>Juhlien päivitykset</h2>
+                <h2 className="text-4xl font-bold text-black mb-2 text-center dancing-font" style={{ textShadow: '2px 2px 3px rgba(255,255,255,0.7), -2px -2px 3px rgba(255,255,255,0.7), 2px -2px 3px rgba(255,255,255,0.7), -2px 2px 3px rgba(255,255,255,0.7)' }}>Juhlien päivitykset</h2>
                 <div className="w-40 h-1 bg-gradient-to-r from-purple-400 to-blue-400 mx-auto mb-6 rounded-full shadow-lg"></div>
                 <div className="text-5xl mb-4">📷</div>
                 <p className="text-lg text-white mb-2 drop-shadow-lg" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.8)' }}>Ei kuvia vielä!</p>

@@ -56,14 +56,14 @@ export default function Home() {
           <div className="text-center text-white space-y-8">
             {/* Main title with fade-in animation */}
             <div className={`transition-all duration-1000 transform ${showTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-              <h1 className="text-5xl sm:text-7xl font-bold drop-shadow-2xl" style={{ fontFamily: 'var(--font-dancing)' }}>
+              <h1 className="text-5xl sm:text-7xl font-bold drop-shadow-2xl dancing-font">
                 Tervetuloa
               </h1>
             </div>
 
             {/* Subtitle with fade-in animation */}
             <div className={`transition-all duration-1000 transform ${showSubtitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-              <h2 className="text-3xl sm:text-5xl font-semibold drop-shadow-2xl" style={{ fontFamily: 'var(--font-dancing)' }}>
+              <h2 className="text-3xl sm:text-5xl font-semibold drop-shadow-2xl dancing-font">
                 Sakun 30v ja insinöörijuhliin
               </h2>
             </div>

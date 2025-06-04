@@ -134,7 +134,7 @@ export default function ProfilePage() {
     <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-pink-50 to-purple-50 p-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 mt-4 sm:mt-8 border-2 border-purple-200">
-          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-2" style={{ fontFamily: 'var(--font-dancing)' }}>Oma profiili</h1>
+          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-2 dancing-font">Oma profiili</h1>
           <div className="w-32 h-1 bg-purple-400 mx-auto mb-8"></div>
           
           <div className="space-y-8">
