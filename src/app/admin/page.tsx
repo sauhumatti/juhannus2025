@@ -303,7 +303,7 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold mb-8 text-gray-900">Admin Dashboard</h1>
 
         {error && (
           <div className="bg-red-100 text-red-700 p-4 rounded-lg mb-6">
@@ -312,9 +312,9 @@ export default function AdminPage() {
         )}
 
         <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4">Game Controls</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Game Controls</h2>
           <div className="flex items-center gap-4">
-            <span>Tutustumispeli:</span>
+            <span className="text-gray-900">Tutustumispeli:</span>
             <button
               onClick={toggleIcebreaker}
               className={`px-4 py-2 rounded-lg ${
@@ -329,23 +329,23 @@ export default function AdminPage() {
         </div>
 
         <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">Leaderboard Management</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Leaderboard Management</h2>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left p-2">Player</th>
-                  <th className="text-left p-2">Game</th>
-                  <th className="text-left p-2">Score</th>
-                  <th className="text-left p-2">Actions</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Player</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Game</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Score</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {leaderboardEntries.map((entry) => (
                   <tr key={entry.id} className="border-b">
-                    <td className="p-2">{entry.userName}</td>
-                    <td className="p-2">{entry.gameType}</td>
-                    <td className="p-2">
+                    <td className="p-2 text-gray-900">{entry.userName}</td>
+                    <td className="p-2 text-gray-900">{entry.gameType}</td>
+                    <td className="p-2 text-gray-900">
                       {entry.gameType === 'Beer'
                         ? `${entry.score}s`
                         : entry.score}
@@ -381,21 +381,21 @@ export default function AdminPage() {
         </div>
 
         <div className="bg-white rounded-lg shadow p-6 mt-8">
-          <h2 className="text-xl font-semibold mb-4">Beer Pong Matches</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Beer Pong Matches</h2>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left p-2">Teams</th>
-                  <th className="text-left p-2">Status</th>
-                  <th className="text-left p-2">Winners</th>
-                  <th className="text-left p-2">Actions</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Teams</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Status</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Winners</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {beerPongMatches.map((match) => (
                   <tr key={match.id} className="border-b">
-                    <td className="p-2">
+                    <td className="p-2 text-gray-900">
                       <div>
                         {match.team1Name || match.team1Players.map(p => p.name).join(", ")}
                         <span className="mx-2">vs</span>
@@ -451,17 +451,17 @@ export default function AdminPage() {
         </div>
 
         <div className="bg-white rounded-lg shadow p-6 mt-8">
-          <h2 className="text-xl font-semibold mb-4">User Management</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">User Management</h2>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left p-2">User</th>
-                  <th className="text-left p-2">Username</th>
-                  <th className="text-left p-2">Game Stats</th>
-                  <th className="text-left p-2">Beer Pong</th>
-                  <th className="text-left p-2">Tutustumispeli</th>
-                  <th className="text-left p-2">Actions</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">User</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Username</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Game Stats</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Beer Pong</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Tutustumispeli</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -476,27 +476,27 @@ export default function AdminPage() {
                           className="object-cover"
                         />
                       </div>
-                      <span>{user.name}</span>
+                      <span className="text-gray-900 font-medium">{user.name}</span>
                     </td>
-                    <td className="p-2">{user.username}</td>
+                    <td className="p-2 text-gray-900">{user.username}</td>
                     <td className="p-2">
-                      <div className="text-sm">
+                      <div className="text-sm text-gray-900">
                         Darts: {user.dartScores.length > 0 ?
                           `Best: ${Math.max(...user.dartScores.map(s => s.score))}` :
                           'No scores'}
                       </div>
-                      <div className="text-sm">
+                      <div className="text-sm text-gray-900">
                         Putting: {user.puttingScores.length > 0 ?
                           `Best: ${Math.max(...user.puttingScores.map(s => s.score))}` :
                           'No scores'}
                       </div>
-                      <div className="text-sm">
+                      <div className="text-sm text-gray-900">
                         Beer: {user.beerScores.length > 0 ?
                           `Best: ${Math.min(...user.beerScores.map(s => s.time))}s` :
                           'No scores'}
                       </div>
                     </td>
-                    <td className="p-2">
+                    <td className="p-2 text-gray-900">
                       {user.beerPongStats ?
                         `${user.beerPongStats.wins}W/${user.beerPongStats.losses}L` :
                         'No games'}
@@ -504,7 +504,7 @@ export default function AdminPage() {
                     <td className="p-2">
                       {user.icebreaker.hasCard ? (
                         <div className="flex items-center gap-2">
-                          <span className="text-sm">{user.icebreaker.answersCount} / {user.icebreaker.totalQuestions}</span>
+                          <span className="text-sm text-gray-900">{user.icebreaker.answersCount} / {user.icebreaker.totalQuestions}</span>
                           <div className="w-24 bg-gray-200 rounded-full h-2">
                             <div
                               className={`h-2 rounded-full ${
@@ -517,7 +517,7 @@ export default function AdminPage() {
                           </div>
                         </div>
                       ) : (
-                        <span className="text-sm text-gray-500">No card assigned</span>
+                        <span className="text-sm text-gray-700">No card assigned</span>
                       )}
                     </td>
                     <td className="p-2">
@@ -541,27 +541,27 @@ export default function AdminPage() {
         </div>
 
         <div className="bg-white rounded-lg shadow p-6 mt-8">
-          <h2 className="text-xl font-semibold mb-4">Tutustumispeli Answers</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Tutustumispeli Answers</h2>
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
                 <tr className="border-b">
-                  <th className="text-left p-2">Card Owner</th>
-                  <th className="text-left p-2">Question</th>
-                  <th className="text-left p-2">Given By</th>
-                  <th className="text-left p-2">Given To</th>
-                  <th className="text-left p-2">Time</th>
-                  <th className="text-left p-2">Actions</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Card Owner</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Question</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Given By</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Given To</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Time</th>
+                  <th className="text-left p-2 text-gray-900 font-semibold">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {icebreakerAnswers.map((answer) => (
                   <tr key={answer.id} className="border-b">
-                    <td className="p-2">{answer.cardOwner}</td>
-                    <td className="p-2">{answer.questionNumber}</td>
-                    <td className="p-2">{answer.giver}</td>
-                    <td className="p-2">{answer.receiver}</td>
-                    <td className="p-2">
+                    <td className="p-2 text-gray-900">{answer.cardOwner}</td>
+                    <td className="p-2 text-gray-900">{answer.questionNumber}</td>
+                    <td className="p-2 text-gray-900">{answer.giver}</td>
+                    <td className="p-2 text-gray-900">{answer.receiver}</td>
+                    <td className="p-2 text-gray-900">
                       {new Date(answer.createdAt).toLocaleString('fi-FI')}
                     </td>
                     <td className="p-2">
