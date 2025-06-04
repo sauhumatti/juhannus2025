@@ -119,3 +119,10 @@ model PhotoMoment {
   caption   String?  // Optional caption
   createdAt DateTime @default(now())
 }
+
+model GameState {
+  id                    String   @id @default(cuid())
+  isIcebreakerEnabled   Boolean  @default(false)
+  lastUpdated          DateTime @default(now())
+  updatedBy            String?  // Admin username who made the change
+}

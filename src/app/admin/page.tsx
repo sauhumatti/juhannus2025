@@ -62,6 +62,7 @@ export default function AdminPage() {
   const [gameState, setGameState] = useState<GameState>({
     isIcebreakerEnabled: false
   });
+  const [icebreakerLoading, setIcebreakerLoading] = useState(false);
   const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>([]);
   const [beerPongMatches, setBeerPongMatches] = useState<BeerPongMatch[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -118,21 +119,37 @@ export default function AdminPage() {
   };
 
   const toggleIcebreaker = async () => {
+    if (icebreakerLoading) return;
+    
+    setIcebreakerLoading(true);
+    setError("");
+    
     try {
+      const user = JSON.parse(sessionStorage.getItem("user") || "{}");
+      
       const response = await fetch("/api/admin/game-state", {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "x-session-data": JSON.stringify(user)
+        },
         body: JSON.stringify({
           isIcebreakerEnabled: !gameState.isIcebreakerEnabled
         })
       });
 
-      if (!response.ok) throw new Error("Failed to update game state");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Virhe pelin tilan päivittämisessä");
+      }
+      
       const data = await response.json();
       setGameState(data);
     } catch (err) {
       console.error("Error toggling icebreaker:", err);
-      setError("Failed to update game state");
+      setError(err instanceof Error ? err.message : "Virhe pelin tilan päivittämisessä");
+    } finally {
+      setIcebreakerLoading(false);
     }
   };
 
@@ -312,18 +329,24 @@ export default function AdminPage() {
         )}
 
         <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4 text-gray-900">Game Controls</h2>
+          <h2 className="text-xl font-semibold mb-4 text-gray-900">Pelin hallinta</h2>
           <div className="flex items-center gap-4">
             <span className="text-gray-900">Tutustumispeli:</span>
             <button
               onClick={toggleIcebreaker}
+              disabled={icebreakerLoading}
               className={`px-4 py-2 rounded-lg ${
                 gameState.isIcebreakerEnabled
                   ? "bg-red-600 hover:bg-red-700"
                   : "bg-green-600 hover:bg-green-700"
-              } text-white`}
+              } text-white disabled:opacity-50 disabled:cursor-not-allowed`}
             >
-  {gameState.isIcebreakerEnabled ? "Disable" : "Enable"}
+              {icebreakerLoading 
+                ? "Ladataan..." 
+                : gameState.isIcebreakerEnabled 
+                  ? "Sammuta" 
+                  : "Käynnistä"
+              }
             </button>
           </div>
         </div>

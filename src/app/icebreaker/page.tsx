@@ -25,22 +25,6 @@ interface Card {
   answers: Record<number, User>;
 }
 
-interface LeaderboardEntry {
-  userId: string;
-  name: string;
-  photoUrl: string;
-  questionsAnswered: number;
-  totalQuestions: number;
-  completionPercentage: number;
-  cardTitle: string;
-}
-
-interface SelectedAsAnswer {
-  cardOwner: string;
-  cardTitle: string;
-  questionNumber: number;
-  questionText: string;
-}
 
 export default function Icebreaker() {
   const [user, setUser] = useState<User | null>(null);
@@ -52,12 +36,8 @@ export default function Icebreaker() {
   const [error, setError] = useState("");
   const [isGameEnabled, setIsGameEnabled] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>([]);
-  const [showLeaderboard, setShowLeaderboard] = useState(false);
   const [editingQuestion, setEditingQuestion] = useState<number | null>(null);
   const [editSelectedParticipant, setEditSelectedParticipant] = useState<string>("");
-  const [selectedAsAnswers, setSelectedAsAnswers] = useState<SelectedAsAnswer[]>([]);
-  const [showSelectedAsAnswers, setShowSelectedAsAnswers] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -103,18 +83,6 @@ export default function Icebreaker() {
         const participantsData = await participantsRes.json();
         setParticipants(participantsData);
 
-        // Fetch leaderboard
-        const leaderboardRes = await fetch("/api/icebreaker/leaderboard");
-        if (!leaderboardRes.ok) throw new Error("Failed to fetch leaderboard");
-        const leaderboardData = await leaderboardRes.json();
-        setLeaderboard(leaderboardData);
-
-        // Fetch questions where user was selected as answer
-        const selectedRes = await fetch(`/api/icebreaker/selected-as-answer?userId=${user.id}`);
-        if (selectedRes.ok) {
-          const selectedData = await selectedRes.json();
-          setSelectedAsAnswers(selectedData);
-        }
       } catch (err) {
         setError(err instanceof Error ? err.message : "Error loading game data");
       }
@@ -188,12 +156,6 @@ export default function Icebreaker() {
       const cardData = await cardRes.json();
       setCard(cardData);
 
-      // Refresh leaderboard
-      const leaderboardRes = await fetch("/api/icebreaker/leaderboard");
-      if (leaderboardRes.ok) {
-        const leaderboardData = await leaderboardRes.json();
-        setLeaderboard(leaderboardData);
-      }
 
       // Reset selection
       setSelectedParticipant("");
@@ -241,12 +203,6 @@ export default function Icebreaker() {
         const cardData = await cardRes.json();
         setCard(cardData);
 
-        // Refresh leaderboard
-        const leaderboardRes = await fetch("/api/icebreaker/leaderboard");
-        if (leaderboardRes.ok) {
-          const leaderboardData = await leaderboardRes.json();
-          setLeaderboard(leaderboardData);
-        }
       }
 
       // Reset edit state
@@ -286,12 +242,6 @@ export default function Icebreaker() {
       const cardData = await cardRes.json();
       setCard(cardData);
 
-      // Refresh leaderboard
-      const leaderboardRes = await fetch("/api/icebreaker/leaderboard");
-      if (leaderboardRes.ok) {
-        const leaderboardData = await leaderboardRes.json();
-        setLeaderboard(leaderboardData);
-      }
     } catch (err) {
       throw err; // Re-throw so handleUpdateAnswer can catch it
     }
@@ -357,212 +307,7 @@ export default function Icebreaker() {
             </p>
           </div>
 
-          <div className="mb-6 space-y-3">
-            <button
-              onClick={() => setShowLeaderboard(!showLeaderboard)}
-              className="w-full sm:w-auto px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors mr-3"
-            >
-              {showLeaderboard ? "Piilota tulostaulu" : "Näytä tulostaulu"}
-            </button>
-            
-            {selectedAsAnswers.length > 0 && (
-              <button
-                onClick={() => setShowSelectedAsAnswers(!showSelectedAsAnswers)}
-                className="w-full sm:w-auto px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-              >
-                {showSelectedAsAnswers ? "Piilota omat vastaukset" : `Näytä omat vastaukset (${selectedAsAnswers.length})`}
-              </button>
-            )}
-          </div>
 
-          {showLeaderboard && (
-            <div className="bg-purple-50 rounded-xl p-4 sm:p-6 mb-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">🏆 Tulostaulu</h2>
-              
-              {/* Mobile layout */}
-              <div className="block sm:hidden space-y-2">
-                {leaderboard.map((entry, index) => (
-                  <div
-                    key={entry.userId}
-                    className={`p-3 rounded-lg ${
-                      entry.userId === user?.id
-                        ? "bg-blue-100 border-2 border-blue-300"
-                        : "bg-white"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center space-x-2">
-                        <div className="flex-shrink-0 w-6 text-center">
-                          {index === 0 && entry.completionPercentage === 100 ? (
-                            <span className="text-lg">👑</span>
-                          ) : (
-                            <span className="text-sm font-bold text-purple-600">
-                              {index + 1}
-                            </span>
-                          )}
-                        </div>
-                        <div className="relative w-6 h-6 rounded-full overflow-hidden">
-                          <Image
-                            src={entry.photoUrl}
-                            alt={entry.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">
-                            {entry.name}
-                            {entry.userId === user?.id && (
-                              <span className="ml-1 text-xs text-blue-600 font-bold">
-                                (Sinä)
-                              </span>
-                            )}
-                          </p>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <span className="text-sm font-bold text-gray-900">
-                          {entry.questionsAnswered}/{entry.totalQuestions}
-                        </span>
-                        <span className="text-xs text-gray-700 ml-1">
-                          ({entry.completionPercentage}%)
-                        </span>
-                      </div>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
-                      <div
-                        className={`h-2 rounded-full ${
-                          entry.completionPercentage === 100
-                            ? "bg-green-500"
-                            : entry.completionPercentage >= 75
-                            ? "bg-yellow-500"
-                            : "bg-purple-500"
-                        }`}
-                        style={{ width: `${entry.completionPercentage}%` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Desktop layout */}
-              <div className="hidden sm:block space-y-3">
-                {leaderboard.map((entry, index) => (
-                  <div
-                    key={entry.userId}
-                    className={`flex items-center justify-between p-3 rounded-lg ${
-                      entry.userId === user?.id
-                        ? "bg-blue-100 border-2 border-blue-300"
-                        : "bg-white"
-                    }`}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <div className="flex-shrink-0 w-8 text-center">
-                        {index === 0 && entry.completionPercentage === 100 ? (
-                          <span className="text-2xl">👑</span>
-                        ) : index < 3 ? (
-                          <span className="text-lg font-bold text-purple-600">
-                            {index + 1}
-                          </span>
-                        ) : (
-                          <span className="text-sm text-gray-700">
-                            {index + 1}
-                          </span>
-                        )}
-                      </div>
-                      <div className="relative w-8 h-8 rounded-full overflow-hidden">
-                        <Image
-                          src={entry.photoUrl}
-                          alt={entry.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-medium text-gray-900">
-                          {entry.name}
-                          {entry.userId === user?.id && (
-                            <span className="ml-2 text-xs text-blue-600 font-bold">
-                              (Sinä)
-                            </span>
-                          )}
-                        </p>
-                        <p className="text-xs text-gray-600">{entry.cardTitle}</p>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-center space-x-2">
-                        <span className="text-sm font-medium text-gray-900">
-                          {entry.questionsAnswered}/{entry.totalQuestions}
-                        </span>
-                        <div className="w-16 bg-gray-200 rounded-full h-2">
-                          <div
-                            className={`h-2 rounded-full ${
-                              entry.completionPercentage === 100
-                                ? "bg-green-500"
-                                : entry.completionPercentage >= 75
-                                ? "bg-yellow-500"
-                                : "bg-purple-500"
-                            }`}
-                            style={{ width: `${entry.completionPercentage}%` }}
-                          />
-                        </div>
-                        <span className="text-xs text-gray-700 w-8">
-                          {entry.completionPercentage}%
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              {leaderboard.length === 0 && (
-                <p className="text-gray-700 text-center py-4">
-                  Ei osallistujia vielä
-                </p>
-              )}
-            </div>
-          )}
-
-          {showSelectedAsAnswers && selectedAsAnswers.length > 0 && (
-            <div className="bg-green-50 rounded-xl p-4 sm:p-6 mb-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">🎯 Sinut on valittu vastaukseksi</h2>
-              <p className="text-green-900 mb-4 text-sm font-medium">
-                Nämä ovat kysymykset, joihin muut pelaajat ovat valinneet sinut vastaukseksi:
-              </p>
-              
-              <div className="space-y-3">
-                {selectedAsAnswers.map((answer) => (
-                  <div
-                    key={`${answer.cardOwner}-${answer.questionNumber}`}
-                    className="bg-white p-4 rounded-lg border border-green-200"
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <p className="text-sm text-gray-800 mb-1 font-medium">
-                          <strong className="text-gray-900">{answer.cardOwner}</strong> - {answer.cardTitle}
-                        </p>
-                        <p className="text-gray-900 font-semibold">
-                          {answer.questionNumber}. {answer.questionText}
-                        </p>
-                      </div>
-                      <div className="ml-4 flex-shrink-0">
-                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-900">
-                          Sinä
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              {selectedAsAnswers.length === 0 && (
-                <p className="text-gray-800 text-center py-4 font-medium">
-                  Kukaan ei ole vielä valinnut sinua vastaukseksi.
-                </p>
-              )}
-            </div>
-          )}
 
           <div className="space-y-4 sm:space-y-6">
             {card.questions.map((question) => (
