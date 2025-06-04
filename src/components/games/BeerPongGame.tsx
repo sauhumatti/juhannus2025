@@ -157,7 +157,7 @@ const BeerPongGame: FC = () => {
             {/* Team 1 */}
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-900 mb-1">
                   Joukkue 1 nimi (valinnainen)
                 </label>
                 <input
@@ -171,7 +171,7 @@ const BeerPongGame: FC = () => {
               
               {/* Team 1 Player 1 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-900 mb-1">
                   Pelaaja 1
                 </label>
                 <select
@@ -195,7 +195,7 @@ const BeerPongGame: FC = () => {
 
               {/* Team 1 Player 2 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-900 mb-1">
                   Pelaaja 2 (valinnainen)
                 </label>
                 <select
@@ -222,7 +222,7 @@ const BeerPongGame: FC = () => {
             {/* Team 2 */}
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-900 mb-1">
                   Joukkue 2 nimi (valinnainen)
                 </label>
                 <input
@@ -236,7 +236,7 @@ const BeerPongGame: FC = () => {
 
               {/* Team 2 Player 1 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-900 mb-1">
                   Pelaaja 1
                 </label>
                 <select
@@ -260,7 +260,7 @@ const BeerPongGame: FC = () => {
 
               {/* Team 2 Player 2 */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-900 mb-1">
                   Pelaaja 2 (valinnainen)
                 </label>
                 <select

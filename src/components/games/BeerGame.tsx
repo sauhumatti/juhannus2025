@@ -146,14 +146,14 @@ export default function BeerGame() {
         <div className="space-y-6">
           {/* User selection */}
           <div>
-            <label htmlFor="user-select" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="user-select" className="block text-sm font-medium text-gray-900 mb-2">
               Valitse juoja:
             </label>
             <select
               id="user-select"
               value={selectedUserId}
               onChange={(e) => setSelectedUserId(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
             >
               <option value="">-- Valitse pelaaja --</option>
               {users.map((user) => (
@@ -250,7 +250,7 @@ export default function BeerGame() {
           ) : (
             <div className="text-center">
               <div className="mb-4">
-                <label htmlFor="manual-time" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="manual-time" className="block text-sm font-medium text-gray-900 mb-2">
                   Syötä aika (sekunteina):
                 </label>
                 <input
@@ -260,7 +260,7 @@ export default function BeerGame() {
                   value={manualTime}
                   onChange={(e) => setManualTime(e.target.value)}
                   placeholder="esim. 12.34"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-center text-2xl"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-center text-2xl text-gray-900 placeholder:text-gray-500"
                 />
               </div>
               <button

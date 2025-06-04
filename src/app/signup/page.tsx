@@ -110,42 +110,42 @@ export default function SignUp() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="username" className="block text-sm font-medium text-gray-900 mb-1">
               Käyttäjänimi
             </label>
-            <p className="text-xs text-gray-500 mb-2">Tällä kirjaudut sisään</p>
+            <p className="text-xs text-gray-600 mb-2">Tällä kirjaudut sisään</p>
             <input
               id="username"
               type="text"
               required
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none text-gray-900 placeholder:text-gray-500"
               placeholder="Valitse käyttäjänimi"
             />
           </div>
 
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-1">
               Nimi
             </label>
-            <p className="text-xs text-gray-500 mb-2">Etunimesi, tämä näkyy myös muille</p>
+            <p className="text-xs text-gray-600 mb-2">Etunimesi, tämä näkyy myös muille</p>
             <input
               id="name"
               type="text"
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none text-gray-900 placeholder:text-gray-500"
               placeholder="Syötä nimesi"
             />
           </div>
 
           <div>
-            <label htmlFor="photo" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="photo" className="block text-sm font-medium text-gray-900 mb-1">
               Profiilikuva
             </label>
-            <p className="text-xs text-gray-500 mb-2">Kuva itsestäsi: tämä näkyy myös muille</p>
+            <p className="text-xs text-gray-600 mb-2">Kuva itsestäsi: tämä näkyy myös muille</p>
             <div className="mt-1 flex flex-col items-center space-y-4">
               {preview ? (
                 <div className="relative w-32 h-32 rounded-full overflow-hidden">
