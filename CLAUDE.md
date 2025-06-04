@@ -136,3 +136,21 @@ The app manages multiple party games, user profiles, photo sharing, and social i
 - Return Finnish error messages for user-facing errors
 - Use proper HTTP status codes
 - Include comprehensive error handling for database operations
+
+**Mobile Text Visibility:**
+- **CRITICAL ISSUE**: Light-colored text (gray-500, gray-600, gray-700) is often unreadable on mobile devices
+- Always test text visibility on mobile, especially in bright lighting conditions
+- When adding new pages or components, ensure dark text colors for mobile:
+  - Use `text-gray-900` or `#111827` for primary text on mobile
+  - Add mobile-specific CSS overrides in `src/app/globals.css` under `@media (max-width: 640px)`
+  - Follow existing patterns for `.admin-page`, `.icebreaker-page`, and `.records-page` classes
+- Example mobile override pattern:
+  ```css
+  @media (max-width: 640px) {
+    .your-page-class p,
+    .your-page-class span,
+    .your-page-class td {
+      color: #111827 !important;
+    }
+  }
+  ```

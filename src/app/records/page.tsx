@@ -45,6 +45,13 @@ interface IcebreakerLeaderboardEntry {
   completionPercentage: number;
 }
 
+interface SelectedAsAnswer {
+  cardOwner: string;
+  cardTitle: string;
+  questionNumber: number;
+  questionText: string;
+}
+
 const tabs = [
   { id: "darts", name: "Tikanheitto" },
   { id: "putting", name: "Puttaus" },
@@ -58,6 +65,7 @@ export default function Records() {
   const [records, setRecords] = useState<Records | null>(null);
   const [leaderboards, setLeaderboards] = useState<{ [key: string]: LeaderboardEntry[] | IcebreakerLeaderboardEntry[] }>({});
   const [stats, setStats] = useState<Stats | null>(null);
+  const [selectedAsAnswers, setSelectedAsAnswers] = useState<SelectedAsAnswer[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const router = useRouter();
@@ -77,9 +85,18 @@ export default function Records() {
             if (!statsRes.ok) throw new Error("Failed to fetch stats");
             const statsData = await statsRes.json();
             setStats(statsData);
+            
+            // Fetch questions where user was selected as answer
+            const selectedRes = await fetch(`/api/icebreaker/selected-as-answer?userId=${user.id}`);
+            if (selectedRes.ok) {
+              const selectedData = await selectedRes.json();
+              setSelectedAsAnswers(selectedData);
+            }
+            
             setRecords(null);
           } else {
             setStats(null);
+            setSelectedAsAnswers([]);
             const scoresRes = await fetch(`/api/users/records?userId=${user.id}`);
             if (!scoresRes.ok) throw new Error("Failed to fetch records");
             const scoresData = await scoresRes.json();
@@ -89,6 +106,7 @@ export default function Records() {
           // Fetch leaderboards
           setStats(null);
           setRecords(null);
+          setSelectedAsAnswers([]);
           
           if (activeTab === "icebreaker") {
             const res = await fetch("/api/icebreaker/leaderboard");
@@ -229,6 +247,41 @@ export default function Records() {
                     Samalla autat muita pelaajia täyttämään heidän korttinsa!
                   </p>
                 </div>
+
+                {/* Questions where user was selected as answer */}
+                {selectedAsAnswers.length > 0 && viewMode === "personal" && (
+                  <div className="bg-green-50 rounded-xl p-4 sm:p-6">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">🎯 Sinut on valittu vastaukseksi</h3>
+                    <p className="text-green-900 mb-4 text-sm font-medium">
+                      Nämä ovat kysymykset, joihin muut pelaajat ovat valinneet sinut vastaukseksi:
+                    </p>
+                    
+                    <div className="space-y-3">
+                      {selectedAsAnswers.map((answer) => (
+                        <div
+                          key={`${answer.cardOwner}-${answer.questionNumber}`}
+                          className="bg-white p-4 rounded-lg border border-green-200"
+                        >
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <p className="text-sm text-gray-800 mb-1 font-medium">
+                                <strong className="text-gray-900">{answer.cardOwner}</strong> - {answer.cardTitle}
+                              </p>
+                              <p className="text-gray-900 font-semibold">
+                                {answer.questionNumber}. {answer.questionText}
+                              </p>
+                            </div>
+                            <div className="ml-4 flex-shrink-0">
+                              <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-900">
+                                Sinä
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 

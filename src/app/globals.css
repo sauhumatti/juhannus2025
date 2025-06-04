@@ -179,28 +179,49 @@ body {
   
   /* Records page text visibility fixes */
   .records-page span,
-  .records-page td {
+  .records-page td,
+  .records-page p {
     color: #111827 !important; /* Force dark text on mobile */
   }
   
-  /* Preserve specific colored text in records */
-  .records-page .text-yellow-600,
-  .records-page .text-orange-600,
+  /* Icebreaker stats cards - make all text dark */
   .records-page .text-blue-600,
-  .records-page .text-green-600 {
-    color: inherit !important;
+  .records-page .text-blue-500,
+  .records-page .text-purple-600,
+  .records-page .text-purple-500 {
+    color: #111827 !important;
   }
   
-  /* Make gray text darker in records */
+  /* Preserve specific colored text in records but make darker */
+  .records-page .text-yellow-600 {
+    color: #d97706 !important; /* darker yellow */
+  }
+  
+  .records-page .text-orange-600 {
+    color: #ea580c !important; /* darker orange */
+  }
+  
+  .records-page .text-green-600 {
+    color: #059669 !important; /* darker green */
+  }
+  
+  /* Make gray text much darker in records */
   .records-page .text-gray-500 {
-    color: #374151 !important;
+    color: #111827 !important;
   }
   
   .records-page .text-gray-600 {
-    color: #4b5563 !important;
+    color: #111827 !important;
   }
   
   .records-page .text-gray-700 {
-    color: #374151 !important;
+    color: #111827 !important;
+  }
+  
+  /* Leaderboard ranking numbers - make them darker and bolder */
+  .records-page .text-lg.font-bold,
+  .records-page .text-sm.text-gray-700 {
+    color: #111827 !important;
+    font-weight: 700 !important;
   }
 }
