@@ -532,7 +532,7 @@ export default function Icebreaker() {
               </p>
               
               <div className="space-y-3">
-                {selectedAsAnswers.map((answer, index) => (
+                {selectedAsAnswers.map((answer) => (
                   <div
                     key={`${answer.cardOwner}-${answer.questionNumber}`}
                     className="bg-white p-4 rounded-lg border border-green-200"
