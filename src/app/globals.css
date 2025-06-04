@@ -116,9 +116,20 @@ body {
     color: #111827 !important;
   }
   
-  /* Preserve specific colored text */
-  .icebreaker-page .text-blue-800,
-  .icebreaker-page .text-blue-600,
+  /* Make blue text darker on mobile for better visibility */
+  .icebreaker-page .text-blue-800 {
+    color: #1e3a8a !important; /* Very dark blue */
+  }
+  
+  .icebreaker-page .text-blue-900 {
+    color: #1e3a8a !important; /* Very dark blue */
+  }
+  
+  .icebreaker-page .text-blue-600 {
+    color: #1d4ed8 !important; /* Dark blue */
+  }
+  
+  /* Preserve other colored text */
   .icebreaker-page .text-green-700,
   .icebreaker-page .text-red-600,
   .icebreaker-page .text-white {

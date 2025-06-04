@@ -289,10 +289,10 @@ export default function Icebreaker() {
           <p className="text-gray-600 text-center mb-4 sm:mb-6 italic">{card.subtitle}</p>
 
           <div className="bg-blue-50 p-4 rounded-lg mb-6">
-            <p className="text-blue-800">
+            <p className="text-blue-900 font-semibold">
               Löydetty {answeredQuestionsCount}/{totalQuestions} henkilöä
             </p>
-            <p className="text-sm text-blue-600 mt-1">
+            <p className="text-sm text-blue-800 mt-1 font-medium">
               Jokaiseen kysymykseen tarvitaan eri henkilö!
             </p>
           </div>
@@ -309,7 +309,75 @@ export default function Icebreaker() {
           {showLeaderboard && (
             <div className="bg-purple-50 rounded-xl p-4 sm:p-6 mb-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">🏆 Tulostaulu</h2>
-              <div className="space-y-3">
+              
+              {/* Mobile layout */}
+              <div className="block sm:hidden space-y-2">
+                {leaderboard.map((entry, index) => (
+                  <div
+                    key={entry.userId}
+                    className={`p-3 rounded-lg ${
+                      entry.userId === user?.id
+                        ? "bg-blue-100 border-2 border-blue-300"
+                        : "bg-white"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center space-x-2">
+                        <div className="flex-shrink-0 w-6 text-center">
+                          {index === 0 && entry.completionPercentage === 100 ? (
+                            <span className="text-lg">👑</span>
+                          ) : (
+                            <span className="text-sm font-bold text-purple-600">
+                              {index + 1}
+                            </span>
+                          )}
+                        </div>
+                        <div className="relative w-6 h-6 rounded-full overflow-hidden">
+                          <Image
+                            src={entry.photoUrl}
+                            alt={entry.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">
+                            {entry.name}
+                            {entry.userId === user?.id && (
+                              <span className="ml-1 text-xs text-blue-600 font-bold">
+                                (Sinä)
+                              </span>
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-sm font-bold text-gray-900">
+                          {entry.questionsAnswered}/{entry.totalQuestions}
+                        </span>
+                        <span className="text-xs text-gray-700 ml-1">
+                          ({entry.completionPercentage}%)
+                        </span>
+                      </div>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className={`h-2 rounded-full ${
+                          entry.completionPercentage === 100
+                            ? "bg-green-500"
+                            : entry.completionPercentage >= 75
+                            ? "bg-yellow-500"
+                            : "bg-purple-500"
+                        }`}
+                        style={{ width: `${entry.completionPercentage}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop layout */}
+              <div className="hidden sm:block space-y-3">
                 {leaderboard.map((entry, index) => (
                   <div
                     key={entry.userId}
@@ -328,7 +396,7 @@ export default function Icebreaker() {
                             {index + 1}
                           </span>
                         ) : (
-                          <span className="text-sm text-gray-500">
+                          <span className="text-sm text-gray-700">
                             {index + 1}
                           </span>
                         )}
@@ -350,7 +418,7 @@ export default function Icebreaker() {
                             </span>
                           )}
                         </p>
-                        <p className="text-xs text-gray-500">{entry.cardTitle}</p>
+                        <p className="text-xs text-gray-600">{entry.cardTitle}</p>
                       </div>
                     </div>
                     <div className="text-right">
@@ -378,8 +446,9 @@ export default function Icebreaker() {
                   </div>
                 ))}
               </div>
+              
               {leaderboard.length === 0 && (
-                <p className="text-gray-500 text-center py-4">
+                <p className="text-gray-700 text-center py-4">
                   Ei osallistujia vielä
                 </p>
               )}
