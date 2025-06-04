@@ -67,4 +67,39 @@ body {
     text-shadow: 0 0 1px rgba(0,0,0,0.1);
     -webkit-text-stroke: 0.5px rgba(0,0,0,0.1);
   }
+  
+  /* Admin page text visibility fix for mobile */
+  .admin-page {
+    color: #111827; /* gray-900 */
+  }
+  
+  .admin-page td,
+  .admin-page th,
+  .admin-page span:not(.text-white),
+  .admin-page div:not(.bg-red-100):not(.bg-green-100):not(.bg-blue-100) {
+    color: #111827 !important; /* gray-900 */
+  }
+  
+  .admin-page .text-gray-500 {
+    color: #374151 !important; /* Make gray-500 darker for mobile */
+  }
+  
+  .admin-page .text-gray-600 {
+    color: #111827 !important; /* Make gray-600 much darker */
+  }
+  
+  .admin-page .text-gray-700 {
+    color: #111827 !important; /* Ensure gray-700 is dark */
+  }
+  
+  /* Ensure table text is always dark on mobile */
+  .admin-page table td,
+  .admin-page table th {
+    color: #111827 !important;
+  }
+  
+  /* Progress text in icebreaker section */
+  .admin-page .text-sm {
+    color: #111827 !important;
+  }
 }

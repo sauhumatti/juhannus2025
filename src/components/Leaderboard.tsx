@@ -19,16 +19,43 @@ interface LeaderboardProps {
 }
 
 export default function Leaderboard({ scores, type, maxScore }: LeaderboardProps) {
+  // Calculate positions for tied scores
+  const getPosition = (index: number, currentScore: Score, allScores: Score[]) => {
+    if (type === 'time') {
+      // For time-based scores, lower is better
+      const sameTimeCount = allScores.slice(0, index).filter(s => s.time === currentScore.time).length;
+      if (sameTimeCount > 0) {
+        // Find the position of the first occurrence of this time
+        const firstOccurrenceIndex = allScores.findIndex(s => s.time === currentScore.time);
+        return firstOccurrenceIndex + 1;
+      }
+      return index + 1;
+    } else {
+      // For points-based scores, higher is better
+      const sameScoreCount = allScores.slice(0, index).filter(s => s.score === currentScore.score).length;
+      if (sameScoreCount > 0) {
+        // Find the position of the first occurrence of this score
+        const firstOccurrenceIndex = allScores.findIndex(s => s.score === currentScore.score);
+        return firstOccurrenceIndex + 1;
+      }
+      return index + 1;
+    }
+  };
+
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
       {/* Mobile view - card layout */}
       <div className="block sm:hidden">
         <div className="divide-y divide-gray-200">
-          {scores.map((score, index) => (
-            <div key={score.id} className={`p-4 ${index === 0 ? 'bg-yellow-50' : ''}`}>
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center">
-                  <span className="text-lg font-bold text-gray-900 mr-3">#{index + 1}</span>
+          {scores.map((score, index) => {
+            const position = getPosition(index, score, scores);
+            const isFirstPlace = position === 1;
+            
+            return (
+              <div key={score.id} className={`p-4 ${isFirstPlace ? 'bg-yellow-50' : ''}`}>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center">
+                    <span className="text-lg font-bold text-gray-900 mr-3">#{position}</span>
                   <div className="flex-shrink-0 h-8 w-8 relative">
                     <Image
                       src={score.user.photoUrl}
@@ -63,7 +90,8 @@ export default function Leaderboard({ scores, type, maxScore }: LeaderboardProps
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
@@ -87,11 +115,15 @@ export default function Leaderboard({ scores, type, maxScore }: LeaderboardProps
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {scores.map((score, index) => (
-              <tr key={score.id} className={index === 0 ? 'bg-yellow-50' : ''}>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">#{index + 1}</div>
-                </td>
+            {scores.map((score, index) => {
+              const position = getPosition(index, score, scores);
+              const isFirstPlace = position === 1;
+              
+              return (
+                <tr key={score.id} className={isFirstPlace ? 'bg-yellow-50' : ''}>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm font-medium text-gray-900">#{position}</div>
+                  </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
                     <div className="flex-shrink-0 h-10 w-10 relative">
@@ -128,7 +160,8 @@ export default function Leaderboard({ scores, type, maxScore }: LeaderboardProps
                   {new Date(score.createdAt).toLocaleDateString('fi-FI')}
                 </td>
               </tr>
-            ))}
+              );
+            })}
           </tbody>
         </table>
       </div>

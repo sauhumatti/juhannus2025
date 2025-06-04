@@ -301,7 +301,7 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gray-50 p-4 admin-page">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-8 text-gray-900">Admin Dashboard</h1>
 
@@ -323,7 +323,7 @@ export default function AdminPage() {
                   : "bg-green-600 hover:bg-green-700"
               } text-white`}
             >
-              {gameState.isIcebreakerEnabled ? "Disable" : "Enable"}
+  {gameState.isIcebreakerEnabled ? "Disable" : "Enable"}
             </button>
           </div>
         </div>
@@ -408,8 +408,8 @@ export default function AdminPage() {
                         onChange={(e) => updateMatchStatus(match.id, e.target.value)}
                         className="border rounded px-2 py-1 text-gray-900"
                       >
-                        <option value="ongoing">Ongoing</option>
-                        <option value="completed">Completed</option>
+                        <option value="ongoing" className="text-gray-900">Ongoing</option>
+                        <option value="completed" className="text-gray-900">Completed</option>
                       </select>
                     </td>
                     <td className="p-2">
@@ -422,11 +422,11 @@ export default function AdminPage() {
                           }}
                           className="border rounded px-2 py-1 text-gray-900"
                         >
-                          <option value="">Select Winners</option>
-                          <option value={match.team1Players.map(p => p.id).join(",")}>
+                          <option value="" className="text-gray-900">Select Winners</option>
+                          <option value={match.team1Players.map(p => p.id).join(",")} className="text-gray-900">
                             Team 1
                           </option>
-                          <option value={match.team2Players.map(p => p.id).join(",")}>
+                          <option value={match.team2Players.map(p => p.id).join(",")} className="text-gray-900">
                             Team 2
                           </option>
                         </select>
