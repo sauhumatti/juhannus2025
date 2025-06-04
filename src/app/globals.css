@@ -224,4 +224,48 @@ body {
     color: #111827 !important;
     font-weight: 700 !important;
   }
+  
+  /* Games page text visibility fixes */
+  .games-page span,
+  .games-page p,
+  .games-page div {
+    color: inherit; /* Reset to allow specific targeting */
+  }
+  
+  /* Beer Pong specific fixes - light gray text */
+  .games-page .text-gray-400 {
+    color: #111827 !important; /* VS separators */
+    font-weight: 600 !important;
+  }
+  
+  .games-page .text-gray-500 {
+    color: #111827 !important; /* Timestamps, "no games" messages */
+    font-weight: 500 !important;
+  }
+  
+  .games-page .text-gray-600 {
+    color: #111827 !important;
+  }
+  
+  .games-page .text-gray-700 {
+    color: #111827 !important;
+  }
+  
+  /* Small text elements - make them darker and more readable */
+  .games-page .text-sm {
+    color: #111827 !important;
+    font-weight: 500 !important;
+  }
+  
+  /* Tab buttons - make inactive tabs more readable */
+  .games-page .text-gray-500 {
+    color: #374151 !important;
+  }
+  
+  /* Preserve specific colored elements but make them darker if needed */
+  .games-page .text-blue-600,
+  .games-page .text-green-600,
+  .games-page .text-red-600 {
+    color: inherit !important; /* Keep original colors for active states */
+  }
 }

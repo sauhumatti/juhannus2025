@@ -21,7 +21,7 @@ export default function Games() {
   const [activeTab, setActiveTab] = useState("darts");
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
+    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-blue-50 to-indigo-50 p-4 games-page">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-xl shadow-lg p-6 mt-8 border-2 border-blue-200">
           <h1 className="text-5xl font-bold text-center mb-2 dancing-font">Pelit</h1>
