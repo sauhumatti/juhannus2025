@@ -611,17 +611,53 @@ export default function KuvahaasteGame() {
                   {challenge.responses.length > 0 && (
                     <div className="mt-4">
                       <h4 className="text-sm font-semibold mb-2" style={{ color: '#2F4F4F' }}>
-                        Viimeisimmät vastaukset:
+                        Vastaukset ({challenge.responses.length}):
                       </h4>
-                      <div className="flex gap-2 overflow-x-auto">
-                        {challenge.responses.slice(0, 3).map((response) => (
-                          <div key={response.id} className="flex-shrink-0">
+                      <div className="space-y-2 max-h-40 overflow-y-auto">
+                        {challenge.responses.map((response) => (
+                          <div key={response.id} className="flex items-center gap-2 p-2 bg-gray-50 rounded-lg">
+                            <Image
+                              src={response.creator.photoUrl}
+                              alt={response.creator.name}
+                              width={32}
+                              height={32}
+                              className="rounded-full flex-shrink-0"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2">
+                                <span 
+                                  className="text-sm font-medium truncate"
+                                  style={{ fontFamily: 'Nunito, sans-serif', color: '#2F4F4F' }}
+                                >
+                                  {response.creator.name}
+                                </span>
+                                {response.creator.id === user?.id && (
+                                  <button
+                                    onClick={() => deleteResponse(response.id)}
+                                    disabled={deleting === response.id}
+                                    className="text-red-500 hover:text-red-700 disabled:opacity-50 disabled:cursor-not-allowed text-xs"
+                                    title="Poista vastaukseni"
+                                  >
+                                    {deleting === response.id ? '...' : '🗑️'}
+                                  </button>
+                                )}
+                              </div>
+                              {response.comment && (
+                                <p 
+                                  className="text-xs text-gray-600 truncate mt-1"
+                                  style={{ fontFamily: 'Nunito, sans-serif' }}
+                                  title={response.comment}
+                                >
+                                  "{response.comment}"
+                                </p>
+                              )}
+                            </div>
                             <Image
                               src={response.imageUrl}
                               alt="Vastaus"
-                              width={60}
-                              height={60}
-                              className="rounded-lg object-cover"
+                              width={40}
+                              height={40}
+                              className="rounded object-cover flex-shrink-0"
                             />
                           </div>
                         ))}
