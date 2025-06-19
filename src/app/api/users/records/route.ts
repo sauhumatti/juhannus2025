@@ -148,6 +148,60 @@ export async function GET(req: Request) {
       console.log('Mölkky stats not available:', e);
     }
 
+    // Fetch Kuvahaaste (Photo Challenge) stats
+    let kuvahaasteStats = null;
+    try {
+      // Get challenges created by user
+      const challengesCreated = await prisma.photoChallenge.count({
+        where: { creatorId: userId }
+      });
+
+      // Get approved responses by user
+      const responsesApproved = await prisma.photoChallengeResponse.count({
+        where: { 
+          creatorId: userId,
+          isApproved: true
+        }
+      });
+
+      // Get recent responses
+      const recentResponses = await prisma.photoChallengeResponse.findMany({
+        where: { 
+          creatorId: userId,
+          isApproved: true
+        },
+        include: {
+          challenge: {
+            select: {
+              id: true,
+              title: true,
+              creator: {
+                select: {
+                  name: true
+                }
+              }
+            }
+          }
+        },
+        orderBy: { createdAt: 'desc' },
+        take: 5
+      });
+
+      kuvahaasteStats = {
+        challengesCreated,
+        responsesApproved,
+        recentResponses: recentResponses.map(r => ({
+          id: r.id,
+          challengeTitle: r.challenge.title,
+          challengeCreator: r.challenge.creator.name,
+          createdAt: r.createdAt.toISOString(),
+          comment: r.comment
+        }))
+      };
+    } catch (e) {
+      console.log('Kuvahaaste stats not available:', e);
+    }
+
     return NextResponse.json({
       dartScores,
       puttingScores,
@@ -156,6 +210,7 @@ export async function GET(req: Request) {
       memoryScores,
       beerPongStats,
       molkkyStats,
+      kuvahaasteStats,
     });
   } catch (error) {
     console.error('Virhe tulosten haussa:', error);

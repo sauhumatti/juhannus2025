@@ -43,6 +43,10 @@ model User {
 
   // Memory Game scores
   memoryScores   MemoryScore[]
+
+  // Kuvahaaste (Photo Challenge) relationships
+  photoChallengesTook    PhotoChallenge[] @relation("ChallengeCreator")
+  photoChallengeResponses PhotoChallengeResponse[] @relation("ResponseCreator")
 }
 
 model DartScore {
@@ -169,4 +173,39 @@ model MemoryScore {
   createdAt DateTime @default(now())
   userId    String
   user      User     @relation(fields: [userId], references: [id])
+}
+
+model PhotoChallenge {
+  id          String   @id @default(cuid())
+  title       String   // Challenge description, e.g., "Find a red door"
+  description String?  // Optional detailed description
+  imageUrl    String   // URL of the challenge photo
+  createdAt   DateTime @default(now())
+  isActive    Boolean  @default(true)
+  
+  // Creator relationship
+  creatorId   String
+  creator     User     @relation("ChallengeCreator", fields: [creatorId], references: [id])
+  
+  // Responses to this challenge
+  responses   PhotoChallengeResponse[]
+}
+
+model PhotoChallengeResponse {
+  id          String   @id @default(cuid())
+  imageUrl    String   // URL of the response photo
+  comment     String?  // Optional comment about where/how they found it
+  createdAt   DateTime @default(now())
+  isApproved  Boolean  @default(false) // Admin/creator can approve valid responses
+  
+  // Challenge relationship
+  challengeId String
+  challenge   PhotoChallenge @relation(fields: [challengeId], references: [id], onDelete: Cascade)
+  
+  // Response creator relationship
+  creatorId   String
+  creator     User     @relation("ResponseCreator", fields: [creatorId], references: [id])
+  
+  // Prevent duplicate responses from same user to same challenge
+  @@unique([challengeId, creatorId])
 }

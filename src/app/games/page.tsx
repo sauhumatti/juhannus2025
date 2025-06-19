@@ -63,6 +63,14 @@ const games = [
     description: "Juhannus-teemainen muistipeli",
     color: "from-indigo-400 to-indigo-600"
   },
+  { 
+    id: "kuvahaaste", 
+    name: "Kuvahaaste", 
+    icon: "📸", 
+    description: "Löydä mielenkiintoisia kohteita ja haasta muut",
+    color: "from-pink-400 to-pink-600",
+    route: "/kuvahaaste"
+  },
 ];
 
 export default function Games() {
@@ -185,48 +193,97 @@ export default function Games() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {games.map((game) => (
-              <div
-                key={game.id}
-                onClick={() => setActiveGame(game.id)}
-                className="group cursor-pointer transform hover:scale-105 transition-all duration-300"
-              >
-                <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 border border-green-200 shadow-lg hover:shadow-xl transition-all">
-                  <div className={`bg-gradient-to-br ${game.color} rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-4 mx-auto group-hover:scale-110 transition-transform`}>
-                    {game.icon}
-                  </div>
-                  
-                  <h3 
-                    className="text-xl font-bold text-center mb-2"
-                    style={{ 
-                      fontFamily: 'Fredoka One, cursive',
-                      color: '#228B22'
-                    }}
+            {games.map((game) => {
+              // Special handling for Kuvahaaste - direct navigation instead of local state
+              if (game.route) {
+                return (
+                  <Link
+                    key={game.id}
+                    href={game.route}
+                    className="group cursor-pointer transform hover:scale-105 transition-all duration-300"
                   >
-                    {game.name}
-                  </h3>
-                  
-                  <p 
-                    className="text-center text-sm opacity-75 mb-4"
-                    style={{ 
-                      fontFamily: 'Nunito, sans-serif',
-                      color: '#2F4F4F'
-                    }}
-                  >
-                    {game.description}
-                  </p>
-                  
-                  <div className="text-center">
-                    <span 
-                      className="inline-block px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-bold group-hover:bg-green-700 transition-colors"
-                      style={{ fontFamily: 'Nunito, sans-serif' }}
+                    <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 border border-green-200 shadow-lg hover:shadow-xl transition-all">
+                      <div className={`bg-gradient-to-br ${game.color} rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-4 mx-auto group-hover:scale-110 transition-transform`}>
+                        {game.icon}
+                      </div>
+                      
+                      <h3 
+                        className="text-xl font-bold text-center mb-2"
+                        style={{ 
+                          fontFamily: 'Fredoka One, cursive',
+                          color: '#228B22'
+                        }}
+                      >
+                        {game.name}
+                      </h3>
+                      
+                      <p 
+                        className="text-center text-sm opacity-75 mb-4"
+                        style={{ 
+                          fontFamily: 'Nunito, sans-serif',
+                          color: '#2F4F4F'
+                        }}
+                      >
+                        {game.description}
+                      </p>
+                      
+                      <div className="text-center">
+                        <span 
+                          className="inline-block px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-bold group-hover:bg-green-700 transition-colors"
+                          style={{ fontFamily: 'Nunito, sans-serif' }}
+                        >
+                          Pelaa →
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              }
+
+              // Regular game handling with local state
+              return (
+                <div
+                  key={game.id}
+                  onClick={() => setActiveGame(game.id)}
+                  className="group cursor-pointer transform hover:scale-105 transition-all duration-300"
+                >
+                  <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 border border-green-200 shadow-lg hover:shadow-xl transition-all">
+                    <div className={`bg-gradient-to-br ${game.color} rounded-full w-16 h-16 flex items-center justify-center text-3xl mb-4 mx-auto group-hover:scale-110 transition-transform`}>
+                      {game.icon}
+                    </div>
+                    
+                    <h3 
+                      className="text-xl font-bold text-center mb-2"
+                      style={{ 
+                        fontFamily: 'Fredoka One, cursive',
+                        color: '#228B22'
+                      }}
                     >
-                      Pelaa →
-                    </span>
+                      {game.name}
+                    </h3>
+                    
+                    <p 
+                      className="text-center text-sm opacity-75 mb-4"
+                      style={{ 
+                        fontFamily: 'Nunito, sans-serif',
+                        color: '#2F4F4F'
+                      }}
+                    >
+                      {game.description}
+                    </p>
+                    
+                    <div className="text-center">
+                      <span 
+                        className="inline-block px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-bold group-hover:bg-green-700 transition-colors"
+                        style={{ fontFamily: 'Nunito, sans-serif' }}
+                      >
+                        Pelaa →
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

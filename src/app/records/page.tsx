@@ -37,6 +37,18 @@ interface MolkkyStats {
   }[];
 }
 
+interface KuvahaasteStats {
+  challengesCreated: number;
+  responsesApproved: number;
+  recentResponses: {
+    id: string;
+    challengeTitle: string;
+    challengeCreator: string;
+    createdAt: string;
+    comment?: string;
+  }[];
+}
+
 interface Records {
   dartScores: GameScore[];
   puttingScores: GameScore[];
@@ -45,6 +57,7 @@ interface Records {
   memoryScores: GameScore[];
   beerPongStats?: BeerPongStats;
   molkkyStats?: MolkkyStats;
+  kuvahaasteStats?: KuvahaasteStats;
 }
 
 interface LeaderboardEntry {
@@ -914,6 +927,126 @@ export default function Records() {
                       Ei Mölkky -tilastoja vielä. Pelaa ensimmäinen peli!
                     </p>
                   </div>
+              )}
+
+              {/* Kuvahaaste Stats Section */}
+              {records.kuvahaasteStats && (
+                <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
+                  <h3 
+                    className="text-2xl font-bold mb-4"
+                    style={{ 
+                      fontFamily: 'Fredoka One, cursive',
+                      color: '#228B22'
+                    }}
+                  >
+                    📸 Kuvahaaste tilastot
+                  </h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div className="text-center p-4 bg-green-50 rounded-lg">
+                      <div 
+                        className="text-3xl font-bold"
+                        style={{ color: '#228B22' }}
+                      >
+                        {records.kuvahaasteStats.challengesCreated}
+                      </div>
+                      <div 
+                        className="text-sm"
+                        style={{ 
+                          fontFamily: 'Nunito, sans-serif',
+                          color: '#2F4F4F'
+                        }}
+                      >
+                        Luotuja haasteita
+                      </div>
+                    </div>
+                    
+                    <div className="text-center p-4 bg-blue-50 rounded-lg">
+                      <div 
+                        className="text-3xl font-bold"
+                        style={{ color: '#228B22' }}
+                      >
+                        {records.kuvahaasteStats.responsesApproved}
+                      </div>
+                      <div 
+                        className="text-sm"
+                        style={{ 
+                          fontFamily: 'Nunito, sans-serif',
+                          color: '#2F4F4F'
+                        }}
+                      >
+                        Suoritettuja haasteita
+                      </div>
+                    </div>
+                  </div>
+
+                  {records.kuvahaasteStats.recentResponses.length > 0 && (
+                    <div>
+                      <h4 
+                        className="text-lg font-semibold mb-3"
+                        style={{ 
+                          fontFamily: 'Fredoka One, cursive',
+                          color: '#228B22'
+                        }}
+                      >
+                        📷 Viimeisimmät suoritukset:
+                      </h4>
+                      {records.kuvahaasteStats.recentResponses.map((response) => (
+                        <div 
+                          key={response.id} 
+                          className="flex justify-between items-center p-3 border rounded-lg shadow-sm bg-gray-50 mb-3"
+                        >
+                          <div>
+                            <div 
+                              className="font-medium"
+                              style={{ 
+                                fontFamily: 'Nunito, sans-serif',
+                                color: '#2F4F4F'
+                              }}
+                            >
+                              {response.challengeTitle}
+                            </div>
+                            <div 
+                              className="text-sm text-gray-600"
+                              style={{ fontFamily: 'Nunito, sans-serif' }}
+                            >
+                              Haaste: {response.challengeCreator}
+                            </div>
+                            {response.comment && (
+                              <div 
+                                className="text-sm text-gray-500 italic"
+                                style={{ fontFamily: 'Nunito, sans-serif' }}
+                              >
+                                "{response.comment}"
+                              </div>
+                            )}
+                          </div>
+                          <div 
+                            className="text-sm text-gray-500"
+                            style={{ fontFamily: 'Nunito, sans-serif' }}
+                          >
+                            {new Date(response.createdAt).toLocaleDateString('fi-FI')}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {records.kuvahaasteStats.responsesApproved === 0 && records.kuvahaasteStats.challengesCreated === 0 && (
+                    <div className="text-center py-8">
+                      <div className="text-4xl mb-4">📸</div>
+                      <p 
+                        className="text-lg"
+                        style={{ 
+                          fontFamily: 'Nunito, sans-serif',
+                          color: '#2F4F4F'
+                        }}
+                      >
+                        Ei Kuvahaaste -tilastoja vielä. Luo ensimmäinen haaste tai vastaa johonkin!
+                      </p>
+                    </div>
+                  )}
+                </div>
               )}
             </div>
           ) : viewMode === "leaderboard" && leaderboards[activeTab] ? (
