@@ -12,25 +12,25 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Saku 30v - Syntymäpäivä & Valmistujaisjuhlat",
-  description: "Tervetuloa juhlimaan Sakun 30-vuotissyntymäpäiviä ja valmistujaisia! Pelejä, hauskaa yhdessäoloa ja unohtumattomia hetkiä.",
-  keywords: ["saku", "30v", "syntymäpäivä", "valmistujaiset", "juhlat", "party"],
-  authors: [{ name: "Saku" }],
-  creator: "Saku",
-  publisher: "Saku",
-  metadataBase: new URL('https://saku30v.fi'),
+  title: "Juhannus 2025 - Perinteinen Juhannusjuhla",
+  description: "Tervetuloa viettämään perinteistä juhannusta! Mölkkyä, grillailua, saunomista ja yhteisön voimaa kesän kirkkaimpana yönä.",
+  keywords: ["juhannus", "2025", "juhannusjuhla", "perinteinen", "mölkky", "sauna", "grillaus", "kesäjuhla"],
+  authors: [{ name: "Juhannus 2025" }],
+  creator: "Juhannus 2025",
+  publisher: "Juhannus 2025",
+  metadataBase: new URL('https://juhannus2025.fi'),
   openGraph: {
     type: 'website',
     locale: 'fi_FI',
-    url: 'https://saku30v.fi',
-    title: 'Saku 30v - Syntymäpäivä & Valmistujaisjuhlat',
-    description: 'Tervetuloa juhlimaan Sakun 30-vuotissyntymäpäiviä ja valmistujaisia!',
-    siteName: 'Saku 30v',
+    url: 'https://juhannus2025.fi',
+    title: 'Juhannus 2025 - Perinteinen Juhannusjuhla',
+    description: 'Tervetuloa viettämään perinteistä juhannusta! Mölkkyä, grillailua, saunomista ja yhteisön voimaa.',
+    siteName: 'Juhannus 2025',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Saku 30v - Syntymäpäivä & Valmistujaisjuhlat',
-    description: 'Tervetuloa juhlimaan Sakun 30-vuotissyntymäpäiviä ja valmistujaisia!',
+    title: 'Juhannus 2025 - Perinteinen Juhannusjuhla',
+    description: 'Tervetuloa viettämään perinteistä juhannusta! Mölkkyä, grillailua, saunomista ja yhteisön voimaa.',
   },
   robots: {
     index: true,
@@ -57,7 +57,10 @@ export default function RootLayout({
     <html lang="fi">
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#667eea" />
+        <meta name="theme-color" content="#228B22" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body className={`${inter.className} ${dancingScript.variable}`}>
         <Navbar />

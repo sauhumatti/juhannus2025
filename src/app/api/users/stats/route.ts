@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+// import { prisma } from '@/lib/prisma';
 
 export async function GET(req: Request) {
   try {
@@ -13,32 +13,32 @@ export async function GET(req: Request) {
       );
     }
 
-    // Get answers given by the user
-    const answersGiven = await prisma.icebreakerAnswer.count({
-      where: { giverId: userId }
-    });
+    // Get answers given by the user (commented out - model doesn't exist)
+    const answersGiven = 0; // await prisma.icebreakerAnswer.count({
+    //   where: { giverId: userId }
+    // });
 
-    // Get answers where user is selected
-    const timesSelected = await prisma.icebreakerAnswer.count({
-      where: { receiverId: userId }
-    });
+    // Get answers where user is selected (commented out - model doesn't exist)
+    const timesSelected = 0; // await prisma.icebreakerAnswer.count({
+    //   where: { receiverId: userId }
+    // });
 
-    // Get unique cards where user appears
-    const uniqueCardsWhereSelected = await prisma.icebreakerAnswer.findMany({
-      where: { receiverId: userId },
-      select: {
-        cardId: true
-      },
-      distinct: ['cardId']
-    });
+    // Get unique cards where user appears (commented out - model doesn't exist)
+    const uniqueCardsWhereSelected: any[] = []; // await prisma.icebreakerAnswer.findMany({
+    //   where: { receiverId: userId },
+    //   select: {
+    //     cardId: true
+    //   },
+    //   distinct: ['cardId']
+    // });
 
-    // Get the user's own card and its completion
-    const userCard = await prisma.icebreakerCard.findFirst({
-      where: { userId },
-      include: {
-        answers: true
-      }
-    });
+    // Get the user's own card and its completion (commented out - model doesn't exist)
+    const userCard: any = null; // await prisma.icebreakerCard.findFirst({
+    //   where: { userId },
+    //   include: {
+    //     answers: true
+    //   }
+    // });
 
     return NextResponse.json({
       answersGiven,

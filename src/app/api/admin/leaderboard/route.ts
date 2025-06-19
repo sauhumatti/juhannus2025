@@ -22,7 +22,7 @@ interface ScoreWithUser {
 export async function GET(_request: NextRequest) {
   try {
     // Fetch all types of scores
-    const [dartScores, puttingScores, beerScores] = await Promise.all([
+    const [dartScores, puttingScores, _beerPongMatches] = await Promise.all([
       prisma.dartScore.findMany({
         include: {
           user: {
@@ -41,14 +41,18 @@ export async function GET(_request: NextRequest) {
           },
         },
       }),
-      prisma.beerScore.findMany({
+      prisma.beerPongMatch.findMany({
         include: {
-          user: {
+          winners: {
             select: {
+              id: true,
               name: true,
             },
           },
         },
+        where: {
+          status: 'completed'
+        }
       }),
     ]);
 
@@ -68,13 +72,7 @@ export async function GET(_request: NextRequest) {
         score: entry.score || 0,
         gameType: 'Putting'
       })),
-      ...beerScores.map((entry: ScoreWithUser) => ({
-        id: entry.id,
-        userId: entry.userId,
-        userName: entry.user.name,
-        score: entry.time ? Math.round(entry.time * 100) / 100 : 0,
-        gameType: 'Beer'
-      }))
+      // Beer Pong wins don't map to simple scores, skip this for now
     ];
 
     return NextResponse.json(formattedEntries);

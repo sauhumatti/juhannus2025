@@ -241,8 +241,8 @@ export default function PhotosPage() {
 
   if (loading) {
     return (
-      <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-pink-50 to-purple-50 p-4 flex items-center justify-center">
-        <div className="text-2xl text-gray-600">Ladataan...</div>
+      <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-green-50 to-green-100 p-4 flex items-center justify-center">
+        <div className="text-2xl text-green-800">Ladataan...</div>
       </div>
     );
   }
@@ -252,20 +252,44 @@ export default function PhotosPage() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-pink-50 to-purple-50 px-4 py-2 sm:p-4">
+    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-green-50 to-green-100 px-4 py-2 sm:p-4 photos-page">
+      {/* Forest Header Background */}
+      <div 
+        className="w-full h-48 mb-8 rounded-xl relative overflow-hidden shadow-lg"
+        style={{
+          background: `linear-gradient(rgba(34, 139, 34, 0.3), rgba(34, 139, 34, 0.3)), url('/forest.jpg')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundColor: '#228B22'
+        }}
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-2" style={{ fontFamily: 'Fredoka One, cursive' }}>
+              Juhannuskuvat
+            </h1>
+            <p className="text-green-100 text-lg" style={{ fontFamily: 'Nunito, sans-serif' }}>
+              Jaa kuvia ja muistoja juhannusviikosta
+            </p>
+          </div>
+        </div>
+      </div>
+      
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8 mt-4 sm:mt-8 border-2 border-pink-200">
-          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-2 dancing-font">Juhlakuvat</h1>
-          <div className="w-32 h-1 bg-pink-400 mx-auto mb-4"></div>
-          <p className="text-gray-600 text-center mb-6 italic">Jaa kuvia ja muistoja juhlista!</p>
-
+        <div className="bg-white rounded-xl shadow-lg p-4 sm:p-8 border-2 border-green-200">
           {/* Upload Section */}
-          <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 sm:p-6 mb-8 border border-purple-200">
-            <h2 className="text-xl font-semibold text-center mb-4 dancing-font">Lataa uusi kuva</h2>
+          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-4 sm:p-6 mb-8 border border-green-300 relative">
+            <div className="flex items-center justify-center mb-4">
+              <img src="/forest-camera.png" alt="Camera" className="w-8 h-8 mr-3" />
+              <h2 className="text-xl font-semibold text-green-800 text-center" style={{ fontFamily: 'Fredoka One, cursive' }}>
+                Jaa juhannushetki
+              </h2>
+            </div>
             
             <div className="space-y-4">
               {/* File selection button */}
-              <div>
+              <div className="flex justify-center">
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -277,12 +301,13 @@ export default function PhotosPage() {
                 <button
                   onClick={() => fileInputRef.current?.click()}
                   disabled={uploading || selectedFile !== null}
-                  className="w-full sm:w-auto px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium"
+                  style={{ fontFamily: 'Nunito, sans-serif' }}
                 >
                   {selectedFile ? (
-                    <>Kuva valittu</>
+                    <>🌲 Kuva valittu</>
                   ) : (
-                    <>Valitse kuva</>
+                    <>🌲 Valitse kuva</>
                   )}
                 </button>
               </div>
@@ -304,19 +329,20 @@ export default function PhotosPage() {
 
                   {/* Caption input */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Kuvateksti (valinnainen)
+                    <label className="block text-sm font-medium text-green-800 mb-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                      🍄 Kerro juhannustarinasi (valinnainen)
                     </label>
                     <textarea
                       value={caption}
                       onChange={(e) => setCaption(e.target.value)}
-                      placeholder="Kuvaile hetkeä..."
-                      className="w-full p-3 border border-gray-300 rounded-lg resize-none text-gray-900 placeholder:text-gray-500"
+                      placeholder="Kuvaile juhannushetkeä..."
+                      className="w-full p-3 border border-green-300 rounded-lg resize-none text-gray-900 placeholder:text-green-500 focus:border-green-500 focus:ring-green-500"
                       rows={3}
                       maxLength={300}
                       disabled={uploading}
+                      style={{ fontFamily: 'Nunito, sans-serif' }}
                     />
-                    <p className="text-xs text-gray-500 mt-1">{caption.length}/300</p>
+                    <p className="text-xs text-green-600 mt-1">{caption.length}/300</p>
                   </div>
 
                   {/* Submit and cancel buttons */}
@@ -324,23 +350,25 @@ export default function PhotosPage() {
                     <button
                       onClick={handleSubmit}
                       disabled={uploading}
-                      className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 font-medium"
+                      style={{ fontFamily: 'Nunito, sans-serif' }}
                     >
                       {uploading ? (
                         <>
                           <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
-                          Ladataan...
+                          Tallentaa muistoja...
                         </>
                       ) : (
-                        <>Julkaise</>
+                        <>🌿 Jaa juhannuksessa</>
                       )}
                     </button>
                     <button
                       onClick={handleCancelUpload}
                       disabled={uploading}
-                      className="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+                      style={{ fontFamily: 'Nunito, sans-serif' }}
                     >
-                      Peruuta
+                      🍂 Peruuta
                     </button>
                   </div>
                 </>
@@ -348,14 +376,14 @@ export default function PhotosPage() {
             </div>
 
             {error && (
-              <div className="mt-4 p-3 bg-red-50 text-red-600 rounded-lg text-sm">
-                {error}
+              <div className="mt-4 p-3 bg-red-50 text-red-700 rounded-lg text-sm border border-red-200" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                🚨 {error}
               </div>
             )}
 
             {success && (
-              <div className="mt-4 p-3 bg-green-50 text-green-600 rounded-lg text-sm">
-                {success}
+              <div className="mt-4 p-3 bg-green-50 text-green-700 rounded-lg text-sm border border-green-200" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                ✨ {success}
               </div>
             )}
           </div>
@@ -363,43 +391,45 @@ export default function PhotosPage() {
           {/* Photos Gallery */}
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <h2 className="text-xl font-semibold text-gray-900">
-                {showOwnPhotos ? `Omat kuvat (${filteredPhotos.length})` : `Kaikki kuvat (${filteredPhotos.length})`}
+              <h2 className="text-xl font-semibold text-green-800" style={{ fontFamily: 'Fredoka One, cursive' }}>
+                {showOwnPhotos ? `🌲 Omat juhannuskuvat (${filteredPhotos.length})` : `🌲 Juhannuskuvagalleria (${filteredPhotos.length})`}
               </h2>
               
               {/* Toggle buttons */}
-              <div className="flex rounded-lg bg-gray-100 p-1">
+              <div className="flex rounded-lg bg-green-100 p-1 border border-green-200">
                 <button
                   onClick={() => setShowOwnPhotos(false)}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                     !showOwnPhotos 
-                      ? "bg-white text-gray-900 shadow-sm" 
-                      : "text-gray-500 hover:text-gray-700"
+                      ? "bg-white text-green-800 shadow-sm border border-green-300" 
+                      : "text-green-600 hover:text-green-800"
                   }`}
+                  style={{ fontFamily: 'Nunito, sans-serif' }}
                 >
-                  Kaikki kuvat
+                  🌿 Kaikki kuvat
                 </button>
                 <button
                   onClick={() => setShowOwnPhotos(true)}
                   className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                     showOwnPhotos 
-                      ? "bg-white text-gray-900 shadow-sm" 
-                      : "text-gray-500 hover:text-gray-700"
+                      ? "bg-white text-green-800 shadow-sm border border-green-300" 
+                      : "text-green-600 hover:text-green-800"
                   }`}
+                  style={{ fontFamily: 'Nunito, sans-serif' }}
                 >
-                  Omat kuvat
+                  🍄 Omat kuvat
                 </button>
               </div>
             </div>
 
             {filteredPhotos.length === 0 ? (
               <div className="text-center py-12">
-                <div className="text-6xl mb-4">📷</div>
-                <p className="text-gray-500 text-lg">
-                  {showOwnPhotos ? "Et ole vielä jakanut kuvia" : "Ei kuvia vielä"}
+                <div className="text-6xl mb-4">🌲</div>
+                <p className="text-green-600 text-lg font-medium" style={{ fontFamily: 'Fredoka One, cursive' }}>
+                  {showOwnPhotos ? "Et ole vielä jakanut juhannuskuvia" : "Juhannus odottaa ensimmäistä kuvaajaa"}
                 </p>
-                <p className="text-gray-400 text-sm">
-                  {showOwnPhotos ? "Jaa ensimmäinen kuvasi!" : "Ole ensimmäinen, joka jakaa muiston!"}
+                <p className="text-green-500 text-sm mt-2" style={{ fontFamily: 'Nunito, sans-serif' }}>
+                  {showOwnPhotos ? "🌿 Jaa ensimmäinen juhannushetkesi!" : "🍄 Ole ensimmäinen, joka jakaa juhannusmuiston!"}
                 </p>
               </div>
             ) : (
@@ -407,7 +437,7 @@ export default function PhotosPage() {
                 {filteredPhotos.map((photo) => (
                   <div
                     key={photo.id}
-                    className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm"
+                    className="bg-white border border-green-200 rounded-xl p-4 shadow-sm hover:shadow-lg transition-shadow"
                   >
                     {/* Photo Header */}
                     <div className="flex items-center justify-between mb-4">
@@ -421,8 +451,8 @@ export default function PhotosPage() {
                           />
                         </div>
                         <div>
-                          <p className="font-medium text-gray-900">{photo.user.name}</p>
-                          <p className="text-sm text-gray-500">{formatDate(photo.createdAt)}</p>
+                          <p className="font-medium text-green-800" style={{ fontFamily: 'Nunito, sans-serif' }}>{photo.user.name}</p>
+                          <p className="text-sm text-green-600" style={{ fontFamily: 'Nunito, sans-serif' }}>{formatDate(photo.createdAt)}</p>
                         </div>
                       </div>
                       {/* Edit/Delete buttons for own photos or admin */}
@@ -433,7 +463,7 @@ export default function PhotosPage() {
                               {user?.id === photo.user.id && (
                                 <button
                                   onClick={() => handleEdit(photo)}
-                                  className="text-blue-600 hover:text-blue-800 p-2"
+                                  className="text-green-600 hover:text-green-800 p-2"
                                   title="Muokkaa"
                                 >
                                   ✏️
@@ -468,30 +498,33 @@ export default function PhotosPage() {
                         <textarea
                           value={editingCaption}
                           onChange={(e) => setEditingCaption(e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded-lg resize-none text-gray-900"
+                          className="w-full p-2 border border-green-300 rounded-lg resize-none text-gray-900 focus:border-green-500 focus:ring-green-500"
                           rows={3}
                           maxLength={300}
+                          style={{ fontFamily: 'Nunito, sans-serif' }}
                         />
                         <div className="flex gap-2">
                           <button
                             onClick={() => handleSaveEdit(photo.id)}
-                            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                            className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium"
+                            style={{ fontFamily: 'Nunito, sans-serif' }}
                           >
-                            Tallenna
+                            🌿 Tallenna
                           </button>
                           <button
                             onClick={() => {
                               setEditingPhotoId(null);
                               setEditingCaption("");
                             }}
-                            className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600"
+                            className="px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 font-medium"
+                            style={{ fontFamily: 'Nunito, sans-serif' }}
                           >
-                            Peruuta
+                            🍂 Peruuta
                           </button>
                         </div>
                       </div>
                     ) : (
-                      photo.caption && <p className="text-gray-700">{photo.caption}</p>
+                      photo.caption && <p className="text-green-800" style={{ fontFamily: 'Nunito, sans-serif' }}>{photo.caption}</p>
                     )}
                   </div>
                 ))}

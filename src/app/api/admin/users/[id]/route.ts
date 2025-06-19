@@ -58,18 +58,18 @@ export async function DELETE(
 
     // Step 3: Now, perform all deletions and disconnects within a single transaction
     await prisma.$transaction([
-      // Delete icebreaker related data
-      prisma.icebreakerAnswer.deleteMany({
-        where: {
-          OR: [
-            { giverId: id },
-            { receiverId: id }
-          ]
-        }
-      }),
-      prisma.icebreakerCard.deleteMany({
-        where: { userId: id }
-      }),
+      // Delete icebreaker related data (commented out - model doesn't exist)
+      // prisma.icebreakerAnswer.deleteMany({
+      //   where: {
+      //     OR: [
+      //       { giverId: id },
+      //       { receiverId: id }
+      //     ]
+      //   }
+      // }),
+      // prisma.icebreakerCard.deleteMany({
+      //   where: { userId: id }
+      // }),
 
       // Delete game scores
       prisma.dartScore.deleteMany({
@@ -78,9 +78,9 @@ export async function DELETE(
       prisma.puttingScore.deleteMany({
         where: { userId: id }
       }),
-      prisma.beerScore.deleteMany({
-        where: { userId: id }
-      }),
+      // prisma.beerScore.deleteMany({
+      //   where: { userId: id }
+      // }),
 
       // Delete beer pong stats
       prisma.beerPongStats.deleteMany({

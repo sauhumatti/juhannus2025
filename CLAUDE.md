@@ -15,6 +15,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npx prisma db push` - Push schema changes to database
 - `npx prisma studio` - Open database browser
 
+**Required environment variables:**
+- `DATABASE_URL` - PostgreSQL connection string (Note: Use port 5432 for Prisma operations, not 6543)
+
 ## Environment Variables
 
 **Required for photo uploads:**
@@ -25,7 +28,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Architecture Overview
 
-This is a Finnish party/social gaming application built with:
+This is a Juhannus 2025 (Midsummer) celebration application built with:
 - **Next.js 15.3.2** with App Router
 - **React 19.0.0**
 - **TypeScript**
@@ -33,7 +36,7 @@ This is a Finnish party/social gaming application built with:
 - **Tailwind CSS v4** (new version with postcss plugin)
 - **Cloudinary** for photo uploads
 
-The app manages multiple party games, user profiles, photo sharing, and social interactions for birthday party guests.
+The app manages traditional Juhannus activities, user profiles, photo sharing, and social interactions for Juhannus 2025 celebration guests.
 
 ### Admin Dashboard (`/admin`)
 
@@ -63,16 +66,15 @@ The app manages multiple party games, user profiles, photo sharing, and social i
 
 **Database Models:**
 - `User` - Central user model with Cloudinary photo URLs
-- Game scores: `DartScore` (0-50), `PuttingScore` (0-10), `BeerScore` (time in seconds)
+- Game scores: `DartScore` (0-50), `PuttingScore` (0-10)
 - `BeerPongMatch` - Complex tournament system with teams and statistics
-- `IcebreakerCard`/`IcebreakerAnswer` - Social card game system using `tutustumiskortit.json`
+- `MolkkyGame`/`MolkkyPlayer`/`MolkkyThrow` - Traditional Finnish Mölkky game system
 - `PhotoMoment` - Photo sharing with user relationship, photoUrl, caption, and timestamps
 
 **API Structure:**
 - `/api/auth/*` - Authentication endpoints
-- `/api/games/*` - Game-specific scoring APIs
+- `/api/games/*` - Game-specific scoring APIs (darts, putting, beerpong, molkky)
 - `/api/admin/*` - Administrative functions
-- `/api/icebreaker/*` - Social game management
 - `/api/photos/*` - Photo CRUD operations
 - `/api/photos/upload-signature` - Cloudinary upload signature generation
 
@@ -85,25 +87,31 @@ The app manages multiple party games, user profiles, photo sharing, and social i
 
 **Beer Pong System:**
 - Most complex feature with team formation, match tracking, and statistics
-- Supports 1v1 or 2v2 matches with optional team names
-- Individual stats tracking (wins, losses, streaks)
+- Supports 1v1 or 2v2 matches with optional team names for Juhannus tournament
+- Individual stats tracking (wins, losses, streaks) throughout the celebration
 
-**Icebreaker Game:**
-- JSON-based question cards from `tutustumiskortit.json`
-- Social interaction system where users answer questions about each other
-- Database tracks who answered what about whom
+**Mölkky Game System:**
+- Traditional Finnish throwing game with comprehensive scoring
+- Real-time multiplayer with live score tracking
+- Rule enforcement: exact 50 points to win, penalty system, elimination rules
+- Turn-based gameplay with spectator mode
 
 **Photo Sharing System:**
-- Cloudinary integration for photo uploads
-- Users can upload, view, edit captions, and delete their own photos
+- Cloudinary integration for photo uploads during Juhannus 2025
+- Users can upload, view, edit captions, and delete their own celebration photos
 - Admin can delete any user's photos
 - Photos page with filtering (all photos vs own photos)
-- Recent photos feed displayed on party landing page
+- Recent photos feed displayed on celebration landing page
 
 **Party Page (`/party`):**
-- Central landing page with party schedule
-- Quick navigation links to all features
-- Live photo feed showing recent uploads
+- Central landing page with Juhannus 2025 celebration schedule
+- Quick navigation links to all traditional Juhannus activities
+- Live photo feed showing recent uploads from the celebration
+
+**Print Page (`/print`):**
+- QR code generator page for sharing the website URL
+- Optimized for printing with print-specific CSS
+- Currently displays saku30v.fi URL and QR code (may need updating for Juhannus 2025 domain)
 
 **Error Handling:**
 - Finnish language error messages throughout API endpoints
@@ -114,6 +122,33 @@ The app manages multiple party games, user profiles, photo sharing, and social i
 - Responsive image handling (different behaviors on mobile/desktop)
 - Google Fonts integration with Dancing Script for decorative headers
 - Tailwind CSS v4 with inline theme configuration (no tailwind.config.js)
+- Print-optimized styles for QR code sharing page
+- Theme selection system with Juhannus-inspired color palettes and typography
+
+**Selected Theme: Forest Folklore**
+- **Primary Color**: #228B22 (Forest Green)
+- **Secondary Color**: #32CD32 (Lime Green) 
+- **Accent Color**: #DAA520 (Goldenrod)
+- **Background Color**: #F0FFF0 (Honeydew)
+- **Text Color**: #2F4F4F (Dark Slate Gray)
+- **Primary Font**: Fredoka One (headings, decorative)
+- **Secondary Font**: Nunito (body text, UI)
+- **Theme Concept**: Deep forest greens with mystical Finnish nature vibes, hand-crafted folklore feel
+
+**Other Theme Options (`/themes`):**
+- **Midsummer Classic**: Gold and sky blue with serif fonts (traditional elegance)
+- **Midnight Sun**: Bright oranges with modern fonts (endless summer light)
+- **Bonfire Celebration**: Warm reds with bold fonts (kokko fire energy)
+- **Lake Reflection**: Cool blues with clean fonts (Finnish lake inspiration)
+- **Birch & Berries**: White and crimson with elegant fonts (summer forest theme)
+
+**Typography Recommendations:**
+- **Serif Style**: Playfair Display + Georgia (classic Finnish elegance)
+- **Rustic Style**: Fredoka One + Nunito (hand-crafted folklore feel)
+- **Modern Style**: Poppins + Inter (contemporary summer brightness)
+- **Bold Style**: Oswald + Roboto (celebration energy)
+- **Clean Style**: Lato + Source Sans Pro (clear like lake water)
+- **Elegant Style**: Dancing Script + Crimson Text (birch tree grace)
 
 ## Development Guidelines
 
@@ -154,3 +189,37 @@ The app manages multiple party games, user profiles, photo sharing, and social i
     }
   }
   ```
+
+## MCP Tool Usage
+
+**Image Generation MCP (`mcp__mcp-image-server__*`):**
+- Use for creating visuals, graphics, and other images needed for the application
+- Supports transparent backgrounds and custom dimensions
+- Available functions: `generate_image`, `resize_image`, `create_image_variants`
+
+**Screenshot MCP (`mcp__mcp-screenshot-server__*`):**
+- **IMPORTANT**: Always take screenshots to verify visual appearance after making UI changes
+- Take both desktop and mobile screenshots to ensure responsive design works correctly
+- Use `take_screenshot` for desktop view (1920x1080 default)
+- Use `take_mobile_screenshot` for mobile view (with device emulation)
+- Check for:
+  - Text readability (especially on mobile with light backgrounds)
+  - Layout issues and responsive breakpoints
+  - Theme colors appearing correctly
+  - Any visual glitches or alignment problems
+
+**Visual Testing Workflow:**
+1. **IMPORTANT**: The dev server should already be running (managed by the user, not Claude)
+2. Check dev server logs with `tail -n 50 dev-logs.txt` to ensure no errors
+3. After making UI changes, take desktop screenshot: `take_screenshot` with URL `http://localhost:3000/[page-path]`
+4. Take mobile screenshot: `take_mobile_screenshot` with same URL
+5. Review both screenshots for visual issues
+6. Check logs again for any runtime errors: `tail -n 20 dev-logs.txt`
+7. Fix any problems found and re-test
+
+**Development Server Notes:**
+- **DO NOT** start the dev server with `npm run dev`
+- The dev server is managed externally by the user
+- Logs are available in `dev-logs.txt`
+- Use `tail -f dev-logs.txt` or `tail -n [lines] dev-logs.txt` to monitor logs
+- Check logs after changes to catch compilation errors or warnings

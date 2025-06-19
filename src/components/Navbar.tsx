@@ -53,13 +53,29 @@ export default function Navbar() {
   // Show loading state until component is mounted and user state is determined
   if (!mounted) {
     return (
-      <nav className="bg-white shadow-lg sticky top-0 z-50">
+      <nav 
+        className="shadow-lg sticky top-0 z-50"
+        style={{ 
+          background: 'linear-gradient(135deg, #F0FFF0 0%, rgba(240, 255, 240, 0.95) 100%)',
+          backdropFilter: 'blur(10px)',
+          borderBottom: '2px solid rgba(34, 139, 34, 0.2)'
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
               <div className="flex items-center px-2 py-2">
-                <span className="text-3xl font-bold text-gray-900 dancing-font">
-                  Saku 30v
+                <span 
+                  className="text-3xl font-bold"
+                  style={{ 
+                    fontFamily: 'Fredoka One, cursive',
+                    background: 'linear-gradient(135deg, #228B22, #32CD32)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                  }}
+                >
+                  🌲 Juhannus 2025
                 </span>
               </div>
             </div>
@@ -79,16 +95,32 @@ export default function Navbar() {
   const isLandingPage = pathname === "/" && !user;
 
   return (
-    <nav className="bg-white shadow-lg sticky top-0 z-50">
+    <nav 
+      className="shadow-lg sticky top-0 z-50"
+      style={{ 
+        background: 'linear-gradient(135deg, #F0FFF0 0%, rgba(240, 255, 240, 0.95) 100%)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '2px solid rgba(34, 139, 34, 0.2)'
+      }}
+    >
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link
-              href={user ? "/party" : "/"}
+              href={user ? "/dashboard" : "/"}
               className="flex items-center px-2 py-2 hover:opacity-80 transition-opacity"
             >
-              <span className="text-3xl font-bold text-gray-900 dancing-font">
-                Saku 30v
+              <span 
+                className="text-3xl font-bold"
+                style={{ 
+                  fontFamily: 'Fredoka One, cursive',
+                  background: 'linear-gradient(135deg, #228B22, #32CD32)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}
+              >
+                🌲 Juhannus 2025
               </span>
             </Link>
           </div>
@@ -98,7 +130,8 @@ export default function Navbar() {
             <div className="flex items-center sm:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 focus:outline-none"
+                className="inline-flex items-center justify-center p-2 rounded-md hover:bg-green-100 focus:outline-none transition-colors"
+                style={{ color: '#2F4F4F' }}
               >
                 <svg
                   className="h-6 w-6"
@@ -131,66 +164,60 @@ export default function Navbar() {
             {user ? (
               <>
                 <Link
-                  href="/menu"
-                  className={`px-3 py-2 rounded-lg ${
-                    pathname === "/menu"
-                      ? "bg-blue-100 text-blue-700"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                  }`}
-                >
-                  Ruoka ja Juomalista
-                </Link>
-                <Link
                   href="/photos"
-                  className={`px-3 py-2 rounded-lg ${
+                  className={`px-3 py-2 rounded-lg transition-all ${
                     pathname === "/photos"
-                      ? "bg-blue-100 text-blue-700"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                      ? "bg-green-100 text-green-700 border border-green-300"
+                      : "text-slate-700 hover:text-green-700 hover:bg-green-50"
                   }`}
+                  style={{ fontFamily: 'Nunito, sans-serif' }}
                 >
-                  Juhlakuvat
+                  📸 Juhannuskuvat
                 </Link>
                 <Link
                   href="/games"
-                  className={`px-3 py-2 rounded-lg ${
-                    pathname === "/games" || pathname === "/icebreaker"
-                      ? "bg-blue-100 text-blue-700"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                  className={`px-3 py-2 rounded-lg transition-all ${
+                    pathname === "/games" || pathname === "/molkky"
+                      ? "bg-amber-100 text-amber-700 border border-amber-300"
+                      : "text-slate-700 hover:text-amber-700 hover:bg-amber-50"
                   }`}
+                  style={{ fontFamily: 'Nunito, sans-serif' }}
                 >
-                  Pelit
+                  🎯 Perinteiset Leikit
                 </Link>
                 <Link
                   href="/records"
-                  className={`px-3 py-2 rounded-lg ${
+                  className={`px-3 py-2 rounded-lg transition-all ${
                     pathname === "/records"
-                      ? "bg-blue-100 text-blue-700"
-                      : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                      ? "bg-green-100 text-green-700 border border-green-300"
+                      : "text-slate-700 hover:text-green-700 hover:bg-green-50"
                   }`}
+                  style={{ fontFamily: 'Nunito, sans-serif' }}
                 >
-                  Tulokset
+                  🏆 Juhannustulokset
                 </Link>
                 {isAdmin && (
                    <Link
                     href="/admin"
-                    className={`px-3 py-2 rounded-lg ${
+                    className={`px-3 py-2 rounded-lg transition-all ${
                       pathname === "/admin"
-                        ? "bg-red-100 text-red-700"
-                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                        ? "bg-red-100 text-red-700 border border-red-300"
+                        : "text-slate-700 hover:text-red-700 hover:bg-red-50"
                     }`}
+                    style={{ fontFamily: 'Nunito, sans-serif' }}
                   >
-                    Admin
+                    ⚙️ Admin
                   </Link>
                 )}
                 <Link
                   href="/profile"
-                  className={`flex items-center px-3 py-2 rounded-lg ${
+                  className={`flex items-center px-3 py-2 rounded-lg transition-all ${
                     pathname === "/profile"
-                      ? "bg-blue-100"
-                      : "hover:bg-gray-100"
+                      ? "bg-green-100 border border-green-300"
+                      : "hover:bg-green-50"
                   }`}
                 >
-                  <div className="relative w-8 h-8 rounded-full overflow-hidden mr-2">
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden mr-2 border-2 border-green-300">
                     <Image
                       src={user.photoUrl}
                       alt={user.name}
@@ -198,22 +225,37 @@ export default function Navbar() {
                       className="object-cover"
                     />
                   </div>
-                  <span className="text-gray-700">{user.name}</span>
+                  <span 
+                    style={{ 
+                      fontFamily: 'Nunito, sans-serif',
+                      color: '#2F4F4F'
+                    }}
+                  >
+                    {user.name}
+                  </span>
                 </Link>
               </>
             ) : (
               <>
                 <Link
                   href="/signin"
-                  className="px-2 sm:px-3 py-2 text-sm sm:text-base text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+                  className="px-2 sm:px-3 py-2 text-sm sm:text-base rounded-lg transition-all hover:bg-green-50"
+                  style={{ 
+                    fontFamily: 'Nunito, sans-serif',
+                    color: '#2F4F4F'
+                  }}
                 >
-                  Kirjaudu
+                  🌿 Kirjaudu
                 </Link>
                 <Link
                   href="/signup"
-                  className="px-2 sm:px-3 py-2 text-sm sm:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  className="px-2 sm:px-3 py-2 text-sm sm:text-base text-white rounded-lg hover:opacity-90 transition-all"
+                  style={{ 
+                    fontFamily: 'Nunito, sans-serif',
+                    backgroundColor: '#228B22'
+                  }}
                 >
-                  Luo tili
+                  🍄 Luo tili
                 </Link>
               </>
             )}
@@ -222,71 +264,71 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu */}
-      <div className={`${isMenuOpen ? "block" : "hidden"} sm:hidden bg-white border-t relative z-50`}>
+      <div 
+        className={`${isMenuOpen ? "block" : "hidden"} sm:hidden border-t relative z-50`}
+        style={{ 
+          backgroundColor: 'rgba(240, 255, 240, 0.98)',
+          borderTopColor: 'rgba(34, 139, 34, 0.3)'
+        }}
+      >
         <div className="px-2 pt-2 pb-3 space-y-1">
           {user ? (
             <>
               <Link
-                href="/menu"
-                className={`block px-3 py-2 rounded-lg ${
-                  pathname === "/menu"
-                    ? "bg-blue-100 text-blue-700"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                }`}
-              >
-                Ruoka ja Juomalista
-              </Link>
-              <Link
                 href="/photos"
-                className={`block px-3 py-2 rounded-lg ${
+                className={`block px-3 py-2 rounded-lg transition-all ${
                   pathname === "/photos"
-                    ? "bg-blue-100 text-blue-700"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                    ? "bg-green-100 text-green-700 border border-green-300"
+                    : "text-slate-700 hover:text-green-700 hover:bg-green-50"
                 }`}
+                style={{ fontFamily: 'Nunito, sans-serif' }}
               >
-                Juhlakuvat
+                📸 Juhannuskuvat
               </Link>
               <Link
                 href="/games"
-                className={`block px-3 py-2 rounded-lg ${
-                  pathname === "/games" || pathname === "/icebreaker"
-                    ? "bg-blue-100 text-blue-700"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                className={`block px-3 py-2 rounded-lg transition-all ${
+                  pathname === "/games" || pathname === "/molkky"
+                    ? "bg-amber-100 text-amber-700 border border-amber-300"
+                    : "text-slate-700 hover:text-amber-700 hover:bg-amber-50"
                 }`}
+                style={{ fontFamily: 'Nunito, sans-serif' }}
               >
-                Pelit
+                🎯 Perinteiset Leikit
               </Link>
               <Link
                 href="/records"
-                className={`block px-3 py-2 rounded-lg ${
+                className={`block px-3 py-2 rounded-lg transition-all ${
                   pathname === "/records"
-                    ? "bg-blue-100 text-blue-700"
-                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                    ? "bg-green-100 text-green-700 border border-green-300"
+                    : "text-slate-700 hover:text-green-700 hover:bg-green-50"
                 }`}
+                style={{ fontFamily: 'Nunito, sans-serif' }}
               >
-                Tulokset
+                🏆 Juhannustulokset
               </Link>
                {isAdmin && (
                    <Link
                     href="/admin"
-                    className={`block px-3 py-2 rounded-lg ${
+                    className={`block px-3 py-2 rounded-lg transition-all ${
                       pathname === "/admin"
-                        ? "bg-red-100 text-red-700"
-                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                        ? "bg-red-100 text-red-700 border border-red-300"
+                        : "text-slate-700 hover:text-red-700 hover:bg-red-50"
                     }`}
+                    style={{ fontFamily: 'Nunito, sans-serif' }}
                   >
-                    Admin
+                    ⚙️ Admin
                   </Link>
                 )}
               <Link
                 href="/profile"
-                className={`flex items-center px-3 py-2 rounded-lg ${
+                className={`flex items-center px-3 py-2 rounded-lg transition-all ${
                   pathname === "/profile"
-                    ? "bg-blue-100"
-                    : "hover:bg-gray-100"
+                    ? "bg-green-100 border border-green-300"
+                    : "hover:bg-green-50"
                 }`}
               >
-                <div className="relative w-8 h-8 rounded-full overflow-hidden mr-2">
+                <div className="relative w-8 h-8 rounded-full overflow-hidden mr-2 border-2 border-green-300">
                   <Image
                     src={user.photoUrl}
                     alt={user.name}
@@ -294,22 +336,37 @@ export default function Navbar() {
                     className="object-cover"
                   />
                 </div>
-                <span className="text-gray-700">{user.name}</span>
+                <span 
+                  style={{ 
+                    fontFamily: 'Nunito, sans-serif',
+                    color: '#2F4F4F'
+                  }}
+                >
+                  {user.name}
+                </span>
               </Link>
             </>
           ) : (
             <>
               <Link
                 href="/signin"
-                className="block px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg"
+                className="block px-3 py-2 rounded-lg transition-all hover:bg-green-50"
+                style={{ 
+                  fontFamily: 'Nunito, sans-serif',
+                  color: '#2F4F4F'
+                }}
               >
-                Kirjaudu sisään
+                🌿 Kirjaudu sisään
               </Link>
               <Link
                 href="/signup"
-                className="block px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="block px-3 py-2 text-white rounded-lg hover:opacity-90 transition-all"
+                style={{ 
+                  fontFamily: 'Nunito, sans-serif',
+                  backgroundColor: '#228B22'
+                }}
               >
-                Luo tili
+                🍄 Luo tili
               </Link>
             </>
           )}

@@ -1,5 +1,7 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+npm run dev 2>&1 | tee dev-logs.txt
+
 ## Getting Started
 
 First, run the development server:

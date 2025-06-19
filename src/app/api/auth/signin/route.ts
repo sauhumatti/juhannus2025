@@ -13,11 +13,11 @@ export async function POST(req: Request) {
       );
     }
     
-    const { username } = body;
+    const { username, password } = body;
 
-    if (!username) {
+    if (!username || !password) {
       return NextResponse.json(
-        { error: 'Käyttäjänimi vaaditaan' },
+        { error: 'Käyttäjänimi ja salasana vaaditaan' },
         { status: 400 }
       );
     }
@@ -33,7 +33,17 @@ export async function POST(req: Request) {
       );
     }
 
-    return NextResponse.json(user);
+    // Simple password check (no hashing since you requested no secure passwords)
+    if (user.password !== password) {
+      return NextResponse.json(
+        { error: 'Väärä salasana' },
+        { status: 401 }
+      );
+    }
+
+    // Remove password from response
+    const { password: _, ...userWithoutPassword } = user;
+    return NextResponse.json(userWithoutPassword);
   } catch (error) {
     console.error('Virhe sisäänkirjautumisessa:', error);
     return NextResponse.json(

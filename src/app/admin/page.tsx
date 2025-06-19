@@ -80,7 +80,7 @@ export default function AdminPage() {
     const user = JSON.parse(storedUser);
     // TODO: Replace with actual admin check
     if (user.username !== "admin") {
-      router.push("/menu");
+      router.push("/dashboard");
       return;
     }
 

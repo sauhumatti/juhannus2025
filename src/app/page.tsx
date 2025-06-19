@@ -1,101 +1,331 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 
-export default function Home() {
-  const router = useRouter();
-  const [showTitle, setShowTitle] = useState(false);
-  const [showSubtitle, setShowSubtitle] = useState(false);
-  const [showDescription, setShowDescription] = useState(false);
-  const [showButtons, setShowButtons] = useState(false);
-
-  useEffect(() => {
-    const user = sessionStorage.getItem("user");
-    if (user) {
-      router.push("/party");
-    }
-  }, [router]);
-
-  useEffect(() => {
-    // Start animations with delays
-    const timer1 = setTimeout(() => setShowTitle(true), 600);
-    const timer2 = setTimeout(() => setShowSubtitle(true), 1600);
-    const timer3 = setTimeout(() => setShowDescription(true), 2600);
-    const timer4 = setTimeout(() => setShowButtons(true), 3600);
-
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-      clearTimeout(timer4);
-    };
-  }, []);
+export default function HomePage() {
+  const [showAuthOptions, setShowAuthOptions] = useState(false);
 
   return (
-    <div className="relative min-h-screen">
-      {/* Background image - responsive behavior */}
-      <div className="fixed inset-0 z-0 sm:bg-black">
+    <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#F0FFF0' }}>
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
         <Image
-          src="/photo_of_me.jpg"
-          alt="Background"
+          src="/juhannus2025.png"
+          alt="Juhannus 2025 Forest Background"
           fill
-          className="object-cover sm:object-contain"
-          quality={100}
+          className="object-cover opacity-60"
           priority
         />
-        {/* Gradient overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 min-h-screen p-4 flex flex-col items-center justify-center">
-        <div className="w-full max-w-3xl space-y-12">
-          <div className="text-center text-white space-y-8">
-            {/* Main title with fade-in animation */}
-            <div className={`transition-all duration-1000 transform ${showTitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-              <h1 className="text-5xl sm:text-7xl font-bold drop-shadow-2xl dancing-font">
-                Tervetuloa
-              </h1>
-            </div>
-
-            {/* Subtitle with fade-in animation */}
-            <div className={`transition-all duration-1000 transform ${showSubtitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-              <h2 className="text-3xl sm:text-5xl font-semibold drop-shadow-2xl dancing-font">
-                Sakun 30v ja insinöörijuhliin
-              </h2>
-            </div>
-
-            {/* Description with fade-in animation */}
-            <div className={`transition-all duration-1000 transform ${showDescription ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-              <p className="text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto drop-shadow-lg">
-                Tämä on juhlien virallinen kotisivu joka samalla pieni taidonnäytteeni. 
-                Kaikki juhliin liittyvät asiat löytyvät täältä. Tätä sivua käytetään 
-                juhlien ohjelmanumeroihin. Siksi pyydänkin kaikkia luomaan käyttäjän 
-                juhlia varten.
-              </p>
-            </div>
-          </div>
-
-          {/* Buttons with fade-in animation */}
-          <div className={`space-y-4 max-w-md mx-auto transition-all duration-1000 transform ${showButtons ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <Link
-              href="/signin"
-              className="w-full flex items-center justify-center py-4 px-6 bg-white/10 backdrop-blur-md text-white rounded-xl font-medium hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 transition-all border border-white/30 shadow-xl"
+      {/* Animated Forest Canopy Overlay */}
+      <div className="absolute inset-0 z-10">
+        {/* Floating leaves animation */}
+        <div className="floating-leaves">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <div
+              key={i}
+              className="leaf"
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 10}s`,
+                animationDuration: `${8 + Math.random() * 6}s`
+              }}
             >
-              Kirjaudu sisään
-            </Link>
-            <Link
-              href="/signup"
-              className="w-full flex items-center justify-center py-4 px-6 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-medium hover:from-purple-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all shadow-xl transform hover:scale-105"
-            >
-              Luo tili
-            </Link>
-          </div>
+              🍃
+            </div>
+          ))}
+        </div>
+
+        {/* Swaying branches */}
+        <div className="branch-overlay">
+          <div className="branch branch-left">🌿</div>
+          <div className="branch branch-right">🌿</div>
+        </div>
+
+        {/* Golden particles (fireflies) */}
+        <div className="fireflies">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div
+              key={i}
+              className="firefly"
+              style={{
+                left: `${20 + Math.random() * 60}%`,
+                top: `${20 + Math.random() * 60}%`,
+                animationDelay: `${Math.random() * 4}s`
+              }}
+            />
+          ))}
         </div>
       </div>
+
+      {/* Main Content */}
+      <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-4 text-center">
+        {/* Hero Title */}
+        <div className="mb-8 animate-fade-in">
+          <h1 
+            className="text-6xl md:text-8xl font-bold mb-4 text-shadow-lg"
+            style={{ 
+              fontFamily: 'Fredoka One, cursive',
+              background: 'linear-gradient(135deg, #228B22, #32CD32)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}
+          >
+            Juhannus
+          </h1>
+          <h2 
+            className="text-4xl md:text-6xl font-bold mb-6"
+            style={{ 
+              fontFamily: 'Fredoka One, cursive',
+              color: '#DAA520'
+            }}
+          >
+            2025
+          </h2>
+        </div>
+
+        {/* Welcome Message */}
+        <div className="mb-12 max-w-2xl">
+          <p 
+            className="text-xl md:text-2xl mb-4 leading-relaxed"
+            style={{ 
+              fontFamily: 'Nunito, sans-serif',
+              color: '#2F4F4F',
+              textShadow: '0 2px 4px rgba(255,255,255,0.8)'
+            }}
+          >
+            Tervetuloa juhannuksen sydämeen
+          </p>
+          <p 
+            className="text-lg md:text-xl opacity-90"
+            style={{ 
+              fontFamily: 'Nunito, sans-serif',
+              color: '#2F4F4F',
+              textShadow: '0 2px 4px rgba(255,255,255,0.8)'
+            }}
+          >
+            Juhlistamme kesän kirkkainta yötä perinteisten leikkien ja yhteisön voimin
+          </p>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+          {/* Sign In Button */}
+          <button
+            onClick={() => setShowAuthOptions(!showAuthOptions)}
+            className="forest-button forest-button-primary px-8 py-4 text-lg font-semibold rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg"
+            style={{
+              fontFamily: 'Nunito, sans-serif',
+              backgroundColor: '#228B22',
+              color: '#F0FFF0',
+              border: '2px solid #32CD32'
+            }}
+          >
+            🌲 Kirjaudu
+          </button>
+
+          {/* Explore Button */}
+          <Link href="/dashboard">
+            <button
+              className="forest-button forest-button-secondary px-8 py-4 text-lg font-semibold rounded-full transform hover:scale-105 transition-all duration-300 shadow-lg"
+              style={{
+                fontFamily: 'Nunito, sans-serif',
+                backgroundColor: 'rgba(218, 165, 32, 0.9)',
+                color: '#2F4F4F',
+                border: '2px solid #DAA520'
+              }}
+            >
+              🍄 Tutustu Juhlaan
+            </button>
+          </Link>
+        </div>
+
+        {/* Auth Options Dropdown */}
+        {showAuthOptions && (
+          <div className="animate-slide-down bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-green-200">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/signin">
+                <button
+                  className="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                  style={{ fontFamily: 'Nunito, sans-serif' }}
+                >
+                  Kirjaudu sisään
+                </button>
+              </Link>
+              <Link href="/signup">
+                <button
+                  className="px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors font-medium"
+                  style={{ fontFamily: 'Nunito, sans-serif' }}
+                >
+                  Rekisteröidy
+                </button>
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {/* Quick Preview of Activities */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl">
+          {[
+            { icon: '🎯', name: 'Tikka', desc: 'Perinteinen' },
+            { icon: '⛳', name: 'Putting', desc: 'Tarkkuutta' },
+            { icon: '🎳', name: 'Mölkky', desc: 'Klassikko' },
+            { icon: '📸', name: 'Kuvat', desc: 'Muistoja' }
+          ].map((activity, i) => (
+            <div
+              key={i}
+              className="activity-preview bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center transform hover:scale-105 transition-all duration-300 shadow-lg"
+              style={{
+                animationDelay: `${i * 0.2}s`
+              }}
+            >
+              <div className="text-3xl mb-2">{activity.icon}</div>
+              <h3 
+                className="font-bold text-lg"
+                style={{ fontFamily: 'Fredoka One, cursive', color: '#228B22' }}
+              >
+                {activity.name}
+              </h3>
+              <p 
+                className="text-sm opacity-75"
+                style={{ fontFamily: 'Nunito, sans-serif', color: '#2F4F4F' }}
+              >
+                {activity.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Custom Styles */}
+      <style jsx>{`
+        .floating-leaves {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+
+        .leaf {
+          position: absolute;
+          font-size: 1.5rem;
+          animation: float linear infinite;
+          opacity: 0.7;
+        }
+
+        @keyframes float {
+          0% {
+            transform: translateY(-100vh) rotate(0deg);
+            opacity: 0;
+          }
+          10% {
+            opacity: 0.7;
+          }
+          90% {
+            opacity: 0.7;
+          }
+          100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+          }
+        }
+
+        .branch-overlay {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+
+        .branch {
+          position: absolute;
+          font-size: 4rem;
+          animation: sway 4s ease-in-out infinite;
+        }
+
+        .branch-left {
+          top: 10%;
+          left: 5%;
+          transform-origin: bottom center;
+        }
+
+        .branch-right {
+          top: 20%;
+          right: 5%;
+          transform-origin: bottom center;
+          animation-delay: -2s;
+        }
+
+        @keyframes sway {
+          0%, 100% { transform: rotate(-5deg); }
+          50% { transform: rotate(5deg); }
+        }
+
+        .fireflies {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+        }
+
+        .firefly {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: #DAA520;
+          border-radius: 50%;
+          box-shadow: 0 0 10px #DAA520, 0 0 20px #DAA520;
+          animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+          0%, 100% { opacity: 0.3; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 2s ease-out;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-slide-down {
+          animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .activity-preview {
+          animation: slideUp 0.8s ease-out both;
+        }
+
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(40px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .forest-button {
+          transition: all 0.3s ease;
+        }
+
+        .forest-button:hover {
+          box-shadow: 0 8px 25px rgba(34, 139, 34, 0.3);
+        }
+
+        .text-shadow-lg {
+          text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+      `}</style>
     </div>
   );
 }

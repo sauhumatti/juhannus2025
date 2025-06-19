@@ -220,7 +220,7 @@ export default function ProfilePage() {
             {/* Actions */}
             <div className="border-t pt-8 space-y-4">
               <button
-                onClick={() => router.push("/party")}
+                onClick={() => router.push("/dashboard")}
                 className="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 ← Takaisin etusivulle

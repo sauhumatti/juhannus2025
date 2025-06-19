@@ -3,11 +3,11 @@ import { prisma } from '@/lib/prisma';
 
 export async function POST(req: Request) {
   try {
-    const { username, name, photoUrl } = await req.json();
+    const { username, name, password, photoUrl } = await req.json();
 
-    if (!username || !name || !photoUrl) {
+    if (!username || !name || !password || !photoUrl) {
       return NextResponse.json(
-        { error: 'Käyttäjänimi, nimi ja profiilikuva vaaditaan' },
+        { error: 'Käyttäjänimi, nimi, salasana ja profiilikuva vaaditaan' },
         { status: 400 }
       );
     }
@@ -29,6 +29,7 @@ export async function POST(req: Request) {
       data: {
         username,
         name,
+        password,
         photoUrl,
       },
     });

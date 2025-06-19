@@ -36,6 +36,30 @@ body {
   scrollbar-width: none;  /* Firefox */
 }
 
+/* Bonfire animations */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.animate-float-up {
+  animation: float-up 2s ease-out infinite;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
 /* Fix for mobile background image zoom issue */
 @media (max-width: 640px) {
   body {
@@ -295,5 +319,74 @@ body {
   .games-page .bg-green-600 *,
   .games-page .bg-red-600 * {
     color: white !important;
+  }
+  
+  /* Photos page text visibility fixes for Forest Folklore theme */
+  .photos-page span,
+  .photos-page p,
+  .photos-page td,
+  .photos-page label {
+    color: #111827 !important; /* Force dark text on mobile */
+  }
+  
+  /* Make green text darker on mobile for better visibility */
+  .photos-page .text-green-500 {
+    color: #059669 !important; /* Much darker green */
+  }
+  
+  .photos-page .text-green-600 {
+    color: #047857 !important; /* Very dark green */
+  }
+  
+  .photos-page .text-green-700 {
+    color: #065f46 !important; /* Extremely dark green */
+  }
+  
+  .photos-page .text-green-800 {
+    color: #064e3b !important; /* Ultra dark green */
+  }
+  
+  /* Preserve white text on colored backgrounds */
+  .photos-page .bg-green-600 *,
+  .photos-page .bg-yellow-600 *,
+  .photos-page .bg-red-600 * {
+    color: white !important;
+  }
+  
+  /* Make placeholder text visible */
+  .photos-page input::placeholder,
+  .photos-page textarea::placeholder {
+    color: #6b7280 !important; /* Medium gray for placeholders */
+  }
+  
+  /* Success and error messages - ensure good contrast */
+  .photos-page .text-red-700 {
+    color: #991b1b !important; /* Very dark red */
+  }
+  
+  /* Character count text */
+  .photos-page .text-xs {
+    color: #111827 !important;
+    font-weight: 500 !important;
+  }
+}
+
+/* Print styles for A4 printable page */
+@media print {
+  @page {
+    size: A4;
+    margin: 2cm;
+  }
+  
+  .print-page {
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+  }
+  
+  /* Hide navbar and other UI elements when printing */
+  nav,
+  .navbar,
+  header {
+    display: none !important;
   }
 }

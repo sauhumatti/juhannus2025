@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-interface MinimalIcebreakerAnswer {
+interface _MinimalIcebreakerAnswer {
   id: string;
 }
 
@@ -12,14 +12,14 @@ interface DbUser {
   photoUrl: string;
   dartScores: { score: number }[];
   puttingScores: { score: number }[];
-  beerScores: { time: number }[];
+  // beerScores: { time: number }[];
   beerPongStats: {
     wins: number;
     losses: number;
   } | null;
-  assignedCard: {
-    answers: MinimalIcebreakerAnswer[];
-  } | null;
+  // assignedCard: {
+  //   answers: MinimalIcebreakerAnswer[];
+  // } | null;
 }
 
 interface FormattedUser {
@@ -29,7 +29,7 @@ interface FormattedUser {
   photoUrl: string;
   dartScores: { score: number }[];
   puttingScores: { score: number }[];
-  beerScores: { time: number }[];
+  // beerScores: { time: number }[];
   beerPongStats: {
     wins: number;
     losses: number;
@@ -47,13 +47,13 @@ export async function GET(_request: NextRequest) {
       include: {
         dartScores: true,
         puttingScores: true,
-        beerScores: true,
+        // beerScores: true,
         beerPongStats: true,
-        assignedCard: {
-          include: {
-            answers: true
-          }
-        }
+        // assignedCard: {
+        //   include: {
+        //     answers: true
+        //   }
+        // }
       }
     });
 
@@ -65,11 +65,11 @@ export async function GET(_request: NextRequest) {
       photoUrl: user.photoUrl,
       dartScores: user.dartScores,
       puttingScores: user.puttingScores,
-      beerScores: user.beerScores,
+      // beerScores: user.beerScores,
       beerPongStats: user.beerPongStats,
       icebreaker: {
-        hasCard: !!user.assignedCard,
-        answersCount: user.assignedCard?.answers.length || 0,
+        hasCard: false, // !!user.assignedCard,
+        answersCount: 0, // user.assignedCard?.answers.length || 0,
         totalQuestions: 20
       }
     }));

@@ -11,13 +11,13 @@ model User {
   id        String   @id @default(cuid())
   username  String   @unique
   name      String
+  password  String
   photoUrl  String
   createdAt DateTime @default(now())
   
   // Game scores
   dartScores     DartScore[]
   puttingScores  PuttingScore[]
-  beerScores     BeerScore[]
   
   // Beer pong relationships
   playerInTeam1  BeerPongMatch[] @relation("Team1")
@@ -27,13 +27,22 @@ model User {
   // Individual beer pong stats
   beerPongStats  BeerPongStats?
 
-  // Icebreaker game
-  assignedCard   IcebreakerCard?
-  answersGiven   IcebreakerAnswer[] @relation("AnswerGiver")
-  answersReceived IcebreakerAnswer[] @relation("AnswerReceiver")
-
   // Photo moments
   photoMoments   PhotoMoment[]
+
+  // Mölkky game relationships
+  createdMolkkyGames MolkkyGame[] @relation("MolkkyCreator")
+  wonMolkkyGames     MolkkyGame[] @relation("MolkkyWinner") 
+  molkkyParticipation MolkkyPlayer[] @relation("MolkkyParticipant")
+
+  // Grill Master scores
+  grillScores    GrillScore[]
+
+  // Mosquito Clicker scores
+  mosquitoScores MosquitoScore[]
+
+  // Memory Game scores
+  memoryScores   MemoryScore[]
 }
 
 model DartScore {
@@ -47,14 +56,6 @@ model DartScore {
 model PuttingScore {
   id        String   @id @default(cuid())
   score     Int      // Out of 10
-  createdAt DateTime @default(now())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-}
-
-model BeerScore {
-  id        String   @id @default(cuid())
-  time      Float    // Time in seconds
   createdAt DateTime @default(now())
   userId    String
   user      User     @relation(fields: [userId], references: [id])
@@ -88,29 +89,6 @@ model BeerPongStats {
   lastUpdated DateTime @default(now())
 }
 
-model IcebreakerCard {
-  id        String   @id @default(cuid())
-  cardId    Int      // ID from JSON file
-  userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  answers   IcebreakerAnswer[]
-}
-
-model IcebreakerAnswer {
-  id        String   @id @default(cuid())
-  cardId    String
-  card      IcebreakerCard @relation(fields: [cardId], references: [id])
-  questionNumber Int
-  giverId   String
-  giver     User     @relation("AnswerGiver", fields: [giverId], references: [id])
-  receiverId String
-  receiver  User     @relation("AnswerReceiver", fields: [receiverId], references: [id])
-  createdAt DateTime @default(now())
-
-  @@unique([cardId, questionNumber, giverId])
-}
-
 model PhotoMoment {
   id        String   @id @default(cuid())
   userId    String
@@ -120,9 +98,75 @@ model PhotoMoment {
   createdAt DateTime @default(now())
 }
 
-model GameState {
-  id                    String   @id @default(cuid())
-  isIcebreakerEnabled   Boolean  @default(false)
-  lastUpdated          DateTime @default(now())
-  updatedBy            String?  // Admin username who made the change
+model MolkkyGame {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  startedAt   DateTime?
+  endedAt     DateTime?
+  status      String   @default("waiting") // waiting, ongoing, completed, cancelled
+  creatorId   String
+  creator     User     @relation("MolkkyCreator", fields: [creatorId], references: [id])
+  winnerId    String?
+  winner      User?    @relation("MolkkyWinner", fields: [winnerId], references: [id])
+  
+  players     MolkkyPlayer[]
+  throws      MolkkyThrow[]
+}
+
+model MolkkyPlayer {
+  id            String   @id @default(cuid())
+  gameId        String
+  game          MolkkyGame @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  userId        String
+  user          User     @relation("MolkkyParticipant", fields: [userId], references: [id])
+  joinedAt      DateTime @default(now())
+  currentScore  Int      @default(0)
+  missCount     Int      @default(0) // Consecutive misses
+  isEliminated  Boolean  @default(false)
+  position      Int?     // Final position when game ends
+  
+  throws        MolkkyThrow[]
+  
+  @@unique([gameId, userId])
+}
+
+model MolkkyThrow {
+  id        String   @id @default(cuid())
+  gameId    String
+  game      MolkkyGame @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  playerId  String
+  player    MolkkyPlayer @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  throwNumber Int    // Turn number in the game
+  pinsHit   Int      // Number of pins knocked down
+  pinNumber Int?     // Specific pin number if only 1 pin hit
+  points    Int      // Points scored this throw
+  scoreBefore Int    // Score before this throw
+  scoreAfter  Int    // Score after this throw
+  isMiss    Boolean  @default(false)
+  isPenalty Boolean  @default(false) // True if score was reset from exceeding 50
+  createdAt DateTime @default(now())
+}
+
+model GrillScore {
+  id        String   @id @default(cuid())
+  score     Int      // Number of perfectly grilled sausages
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model MosquitoScore {
+  id        String   @id @default(cuid())
+  score     Int      // Number of mosquitoes swatted
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model MemoryScore {
+  id        String   @id @default(cuid())
+  score     Int      // Score based on moves and time
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
 }

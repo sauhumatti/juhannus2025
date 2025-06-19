@@ -64,26 +64,6 @@ export async function PUT(
           };
           break;
 
-        case "Beer":
-          const beerRecord = await prisma.beerScore.update({
-            where: { id },
-            data: { time: score }, // For beer game, score is actually time
-            include: {
-              user: {
-                select: {
-                  name: true,
-                },
-              },
-            },
-          });
-          result = {
-            id: beerRecord.id,
-            userId: beerRecord.userId,
-            userName: beerRecord.user.name,
-            score: beerRecord.time, // Access 'time' property for Beer game
-            gameType: 'Beer'
-          };
-          break;
 
         default:
           return NextResponse.json(
@@ -140,11 +120,6 @@ export async function DELETE(
           });
           break;
 
-        case "Beer":
-          await prisma.beerScore.delete({
-            where: { id }
-          });
-          break;
 
         default:
           return NextResponse.json(
