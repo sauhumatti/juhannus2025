@@ -15,10 +15,12 @@ interface Sausage {
 
 const COOK_TIME_PERFECT = 5000; // 5 seconds for perfect
 const COOK_TIME_BURNT = 8000; // 8 seconds until burnt
-const SAUSAGE_WIDTH = 150;
-const SAUSAGE_HEIGHT = 60;
-const GRILL_WIDTH = 800;
-const GRILL_HEIGHT = 600;
+
+// Responsive dimensions
+const getSausageWidth = () => typeof window !== 'undefined' && window.innerWidth < 640 ? 80 : 150;
+const getSausageHeight = () => typeof window !== 'undefined' && window.innerWidth < 640 ? 30 : 60;
+const getGrillWidth = () => typeof window !== 'undefined' && window.innerWidth < 640 ? 280 : 600;
+const getGrillHeight = () => typeof window !== 'undefined' && window.innerWidth < 640 ? 200 : 400;
 
 export default function GrillMaster() {
   const [sausages, setSausages] = useState<Sausage[]>([]);
@@ -35,12 +37,17 @@ export default function GrillMaster() {
   useEffect(() => {
     if (gameActive) {
       const initialSausages: Sausage[] = [];
+      const sausageCount = typeof window !== 'undefined' && window.innerWidth < 640 ? 4 : 6;
+      const sausageWidth = getSausageWidth();
+      const sausageHeight = getSausageHeight();
+      const startY = typeof window !== 'undefined' && window.innerWidth < 640 ? 350 : 720;
+      
       // Place sausages on the raw plate
-      for (let i = 0; i < 6; i++) {
+      for (let i = 0; i < sausageCount; i++) {
         initialSausages.push({
           id: `sausage-${i}`,
-          x: 80 + (i % 3) * 80,
-          y: 720 + Math.floor(i / 3) * 60,
+          x: 20 + (i % 2) * (sausageWidth + 10),
+          y: startY + Math.floor(i / 2) * (sausageHeight + 10),
           state: 'raw',
           cookingTime: 0,
           onGrill: false
@@ -134,26 +141,33 @@ export default function GrillMaster() {
     const gameRect = gameAreaRef.current.getBoundingClientRect();
     const cookedPlateRect = cookedPlateRef.current?.getBoundingClientRect();
     
-    const x = e.clientX - gameRect.left - SAUSAGE_WIDTH / 2;
-    const y = e.clientY - gameRect.top - SAUSAGE_HEIGHT / 2;
+    const sausageWidth = getSausageWidth();
+    const sausageHeight = getSausageHeight();
+    const grillWidth = getGrillWidth();
+    const grillHeight = getGrillHeight();
+    
+    const x = e.clientX - gameRect.left - sausageWidth / 2;
+    const y = e.clientY - gameRect.top - sausageHeight / 2;
 
     const grillX = grillRect.left - gameRect.left;
     const grillY = grillRect.top - gameRect.top;
 
-    const onGrill = x > grillX - 50 && 
-                    x < grillX + GRILL_WIDTH - SAUSAGE_WIDTH + 50 && 
-                    y > grillY - 30 && 
-                    y < grillY + GRILL_HEIGHT - SAUSAGE_HEIGHT + 30;
+    const tolerance = typeof window !== 'undefined' && window.innerWidth < 640 ? 20 : 50;
+    const onGrill = x > grillX - tolerance && 
+                    x < grillX + grillWidth - sausageWidth + tolerance && 
+                    y > grillY - tolerance/2 && 
+                    y < grillY + grillHeight - sausageHeight + tolerance/2;
 
     // Check if dropped on cooked plate
     let onCookedPlate = false;
     if (cookedPlateRect) {
       const cookedX = cookedPlateRect.left - gameRect.left;
       const cookedY = cookedPlateRect.top - gameRect.top;
-      onCookedPlate = x > cookedX - 50 && 
-                      x < cookedX + 250 && 
-                      y > cookedY - 50 && 
-                      y < cookedY + 150;
+      const plateSize = typeof window !== 'undefined' && window.innerWidth < 640 ? 150 : 250;
+      onCookedPlate = x > cookedX - tolerance && 
+                      x < cookedX + plateSize && 
+                      y > cookedY - tolerance && 
+                      y < cookedY + plateSize/2;
     }
 
     setSausages(prev => prev.map(sausage => {
@@ -212,17 +226,17 @@ export default function GrillMaster() {
         ) : (
           <>
             <div className="flex justify-between items-center mb-4">
-              <div className="text-2xl font-bold text-green-800">
+              <div className="text-lg sm:text-2xl font-bold text-green-800">
                 Pisteet: {score}
               </div>
-              <div className="text-2xl font-bold text-red-600">
+              <div className="text-lg sm:text-2xl font-bold text-red-600">
                 Aika: {timeLeft}s
               </div>
             </div>
 
             <div 
               ref={gameAreaRef}
-              className="relative bg-green-100 rounded-lg p-8 h-[900px] overflow-hidden"
+              className="relative bg-green-100 rounded-lg p-2 sm:p-8 h-[500px] sm:h-[900px] overflow-hidden"
               onDragOver={handleDragOver}
               onDrop={handleDrop}
             >
@@ -232,10 +246,10 @@ export default function GrillMaster() {
                 className="absolute"
                 style={{
                   left: '50%',
-                  top: '40%',
+                  top: '30%',
                   transform: 'translate(-50%, -50%)',
-                  width: GRILL_WIDTH,
-                  height: GRILL_HEIGHT
+                  width: getGrillWidth(),
+                  height: getGrillHeight()
                 }}
               >
                 <img 
@@ -251,10 +265,10 @@ export default function GrillMaster() {
                 ref={rawPlateRef}
                 className="absolute"
                 style={{
-                  left: 50,
-                  bottom: 100,
-                  width: 300,
-                  height: 200
+                  left: typeof window !== 'undefined' && window.innerWidth < 640 ? 10 : 50,
+                  bottom: typeof window !== 'undefined' && window.innerWidth < 640 ? 20 : 100,
+                  width: typeof window !== 'undefined' && window.innerWidth < 640 ? 150 : 300,
+                  height: typeof window !== 'undefined' && window.innerWidth < 640 ? 100 : 200
                 }}
               >
                 <img 
@@ -263,8 +277,8 @@ export default function GrillMaster() {
                   className="w-full h-full"
                   draggable={false}
                 />
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-6 bg-white/90 px-3 py-1 rounded-lg">
-                  <span className="text-sm font-bold text-gray-700">Raa&apos;at makkarat</span>
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-6 bg-white/90 px-2 py-1 rounded-lg">
+                  <span className="text-xs sm:text-sm font-bold text-gray-700">Raa&apos;at</span>
                 </div>
               </div>
 
@@ -273,10 +287,10 @@ export default function GrillMaster() {
                 ref={cookedPlateRef}
                 className="absolute"
                 style={{
-                  right: 50,
-                  bottom: 100,
-                  width: 300,
-                  height: 200
+                  right: typeof window !== 'undefined' && window.innerWidth < 640 ? 10 : 50,
+                  bottom: typeof window !== 'undefined' && window.innerWidth < 640 ? 20 : 100,
+                  width: typeof window !== 'undefined' && window.innerWidth < 640 ? 150 : 300,
+                  height: typeof window !== 'undefined' && window.innerWidth < 640 ? 100 : 200
                 }}
               >
                 <img 
@@ -285,8 +299,8 @@ export default function GrillMaster() {
                   className="w-full h-full"
                   draggable={false}
                 />
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-6 bg-white/90 px-3 py-1 rounded-lg">
-                  <span className="text-sm font-bold text-gray-700">Valmiit makkarat</span>
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-6 bg-white/90 px-2 py-1 rounded-lg">
+                  <span className="text-xs sm:text-sm font-bold text-gray-700">Valmiit</span>
                 </div>
               </div>
 
@@ -300,8 +314,8 @@ export default function GrillMaster() {
                   style={{
                     left: sausage.x,
                     top: sausage.y,
-                    width: SAUSAGE_WIDTH,
-                    height: SAUSAGE_HEIGHT
+                    width: getSausageWidth(),
+                    height: getSausageHeight()
                   }}
                   draggable
                   onDragStart={(e) => handleDragStart(e, sausage.id)}
@@ -313,8 +327,8 @@ export default function GrillMaster() {
                     draggable={false}
                   />
                   {sausage.onGrill && sausage.state === 'cooking' && (
-                    <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                      <div className="bg-yellow-500 rounded-full w-16 h-2">
+                    <div className="absolute -top-4 sm:-top-6 left-1/2 transform -translate-x-1/2">
+                      <div className="bg-yellow-500 rounded-full w-8 sm:w-16 h-1 sm:h-2">
                         <div 
                           className="bg-green-500 rounded-full h-full transition-all"
                           style={{
@@ -328,14 +342,14 @@ export default function GrillMaster() {
               ))}
 
               {/* Instructions */}
-              <div className="absolute top-4 right-4 bg-white/90 p-3 rounded-lg shadow-md">
-                <p className="text-sm text-gray-700 font-medium">
-                  📋 Ohjeet:<br/>
+              <div className="absolute top-2 right-2 bg-white/90 p-2 rounded-lg shadow-md max-w-[120px] sm:max-w-none">
+                <p className="text-xs sm:text-sm text-gray-700 font-medium">
+                  <span className="hidden sm:inline">📋 Ohjeet:<br/>
                   1. Vedä makkarat grilliin<br/>
                   2. Odota kunnes kultainen<br/>
-                  3. Siirrä valmiit lautaselle<br/>
-                  <span className="text-green-600">🟢 Valmis = +10p</span><br/>
-                  <span className="text-red-600">⚫ Palanut = 0p</span>
+                  3. Siirrä valmiit lautaselle<br/></span>
+                  <span className="text-green-600">🟢 +10p</span><br/>
+                  <span className="text-red-600">⚫ 0p</span>
                 </p>
               </div>
             </div>

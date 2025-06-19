@@ -71,8 +71,11 @@ export default function MosquitoClicker() {
 
     // 70% chance of targeting head, 30% random movement
     const targetingHead = Math.random() < 0.7;
-    const headX = 400; // Center of 800px wide game area
-    const headY = 300; // Center of 600px high game area
+    // Use responsive positioning - center of the game area
+    const gameWidth = typeof window !== 'undefined' ? Math.min(window.innerWidth - 32, 800) : 800;
+    const gameHeight = typeof window !== 'undefined' && window.innerWidth < 640 ? 400 : 600;
+    const headX = gameWidth / 2;
+    const headY = gameHeight / 2;
     
     if (targetingHead) {
       // Calculate direction towards head
@@ -212,10 +215,12 @@ export default function MosquitoClicker() {
         let newSpeedX = mosquito.speedX;
         let newSpeedY = mosquito.speedY;
 
-        // Check collision with head (center at 400, 300 with radius of ~50)
-        const headX = 400;
-        const headY = 300;
-        const headRadius = 50;
+        // Check collision with head - responsive positioning
+        const gameArea = typeof document !== 'undefined' ? document.querySelector('.game-area') : null;
+        const gameRect = gameArea?.getBoundingClientRect();
+        const headX = gameRect ? gameRect.width / 2 : 400;
+        const headY = gameRect ? gameRect.height / 2 : 300;
+        const headRadius = typeof window !== 'undefined' && window.innerWidth < 640 ? 35 : 50;
         const distance = Math.sqrt((newX - headX) ** 2 + (newY - headY) ** 2);
         
         if (distance < headRadius && !mosquito.isSquished) {
@@ -398,45 +403,47 @@ export default function MosquitoClicker() {
           </div>
         ) : (
           <>
-            <div className="flex justify-between items-center mb-4 text-center">
-              <div className="text-xl font-bold text-green-800">
+            {/* Mobile-optimized stats */}
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-4 mb-4 text-center">
+              <div className="text-sm sm:text-lg font-bold text-green-800">
                 Pisteet: {score}
               </div>
-              <div className="text-lg text-gray-600">
+              <div className="text-sm sm:text-lg text-gray-600">
                 Hutit: {missedClicks}
               </div>
-              <div className="text-lg font-bold">
-                <span className="text-red-600">❤️ Pää: {headHealth}%</span>
+              <div className="text-sm sm:text-lg font-bold">
+                <span className="text-red-600">❤️ {headHealth}%</span>
               </div>
-              <div className="text-lg font-bold text-purple-600">
-                🏃 Vaikeus: {difficultyLevel}
+              <div className="text-sm sm:text-lg font-bold text-purple-600">
+                🏃 Taso {difficultyLevel}
               </div>
-              <div className="text-lg font-bold text-blue-600">
+              <div className="text-sm sm:text-lg font-bold text-blue-600">
                 ⏱️ {gameTime}s
               </div>
             </div>
 
             <div 
-              className="relative bg-gradient-to-b from-blue-100 to-green-100 rounded-lg h-[600px] overflow-hidden cursor-crosshair game-area"
+              className="relative bg-gradient-to-b from-blue-100 to-green-100 rounded-lg h-[400px] sm:h-[600px] overflow-hidden cursor-crosshair game-area"
               onClick={handleMissClick}
             >
-              {/* Head in the center */}
+              {/* Head in the center - responsive positioning */}
               <div 
                 className="absolute"
                 style={{
-                  left: 400 - 32, // Center at 400, head is 64px wide
-                  top: 300 - 32,  // Center at 300, head is 64px tall
-                  width: 64,
-                  height: 64,
+                  left: '50%',
+                  top: '50%', 
+                  transform: 'translate(-50%, -50%)',
+                  width: 48,
+                  height: 48,
                   zIndex: 1
                 }}
               >
                 <Image
                   src="/head.png"
                   alt="Pää"
-                  width={64}
-                  height={64}
-                  className="rounded-full"
+                  width={48}
+                  height={48}
+                  className="rounded-full sm:w-16 sm:h-16"
                   draggable={false}
                 />
               </div>
@@ -504,13 +511,13 @@ export default function MosquitoClicker() {
                 </div>
               )}
 
-              {/* Click feedback */}
-              <div className="absolute top-4 left-4 bg-white/80 p-3 rounded-lg">
-                <p className="text-sm text-gray-700 font-medium">
+              {/* Click feedback - mobile optimized */}
+              <div className="absolute top-2 left-2 bg-white/80 p-2 rounded-lg max-w-[150px] sm:max-w-none">
+                <p className="text-xs sm:text-sm text-gray-700 font-medium">
                   💯 Osuma = +10p<br/>
-                  🦟 Päälle = -10p & -{3 + Math.floor(difficultyLevel / 2)}% ❤️<br/>
-                  ⏱️ Vaikeus nousee 10s välein<br/>
-                  🎯 Tavoite: Kestä 60 sekuntia!
+                  🦟 Päälle = -10p<br/>
+                  <span className="hidden sm:inline">⏱️ Vaikeus nousee 10s välein<br/>
+                  🎯 Tavoite: Kestä 60 sekuntia!</span>
                 </p>
               </div>
             </div>

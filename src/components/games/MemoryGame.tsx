@@ -280,7 +280,7 @@ export default function MemoryGame() {
         ) : (
           <>
             {/* Game stats */}
-            <div className="flex justify-center gap-8 mb-6">
+            <div className="flex justify-center gap-4 sm:gap-8 mb-6">
               <div className="text-center">
                 <div 
                   className="text-2xl font-bold"
@@ -344,7 +344,7 @@ export default function MemoryGame() {
             </div>
 
             {/* Game board */}
-            <div className="grid grid-cols-4 gap-4 max-w-2xl mx-auto">
+            <div className="grid grid-cols-4 gap-2 sm:gap-4 max-w-sm sm:max-w-2xl mx-auto">
               {cards.map((card) => (
                 <div
                   key={card.id}
@@ -391,13 +391,13 @@ export default function MemoryGame() {
                       <Image
                         src={card.image}
                         alt={card.name}
-                        width={80}
-                        height={80}
-                        className="rounded-lg mb-1"
+                        width={60}
+                        height={60}
+                        className="rounded-lg mb-1 sm:w-20 sm:h-20"
                         draggable={false}
                       />
                       <p 
-                        className="text-xs text-center font-medium"
+                        className="text-xs sm:text-sm text-center font-medium leading-tight"
                         style={{ 
                           fontFamily: 'Nunito, sans-serif',
                           color: '#2F4F4F'
