@@ -69,7 +69,7 @@ export default function GrillMaster() {
         if (!sausage.onGrill || sausage.state === 'burnt') return sausage;
 
         const newCookingTime = sausage.cookingTime + 100;
-        let newState = sausage.state;
+        let newState: SausageState = sausage.state;
 
         if (newCookingTime >= COOK_TIME_BURNT) {
           newState = 'burnt';

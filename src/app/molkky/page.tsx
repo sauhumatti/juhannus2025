@@ -84,8 +84,8 @@ export default function MolkkyPage() {
     try {
       const response = await fetch('/api/users/list');
       if (response.ok) {
-        const data = await response.json();
-        setAllUsers(data);
+        const _data = await response.json();
+        // setAllUsers(data); // Not using this data
       }
     } catch (error) {
       console.error('Virhe käyttäjien haussa:', error);
